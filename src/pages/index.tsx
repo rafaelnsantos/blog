@@ -1,31 +1,17 @@
-import { fetcher } from '~/services/fetcher'
-import { slugfy } from '~/utils/slugfy'
-import styled from 'styled-components'
-
-const Movie = styled.div`
-  height: var(--min-tap-target-height);
-`
+import { GetStaticProps } from 'next'
 
 export default function Index(props) {
   return (
     <div>
-      {props.allFilms.map(film => (
-        <Movie key={film.id}><a href={`/film/${slugfy(film.title)}`}>{film.title}</a></Movie>
-      ))}
+      {props.a}
     </div>
   )
 }
 
-export async function getStaticProps () {
-  const props = await fetcher(`query{
-    allFilms{
-      id
-      title
-    }
-  }`)
-  
+export const getStaticProps: GetStaticProps = async () => {
   return {
-    props
+    props: {
+      a: 1
+    }
   }
-
 }
