@@ -5,6 +5,10 @@ date: 2020-5-15
 
 My first blog post!
 
-```js
+```jsx
 import test from 'asd'
+
+export function Ola () {
+  return <div>Ola Mundo</div>
+}
 ```
