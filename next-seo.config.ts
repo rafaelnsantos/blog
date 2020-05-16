@@ -4,7 +4,7 @@ export default {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://blog.rafaelns.now.sh/',
+    url: process.env.URL,
     site_name: 'Rafael Santos',
     images: [
       {
