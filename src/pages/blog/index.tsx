@@ -2,7 +2,7 @@ import { GetStaticProps } from "next"
 import { getPosts } from "~/utils/blogUtils"
 
 export default function Blog (props: BlogProps) {
-  return <div>{props.posts.map(post => <a key={post.slug} href={`/blog/post/${post.slug}`}>{post.title}</a>)}</div>
+  return <div>{props.posts.map(post => <a key={post.slug} href={`/blog/${post.slug}`}>{post.title}</a>)}</div>
 }
 
 interface BlogProps {

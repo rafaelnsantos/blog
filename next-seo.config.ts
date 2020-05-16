@@ -4,18 +4,15 @@ export default {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://raffe.com',
+    url: 'https://blog.rafaelns.now.sh/',
     site_name: 'Rafael Santos',
     images: [
       {
-        url: 'https://raffe.com/static/meta/og-image.png',
-        alt: 'Rafael Santos',
+        url: 'https://user-images.githubusercontent.com/4512966/82125539-faf01b80-977c-11ea-931f-d0dc6ae2f49c.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Rafael Santos'
       },
     ],
-  },
-  twitter: {
-    handle: '@raffe',
-    site: '@raffe',
-    cardType: 'summary_large_image',
-  },
+  }
 };
