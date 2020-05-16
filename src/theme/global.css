@@ -4,6 +4,7 @@ html {
 
 body {
   color: var(--text-primary);
+  font-family: 'Fira Mono', monospace;
 }
 
 a {
