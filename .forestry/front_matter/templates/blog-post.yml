@@ -20,3 +20,5 @@ fields:
 - type: file
   name: metaImage
   label: metaImage
+pages:
+- blog/hello-from-forestry.md
