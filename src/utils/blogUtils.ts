@@ -56,3 +56,25 @@ export const getPosts = async (): Promise<Post[]> => {
 
   return posts.sort((a, b) => b.timestamp - a.timestamp);
 };
+
+export interface CloudTag {
+  value: string;
+  count: number;
+}
+
+export const getTags = (posts: Post[]): CloudTag[] => {
+  const tags: CloudTag[] = [];
+
+  posts.map((post) => {
+    post.tags.map((tag) => {
+      const found = tags.findIndex((t) => t.value === tag);
+      if (found !== -1) {
+        tags[found].count += 1;
+      } else {
+        tags.push({ value: tag, count: 1 });
+      }
+    });
+  });
+
+  return tags;
+};
