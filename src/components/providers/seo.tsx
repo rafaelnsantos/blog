@@ -1,11 +1,11 @@
-import { DefaultSeo } from 'next-seo'
-import Head from 'next/head'
-import seo from 'next-seo.config' 
+import { DefaultSeo } from 'next-seo';
+import Head from 'next/head';
+import seo from 'next-seo.config';
 
-export function SEO () {
+export function SEO() {
   return (
     <>
-      <DefaultSeo {...seo}/>
+      <DefaultSeo {...seo} />
       <Head>
         {/* <meta name="theme-color" content={'#fefefe'} /> */}
         {/* <link rel="apple-touch-icon" href="/static/meta/apple-touch-icon.png" /> */}
@@ -21,5 +21,5 @@ export function SEO () {
         /> */}
       </Head>
     </>
-  )
+  );
 }

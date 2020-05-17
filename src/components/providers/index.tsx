@@ -1,8 +1,8 @@
-import { SEO } from "./seo";
-import { DarkModeProvider } from "./DarkMode";
-import { GlobalStyle } from "./GlobalStyle";
+import { SEO } from './seo';
+import { DarkModeProvider } from './DarkMode';
+import { GlobalStyle } from './GlobalStyle';
 
-export function Providers (props) {
+export function Providers(props) {
   return (
     <>
       <DarkModeProvider />
@@ -10,5 +10,5 @@ export function Providers (props) {
       <GlobalStyle />
       {props.children}
     </>
-  )
+  );
 }

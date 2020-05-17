@@ -1,29 +1,58 @@
-import fs from 'fs'
-import path from 'path'
-import matter from 'gray-matter'
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
+import { getReadingTime } from './getReadingTime';
 
-export function getPosts () {
-  const dirname = path.join(process.cwd(), 'blog')
-
-  let posts = []
-  
-  const files = fs.readdirSync(dirname)
-  
-  files.forEach(file => {
-    const slug = file.replace(/.md/, '')
-    const post = getPostBySlug(slug)
-    posts.push(post)
-  })
-  
-  return posts
+export interface Post {
+  title: string;
+  date: string;
+  meta: {
+    title: string;
+    description: string;
+    image: string;
+  };
+  slug: string;
+  content: string;
+  readingTime: number;
+  tags: string[];
 }
 
-export function getPostBySlug (slug) {
-  const mdFile = require(`../../blog/${slug}.md`)
+export const getPostBySlug = async (slug: string): Promise<Post> => {
+  try {
+    const mdFile = await import(`../../blog/${slug}.md`);
 
-  const post = matter(mdFile.default)
-  
-  delete post.orig
+    const post = matter(mdFile.default);
 
-  return { content: post.content, ...post.data, slug }
-}
+    return {
+      content: post.content,
+      slug: slug,
+      title: post.data.title,
+      date: post.data.date,
+      tags: post.data.tags,
+      meta: {
+        title: post.data.metaTitle,
+        description: post.data.metaDescription,
+        image: post.data.metaImage,
+      },
+      readingTime: getReadingTime(post.content),
+    };
+  } catch (err) {
+    return null;
+  }
+};
+
+export const getPosts = async (): Promise<Post[]> => {
+  const dirname = path.join(process.cwd(), 'blog');
+
+  const files = fs.readdirSync(dirname);
+
+  const posts = await Promise.all(
+    files.map(async (file) => {
+      const slug = file.replace(/.md/, '');
+      const post = await getPostBySlug(slug);
+      return post;
+    })
+  );
+
+  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+};

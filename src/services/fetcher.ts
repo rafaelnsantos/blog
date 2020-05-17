@@ -6,6 +6,6 @@ export const fetcher = (query, variables = null) =>
     },
     body: JSON.stringify({ query, variables }),
   })
-    .then(res => res.json())
-    .then(json => json.data)
-    .catch(err => console.log(err))
+    .then((res) => res.json())
+    .then((json) => json.data)
+    .catch((err) => console.log(err));

@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -8,4 +8,4 @@ export const GlobalStyle = createGlobalStyle`
       --min-tap-target-height: 32px;
     }
   }
-`
+`;

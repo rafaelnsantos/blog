@@ -79,4 +79,4 @@ export const COLORS = {
     light: '#00ACED',
     dark: '#00ACED',
   },
-}
+};

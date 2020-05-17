@@ -1,29 +1,34 @@
-import useDarkMode from 'use-dark-mode'
-import { useRouter } from 'next/router'
+import useDarkMode from 'use-dark-mode';
+import { useRouter } from 'next/router';
 
-const HeaderLink = ({ children, ...props }) => {
-  const router = useRouter()
-
-  return router.route === props.href ? children : (
-    <a {...props}>
-      {children}
-    </a>
-  )
+interface NavLink {
+  title: string;
+  path: string;
 }
 
+interface HeaderProps {
+  links: NavLink[];
+}
 
-export function Header () {
-  return (
-    <div>
-      <HeaderLink href='/'>home</HeaderLink>
-      <HeaderLink href='/blog'>blog</HeaderLink>
-      <ToggleThemeButton />
+export function Header({ links }: HeaderProps) {
+  const router = useRouter();
+
+  const renderLink = (link: NavLink) => (
+    <div className="mr-6" key={link.title}>
+      {router.route === link.path ? link.title : <a href={link.path}>{link.title}</a>}
     </div>
-  )
+  );
+
+  return (
+    <header className="flex flex-row">
+      {links.map(renderLink)}
+      <ToggleThemeButton />
+    </header>
+  );
 }
 
 const ToggleThemeButton = () => {
-  const darkMode = useDarkMode(null, { storageKey: 'theme' })
+  const darkMode = useDarkMode(null, { storageKey: 'theme' });
 
-  return <button onClick={darkMode.toggle}>toggle</button> 
-}
+  return <button onClick={darkMode.toggle}>toggle</button>;
+};

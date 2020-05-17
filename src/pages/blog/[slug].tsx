@@ -1,47 +1,57 @@
-import { GetStaticProps, GetStaticPaths } from "next"
-import ReactMarkdown from 'react-markdown'
-import { NextSeo } from 'next-seo'
-import { getPostBySlug, getPosts } from "~/utils/blogUtils"
-import { CodeBlock } from "~/components/markdown/CodeBlock"
+import { GetStaticProps, GetStaticPaths } from 'next';
+import ReactMarkdown from 'react-markdown';
+import { NextSeo } from 'next-seo';
+import { getPostBySlug, getPosts, Post } from '~/utils/blogUtils';
+import { CodeBlock } from '~/components/markdown/CodeBlock';
 
-export default function Post (props) {
+interface BlogPostProps {
+  post: Post;
+}
+
+export default function BlogPost({ post }: BlogPostProps) {
   return (
-    <div>
-      <NextSeo 
-        title={props.metaTitle} 
-        description={props.metaDescription} 
+    <div className="markdown">
+      <NextSeo
+        title={post.meta.title}
+        description={post.meta.description}
         openGraph={{
-          title: props.metaTitle,
-          description: props.metaDescription,
-          url: `${process.env.URL}/blog/${props.slug}`,
-          images: [{
-            url: props.metaImage,
-            width: 1200,
-            height: 630,
-            alt: props.metaTitle
-          }],
-          type: 'article'
+          title: post.meta.title,
+          description: post.meta.description,
+          url: `${process.env.URL}/blog/${post.slug}`,
+          images: [
+            {
+              url: post.meta.image,
+              width: 1200,
+              height: 630,
+              alt: post.meta.title,
+            },
+          ],
+          type: 'article',
         }}
       />
-      <div>{props.title}</div>
-      <div>{props.date}</div>
-      <ReactMarkdown source={props.content} renderers={{ code: CodeBlock }} />
+      <div>{post.title}</div>
+      <div>{post.date}</div>
+      <div>
+        {post.readingTime} minute{post.readingTime > 1 && 's'}
+      </div>
+      <ReactMarkdown source={post.content} renderers={{ code: CodeBlock }} />
     </div>
-  )
+  );
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = getPosts()
+  const posts = await getPosts();
+
   return {
-    paths: posts.map(post => ({ params: { slug: post.slug } }) ),
-    fallback: true,
-  }
-}
+    paths: posts.map((post) => ({ params: { slug: post.slug } })),
+    fallback: false,
+  };
+};
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const { slug } = context.params
+  const { slug } = context.params;
 
-  const post = getPostBySlug(slug)
+  const post = await getPostBySlug(slug as string);
 
-  return { props: { ...post } }
-}
+  return { props: { post } };
+};

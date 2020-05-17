@@ -1,10 +1,16 @@
+/* purgecss start ignore */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+/* purgecss end ignore */
+@import "tailwindcss/utilities";
+
 html {
   background: var(--bg-primary);
 }
 
 body {
   color: var(--text-primary);
-  font-family: 'Fira Mono', monospace;
+  font-family: "Fira Mono", monospace;
 }
 
 a {
