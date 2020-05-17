@@ -9,7 +9,7 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
   ],
   rules: {
-    'react/prop-types': 'off',
+    'react/prop-types': 'warn',
     'react/jsx-filename-extension': [
       1,
       {
@@ -22,7 +22,6 @@ module.exports = {
         trailingComma: 'es5',
         singleQuote: true,
         printWidth: 100,
-        endOfLine: 'auto',
       },
     ],
   },

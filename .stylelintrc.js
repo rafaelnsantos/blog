@@ -1,0 +1,4 @@
+module.exports = {
+  processors: ['stylelint-processor-styled-components'],
+  extends: ['stylelint-prettier/recommended', 'stylelint-config-styled-components']
+}
