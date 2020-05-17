@@ -1,6 +1,6 @@
 ---
 title: Hello from Forestry
-date: 2020-05-17T03:00:00Z
+date: 2020-05-17
 tags:
 - forestry cms
 metaTitle: Forestry CMS
