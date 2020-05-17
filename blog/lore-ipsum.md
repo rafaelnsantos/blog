@@ -1,6 +1,6 @@
 ---
 title: Lore Ipsum
-date: 2020-5-17
+date: 2020-05-17
 tags: [Lore, Ipsum]
 metaTitle: Lore Ipsum Meta Title
 metaDescription: Lore Ipsum Meta Description

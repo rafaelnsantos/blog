@@ -1,6 +1,6 @@
 ---
 title: Hello World
-date: 2020-5-15
+date: 2020-05-15
 tags: [Hello, World]
 metaTitle: Hello World Meta
 metaDescription: Hello World Meta Description

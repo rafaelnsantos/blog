@@ -5,7 +5,7 @@ import { getReadingTime } from './getReadingTime';
 
 export interface Post {
   title: string;
-  date: string;
+  timestamp: number;
   meta: {
     title: string;
     description: string;
@@ -27,7 +27,7 @@ export const getPostBySlug = async (slug: string): Promise<Post> => {
       content: post.content,
       slug: slug,
       title: post.data.title,
-      date: post.data.date,
+      timestamp: new Date(post.data.date).getTime(),
       tags: post.data.tags,
       meta: {
         title: post.data.metaTitle,
@@ -54,5 +54,5 @@ export const getPosts = async (): Promise<Post[]> => {
     })
   );
 
-  return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return posts.sort((a, b) => b.timestamp - a.timestamp);
 };

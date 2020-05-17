@@ -30,7 +30,7 @@ export default function BlogPost({ post }: BlogPostProps) {
         }}
       />
       <div>{post.title}</div>
-      <div>{post.date}</div>
+      <div>{post.timestamp}</div>
       <div>
         {post.readingTime} minute{post.readingTime > 1 && 's'}
       </div>

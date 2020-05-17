@@ -13,7 +13,7 @@ export default function Blog({ posts }: BlogProps) {
       <h2>
         <a href={`/blog/${post.slug}`}>{post.title}</a>
       </h2>
-      <div>{post.date}</div>
+      <div>{post.timestamp}</div>
       <div className="flex flex-row space-x-1">Tags:&nbsp;{post.tags.map(renderTag)}</div>
       <div>{post.meta.description}</div>
     </div>
