@@ -23,4 +23,5 @@ fields:
   name: metaImage
   label: metaImage
 pages:
+- blog/forestry-cms.md
 - blog/hello-from-forestry.md
