@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import { NextSeo } from 'next-seo';
 import { getPostBySlug, getPosts, Post } from '~/utils/blogUtils';
 import { CodeBlock } from '~/components/markdown/CodeBlock';
-
+import { formatTimestamp } from '~/utils/timeUtils';
 interface BlogPostProps {
   post: Post;
 }
@@ -30,7 +30,7 @@ export default function BlogPost({ post }: BlogPostProps) {
         }}
       />
       <div>{post.title}</div>
-      <div>{post.timestamp}</div>
+      <div>{formatTimestamp(post.timestamp)}</div>
       <div>
         {post.readingTime} minute{post.readingTime > 1 && 's'}
       </div>
