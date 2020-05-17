@@ -37,6 +37,8 @@ export default class MyDocument extends Document {
           <FallbackStyles />
           <Gtag />
           <PageView />
+          <link rel="preconnect" href="https://www.google-analytics.com" />
+          <link rel="dns-prefetch" href="https://www.google-analytics.com" />
           <link
             href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap"
             rel="stylesheet"
