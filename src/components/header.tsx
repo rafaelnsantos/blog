@@ -1,5 +1,6 @@
 import useDarkMode from 'use-dark-mode';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 interface NavLink {
   title: string;
@@ -15,7 +16,13 @@ export function Header({ links }: HeaderProps) {
 
   const renderLink = (link: NavLink) => (
     <div className="mr-6" key={link.title}>
-      {router.route === link.path ? link.title : <a href={link.path}>{link.title}</a>}
+      {router.route === link.path ? (
+        link.title
+      ) : (
+        <Link href={link.path}>
+          <a>{link.title}</a>
+        </Link>
+      )}
     </div>
   );
 
