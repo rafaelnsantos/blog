@@ -1,0 +1,16 @@
+@import "tailwindcss/utilities";
+
+@import "../styles/variables";
+
+html {
+  background: $backgroundPrimary;
+}
+
+body {
+  color: $textPrimary;
+  font-family: "Fira Mono", monospace;
+}
+
+a {
+  color: $textLink;
+}

@@ -3,8 +3,8 @@ import { AppPropsType } from 'next/dist/next-server/lib/utils';
 import { Header } from '~/components/header/Header';
 import { Providers } from '~/components/providers';
 
-import '~/theme/global.css';
-import './blog/markdown.css';
+import './app.scss';
+
 const MyApp = ({ Component, pageProps }: AppPropsType) => {
   return (
     <Providers>
