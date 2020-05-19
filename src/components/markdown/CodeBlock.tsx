@@ -8,7 +8,7 @@ interface CodeBlockProps {
 
 export function CodeBlock(props: CodeBlockProps) {
   return (
-    <SyntaxHighlighter showLineNumbers language={props.language} style={atomDark}>
+    <SyntaxHighlighter showLineNumbers language={props.language || 'jsx'} style={atomDark}>
       {props.value}
     </SyntaxHighlighter>
   );

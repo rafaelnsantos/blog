@@ -1,8 +1,8 @@
+import { useState } from 'react';
+import { TagCloud } from 'react-tagcloud';
 import { GetStaticProps } from 'next';
 import { getPosts, Post, getTags, CloudTag } from '~/utils/blogUtils';
 import { PostList } from '~/components/blog/PostList';
-import { useState } from 'react';
-import { WorldCloud } from '~/components/blog/WordCloud';
 
 interface BlogProps {
   posts: Post[];
@@ -22,8 +22,8 @@ export default function Blog({ posts, tags }: BlogProps) {
 
   return (
     <div>
-      <div>
-        <WorldCloud tags={tags} onSelectTag={selectTag} />
+      <div className="h-10">
+        <TagCloud minSize={12} maxSize={24} tags={tags} onClick={selectTag} />
         <div>{selectedTag}</div>
         <div>{selectedTag && <button onClick={clearTag}>clear tag</button>}</div>
       </div>
