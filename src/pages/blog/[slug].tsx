@@ -4,14 +4,22 @@ import { NextSeo } from 'next-seo';
 import { getPostBySlug, getPosts, Post } from '~/utils/blogUtils';
 import { CodeBlock } from '~/components/markdown/CodeBlock';
 import { formatTimestamp } from '~/utils/timeUtils';
+import styles from '~/components/markdown/markdown.module.scss';
+import { HeadingRenderer } from '~/components/markdown/Heading';
+
+interface Anchor {
+  title: string;
+  slug: string;
+}
 
 interface BlogPostProps {
   post: Post;
+  anchors?: Anchor[];
 }
 
-export default function BlogPost({ post }: BlogPostProps) {
+export default function BlogPost({ post, anchors }: BlogPostProps) {
   return (
-    <div className="markdown">
+    <div className="flex flex-row-reverse lg:px-8 px-4 justify-center">
       <NextSeo
         title={post.meta.title}
         description={post.meta.description}
@@ -30,12 +38,31 @@ export default function BlogPost({ post }: BlogPostProps) {
           type: 'article',
         }}
       />
-      <div>{post.title}</div>
-      <div>{formatTimestamp(post.timestamp)}</div>
-      <div>
-        {post.readingTime} minute{post.readingTime > 1 && 's'}
+      {anchors.length > 1 && (
+        <div className="hidden lg:block sticky top-0 overflow-auto h-full pl-20">
+          <div>Table of Contents</div>
+          <ul>
+            {anchors.map((anchor) => (
+              <a key={anchor.title} href={`#${anchor.slug}`}>
+                <li className="text-xs text-primary">{anchor.title}</li>
+              </a>
+            ))}
+          </ul>
+        </div>
+      )}
+      <div className="w-full md:max-w-3xl">
+        <div className={styles.markdown}>
+          <div>{post.title}</div>
+          <div>{formatTimestamp(post.timestamp)}</div>
+          <div>
+            {post.readingTime} minute{post.readingTime > 1 && 's'}
+          </div>
+          <ReactMarkdown
+            source={post.content}
+            renderers={{ code: CodeBlock, heading: HeadingRenderer }}
+          />
+        </div>
       </div>
-      <ReactMarkdown source={post.content} renderers={{ code: CodeBlock }} />
     </div>
   );
 }
@@ -54,5 +81,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const post = await getPostBySlug(slug as string);
 
-  return { props: { post } };
+  const lines = post.content.split('\n');
+
+  const anchors: Anchor[] = [];
+
+  lines.forEach((line) => {
+    if (line.startsWith('## ')) {
+      const title = line.replace(/#/g, '').replace('\r', '').trim();
+      const slug = title.toLowerCase().replace(/\W/g, '-');
+      anchors.push({ title, slug });
+    }
+  });
+
+  return { props: { post, anchors } };
 };
