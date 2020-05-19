@@ -1,8 +1,8 @@
 import { GetStaticProps } from 'next';
 import { getPosts, Post, getTags, CloudTag } from '~/utils/blogUtils';
-import { TagCloud } from 'react-tagcloud';
-import { useRouter } from 'next/router';
 import { PostList } from '~/components/blog/PostList';
+import { useState } from 'react';
+import { WorldCloud } from '~/components/blog/WordCloud';
 
 interface BlogProps {
   posts: Post[];
@@ -10,24 +10,20 @@ interface BlogProps {
 }
 
 export default function Blog({ posts, tags }: BlogProps) {
-  const router = useRouter();
-
-  const selectedTag = router.query.tag;
+  const [selectedTag, setSelectedTag] = useState<string>(null);
 
   const postsToShow = selectedTag
     ? posts.filter((post) => post.tags.includes(selectedTag as string))
     : posts;
 
-  const tagsToShow = tags.filter((tag) => tag.value !== selectedTag);
+  const clearTag = () => setSelectedTag(null);
 
-  const clearTag = () => router.push('/blog');
-
-  const selectTag = (tag: CloudTag) => router.push(`/blog?tag=${tag.value}`);
+  const selectTag = (tag: CloudTag) => setSelectedTag(tag.value);
 
   return (
     <div>
       <div>
-        <TagCloud minSize={12} maxSize={35} tags={tagsToShow} onClick={selectTag} />
+        <WorldCloud tags={tags} onSelectTag={selectTag} />
         <div>{selectedTag}</div>
         <div>{selectedTag && <button onClick={clearTag}>clear tag</button>}</div>
       </div>
