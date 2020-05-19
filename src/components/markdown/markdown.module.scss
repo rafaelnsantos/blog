@@ -1,0 +1,28 @@
+@mixin marginBlock($marginBlock) {
+  margin-block-start: $marginBlock;
+  margin-block-end: $marginBlock;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+@mixin header($fontSize, $marginBlock) {
+  display: block;
+  font-size: $fontSize;
+  @include marginBlock($marginBlock);
+  font-weight: bold;
+}
+
+.markdown {
+  h1 {
+    @include header(2em, 0.67em);
+  }
+  h2 {
+    @include header(1.25em, 0.83em);
+  }
+  h3 {
+    @include header(1.17em, 1em);
+  }
+  p {
+    @include marginBlock(1em);
+    display: block;
+  }
+}
