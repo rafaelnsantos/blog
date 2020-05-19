@@ -4,6 +4,7 @@ import { NextSeo } from 'next-seo';
 import { getPostBySlug, getPosts, Post } from '~/utils/blogUtils';
 import { CodeBlock } from '~/components/markdown/CodeBlock';
 import { formatTimestamp } from '~/utils/timeUtils';
+
 interface BlogPostProps {
   post: Post;
 }
@@ -17,7 +18,7 @@ export default function BlogPost({ post }: BlogPostProps) {
         openGraph={{
           title: post.meta.title,
           description: post.meta.description,
-          url: `${process.env.URL}/blog/${post.slug}`,
+          url: `${process.env.NEXT_PUBLIC_URL}/blog/${post.slug}`,
           images: [
             {
               url: post.meta.image,
