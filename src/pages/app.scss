@@ -6,7 +6,9 @@
 @import "tailwindcss/utilities";
 @import "../styles/variables";
 
-@import "../styles/variables";
+.text-primary {
+  color: $textPrimary;
+}
 
 html {
   background: $backgroundPrimary;
