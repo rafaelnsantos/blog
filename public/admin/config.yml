@@ -18,3 +18,17 @@ collections:
       - label: 'Tags'
         name: "tags"
         widget: list
+  - name: "settings"
+    label: "Settings"
+    extension: "json"
+    editor:
+      preview: false
+
+    files:
+      - file: "content/landingPage.json"
+        label: "Navigation"
+        name: "navigation"
+
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: subtitle, label: Subtitle, widget: string }
