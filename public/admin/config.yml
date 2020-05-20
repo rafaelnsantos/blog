@@ -1,0 +1,22 @@
+backend:
+  name: git-gateway
+  branch: master
+media_folder: public/uploads
+public_folder: uploads
+collections:
+  - name: "post"
+    label: "Posts"
+    files:
+    - label: "Post"
+      name: "blog"
+      file: "blog/hello-world.md"
+      fields:
+        - { label: "Title", name: "title", widget: "string"}
+        - { label: "Publish Date", name: "date", widget: "datetime" }
+        - { label: "Body", name: "body", widget: "markdown"}
+        - label: 'Cats'
+          name: "cats"
+          widget: list
+          fields:
+            - { label: "Name", name: "name", widget: "string"}
+            - { label: "Description", name: "description", widget: "text"}
