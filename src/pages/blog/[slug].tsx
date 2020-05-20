@@ -29,7 +29,7 @@ export default function BlogPost({ post, anchors }: BlogPostProps) {
           url: `${process.env.NEXT_PUBLIC_URL}/blog/${post.slug}`,
           images: [
             {
-              url: post.meta.image,
+              url: `${process.env.NEXT_PUBLIC_URL}${post.meta.image}`,
               width: 1200,
               height: 630,
               alt: post.meta.title,

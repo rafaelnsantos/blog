@@ -10,10 +10,10 @@ collections:
     create: true
     fields:
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Meta Title", name: "metaTitle", widget: "string"}
       - {label: "Meta Description", name: "metaDescription", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Featured Image", name: "metaImage", widget: "image"}
+      - {label: "Meta Image", name: "metaImage", widget: "image"}
       - {label: "Body", name: "body", widget: "markdown"}
       - label: 'Tags'
         name: "tags"
