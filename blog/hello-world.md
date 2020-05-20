@@ -10,6 +10,8 @@ tags:
 ---
 My **first** _blog_ posta
 
+![alt text](/uploads/meta.jpg "title")
+
 ```jsx
 import test from 'asd'
 
