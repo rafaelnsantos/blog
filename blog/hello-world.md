@@ -1,13 +1,15 @@
 ---
 title: Hello World
-date: 2020-05-15
-tags: [Hello, World]
 metaTitle: Hello World Meta
 metaDescription: Hello World Meta Description
-metaImage: https://user-images.githubusercontent.com/4512966/82125539-faf01b80-977c-11ea-931f-d0dc6ae2f49c.jpg
+date: 2020-05-15T00:00:00.000Z
+metaImage: >-
+  https://user-images.githubusercontent.com/4512966/82125539-faf01b80-977c-11ea-931f-d0dc6ae2f49c.jpg
+tags:
+  - Hello
+  - World
 ---
-
-My **first** *blog* post
+My **first** _blog_ posta
 
 ```jsx
 import test from 'asd'
