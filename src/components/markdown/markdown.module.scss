@@ -25,4 +25,7 @@
     @include marginBlock(1em);
     display: block;
   }
+  img {
+    @apply rounded-lg;
+  }
 }

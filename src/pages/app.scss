@@ -17,6 +17,7 @@ html {
 body {
   color: $textPrimary;
   font-family: "Fira Mono", monospace;
+  @apply p-4;
 }
 
 a {

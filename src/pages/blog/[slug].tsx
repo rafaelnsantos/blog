@@ -6,20 +6,29 @@ import { CodeBlock } from '~/components/markdown/CodeBlock';
 import { formatTimestamp } from '~/utils/timeUtils';
 import styles from '~/components/markdown/markdown.module.scss';
 import { HeadingRenderer } from '~/components/markdown/Heading';
+import { firestore } from '~/services/firestore';
 
 interface Anchor {
   title: string;
   slug: string;
 }
 
+interface Comment {
+  id: string;
+  user: string;
+  createdAt: number;
+  comment: string;
+}
+
 interface BlogPostProps {
   post: Post;
   anchors?: Anchor[];
+  comments: Comment[];
 }
 
-export default function BlogPost({ post, anchors }: BlogPostProps) {
+export default function BlogPost({ post, anchors, comments }: BlogPostProps) {
   return (
-    <div className="flex flex-row-reverse lg:px-8 px-4 justify-center">
+    <div className="flex flex-row-reverse justify-center">
       <NextSeo
         title={post.meta.title}
         description={post.meta.description}
@@ -29,7 +38,7 @@ export default function BlogPost({ post, anchors }: BlogPostProps) {
           url: `${process.env.NEXT_PUBLIC_URL}/blog/${post.slug}`,
           images: [
             {
-              url: post.meta.image,
+              url: `${process.env.NEXT_PUBLIC_URL}${post.meta.image}`,
               width: 1200,
               height: 630,
               alt: post.meta.title,
@@ -52,15 +61,25 @@ export default function BlogPost({ post, anchors }: BlogPostProps) {
       )}
       <div className="w-full md:max-w-3xl">
         <div className={styles.markdown}>
-          <div>{post.title}</div>
-          <div>{formatTimestamp(post.timestamp)}</div>
-          <div>
-            {post.readingTime} minute{post.readingTime > 1 && 's'}
+          <div className="text-center">
+            <h1>{post.title}</h1>
+            <div className="text-sm">{formatTimestamp(post.timestamp)}</div>
+            <div>{post.readingTime} min read</div>
           </div>
           <ReactMarkdown
             source={post.content}
-            renderers={{ code: CodeBlock, heading: HeadingRenderer }}
+            renderers={{
+              code: CodeBlock,
+              heading: HeadingRenderer,
+            }}
           />
+        </div>
+        <div className="">
+          {comments.map((comment) => (
+            <div key={comment.id}>
+              {comment.user} - {comment.comment}
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -76,7 +95,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps<BlogPostProps> = async (context) => {
   const { slug } = context.params;
 
   const post = await getPostBySlug(slug as string);
@@ -93,5 +112,20 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
   });
 
-  return { props: { post, anchors } };
+  const docs = await firestore.collection(slug as string).get();
+
+  const comments: Comment[] = [];
+
+  docs.forEach((doc) => {
+    const comment = doc.data();
+    comments.push({
+      id: doc.id,
+      comment: comment.comment,
+      user: comment.user,
+      createdAt: new Date(comment.createdAt._seconds).getTime(),
+    });
+  });
+
+  // eslint-disable-next-line @typescript-eslint/camelcase
+  return { props: { post, anchors, comments }, unstable_revalidate: 1 };
 };

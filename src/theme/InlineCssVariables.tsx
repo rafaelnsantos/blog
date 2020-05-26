@@ -16,7 +16,7 @@ export function setColorsByTheme(): void {
 
   let colorMode = prefersDarkFromMQ ? 'dark' : 'light';
 
-  const hasUsedToggle = window.localStorage.getItem('theme');
+  const hasUsedToggle = window.localStorage.getItem('dark');
 
   if (hasUsedToggle) {
     colorMode = hasUsedToggle === 'true' ? 'dark' : 'light';

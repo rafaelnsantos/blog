@@ -11,9 +11,9 @@ export function PostPreview({ post }: PostPreviewProps) {
   return (
     <div className="mb-10">
       <div className="opacity-75 text-sm">{formatTimestamp(post.timestamp)}</div>
-      <Link href={`/blog/${post.slug}`}>
-        <a className="text-2xl">{post.title}</a>
-      </Link>
+      <a href={`/blog/${post.slug}`} className="text-2xl">
+        {post.title}
+      </a>
       <div className="flex flex-row">
         {post.tags.map((tag) => (
           <TagChip tag={tag} key={tag} />
