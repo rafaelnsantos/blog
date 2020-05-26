@@ -1,5 +1,5 @@
 export const fetcher = (query, variables = null) =>
-  fetch('https://swapi.graph.cool/', {
+  fetch('/api/graphql', {
     method: 'POST',
     headers: {
       'Content-type': 'application/json',

@@ -7,6 +7,7 @@ import { formatTimestamp } from '~/utils/timeUtils';
 import styles from '~/components/markdown/markdown.module.scss';
 import { HeadingRenderer } from '~/components/markdown/Heading';
 import { firestore } from '~/services/firestore';
+import { CommentForm } from '~/components/blog/CommentForm';
 
 interface Anchor {
   title: string;
@@ -75,6 +76,7 @@ export default function BlogPost({ post, anchors, comments }: BlogPostProps) {
           />
         </div>
         <div className="">
+          <CommentForm slug={post.slug} />
           {comments.map((comment) => (
             <div key={comment.id}>
               {comment.user} - {comment.comment}
