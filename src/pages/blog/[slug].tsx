@@ -126,6 +126,13 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async (context) => 
     });
   });
 
-  // eslint-disable-next-line @typescript-eslint/camelcase
-  return { props: { post, anchors, comments }, unstable_revalidate: 1 };
+  return {
+    props: {
+      post,
+      anchors,
+      comments: comments.sort((a, b) => b.createdAt - a.createdAt),
+    },
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    unstable_revalidate: 1,
+  };
 };
