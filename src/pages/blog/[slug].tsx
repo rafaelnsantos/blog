@@ -8,13 +8,14 @@ import styles from '~/components/markdown/markdown.module.scss';
 import { HeadingRenderer } from '~/components/markdown/Heading';
 import { firestore } from '~/services/firestore';
 import { CommentForm } from '~/components/blog/CommentForm';
+import { useState } from 'react';
 
 interface Anchor {
   title: string;
   slug: string;
 }
 
-interface Comment {
+export interface Comment {
   id: string;
   user: string;
   createdAt: number;
@@ -27,7 +28,11 @@ interface BlogPostProps {
   comments: Comment[];
 }
 
-export default function BlogPost({ post, anchors, comments }: BlogPostProps) {
+export default function BlogPost({ post, anchors, ...props }: BlogPostProps) {
+  const [comments, setComments] = useState<Comment[]>(props.comments);
+
+  const addNewComment = (comment) => setComments([comment, ...comments]);
+
   return (
     <div className="flex flex-row-reverse justify-center">
       <NextSeo
@@ -76,7 +81,7 @@ export default function BlogPost({ post, anchors, comments }: BlogPostProps) {
           />
         </div>
         <div className="">
-          <CommentForm slug={post.slug} />
+          <CommentForm slug={post.slug} onNewComment={addNewComment} />
           {comments.map((comment) => (
             <div key={comment.id}>
               {comment.user} - {comment.comment}

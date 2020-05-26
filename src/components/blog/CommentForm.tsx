@@ -1,22 +1,25 @@
-import { fetcher } from '~/services/fetcher';
-import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { fetcher } from '~/services/fetcher';
+import { Comment } from '~/pages/blog/[slug]';
 
 interface CommentFormProps {
   slug: string;
+  onNewComment: (comment: Comment) => void;
 }
 
-export function CommentForm({ slug }: CommentFormProps) {
-  const router = useRouter();
-
+export function CommentForm({ slug, onNewComment }: CommentFormProps) {
   const formik = useFormik({
     initialValues: {
       user: '',
       comment: '',
     },
-    onSubmit: async (values) => {
-      await fetcher(
+    validationSchema: Yup.object().shape({
+      user: Yup.string().min(3, 'Too short!').required('Required!'),
+      comment: Yup.string().required('Required!'),
+    }),
+    onSubmit: async (values, { resetForm }) => {
+      const data = await fetcher(
         `
         mutation ($input: CommentInput!){
           newComment(input: $input)
@@ -30,12 +33,14 @@ export function CommentForm({ slug }: CommentFormProps) {
           },
         }
       );
-      router.reload();
+      resetForm();
+      onNewComment({
+        id: data.newComment,
+        comment: values.comment,
+        user: values.user,
+        createdAt: new Date().getTime(),
+      });
     },
-    validationSchema: Yup.object().shape({
-      user: Yup.string().min(3, 'Too short!').required('Required!'),
-      comment: Yup.string().required('Required!'),
-    }),
   });
 
   return (

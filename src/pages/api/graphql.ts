@@ -8,7 +8,7 @@ const typeDefs = gql`
     comment: String!
   }
   type Mutation {
-    newComment(input: CommentInput!): Boolean!
+    newComment(input: CommentInput!): String!
   }
   type Query {
     asd: String
@@ -18,11 +18,11 @@ const typeDefs = gql`
 const resolvers = {
   Mutation: {
     async newComment(_, { input }) {
-      await firestore.collection(input.slug).add({
+      const doc = await firestore.collection(input.slug).add({
         user: input.user,
         comment: input.comment,
       });
-      return true;
+      return doc.id;
     },
   },
 };
