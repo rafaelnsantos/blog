@@ -1,4 +1,3 @@
-import React from 'react';
 import { AppPropsType } from 'next/dist/next-server/lib/utils';
 import { Header } from '~/components/header/Header';
 import { Providers } from '~/components/providers';

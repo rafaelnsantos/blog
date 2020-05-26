@@ -19,7 +19,7 @@ interface BlogPostProps {
 
 export default function BlogPost({ post, anchors }: BlogPostProps) {
   return (
-    <div className="flex flex-row-reverse lg:px-8 px-4 justify-center">
+    <div className="flex flex-row-reverse justify-center">
       <NextSeo
         title={post.meta.title}
         description={post.meta.description}
@@ -52,14 +52,17 @@ export default function BlogPost({ post, anchors }: BlogPostProps) {
       )}
       <div className="w-full md:max-w-3xl">
         <div className={styles.markdown}>
-          <div>{post.title}</div>
-          <div>{formatTimestamp(post.timestamp)}</div>
-          <div>
-            {post.readingTime} minute{post.readingTime > 1 && 's'}
+          <div className="text-center">
+            <h1>{post.title}</h1>
+            <div className="text-sm">{formatTimestamp(post.timestamp)}</div>
+            <div>{post.readingTime} min read</div>
           </div>
           <ReactMarkdown
             source={post.content}
-            renderers={{ code: CodeBlock, heading: HeadingRenderer }}
+            renderers={{
+              code: CodeBlock,
+              heading: HeadingRenderer,
+            }}
           />
         </div>
       </div>
@@ -93,5 +96,5 @@ export const getStaticProps: GetStaticProps = async (context) => {
     }
   });
 
-  return { props: { post, anchors } };
+  return { props: { post, anchors }, unstable_revalidate: 1 };
 };
