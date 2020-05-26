@@ -122,7 +122,7 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async (context) => 
       id: doc.id,
       comment: comment.comment,
       user: comment.user,
-      createdAt: new Date(comment.createdAt._seconds).getTime(),
+      createdAt: doc.createTime.toDate().getTime(),
     });
   });
 
