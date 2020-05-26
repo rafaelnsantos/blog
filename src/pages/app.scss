@@ -25,7 +25,7 @@ a {
 }
 
 @mixin borderForm {
-  border-color: white;
+  border-color: $textPrimary;
   border-width: 1px;
   border-radius: 5px;
 }
