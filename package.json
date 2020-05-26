@@ -10,6 +10,7 @@
   "dependencies": {
     "autoprefixer": "^9.8.0",
     "date-fns": "^2.13.0",
+    "firebase-admin": "^8.12.1",
     "gray-matter": "^4.0.2",
     "next": "^9.4.1-canary.3",
     "next-seo": "^4.4.0",
