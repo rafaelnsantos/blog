@@ -6,6 +6,12 @@
 @import "tailwindcss/utilities";
 @import "../styles/variables";
 
+@font-face {
+  font-family: "Fira Mono";
+  src: url("https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700");
+  font-display: swap;
+}
+
 .text-primary {
   color: $textPrimary;
 }
