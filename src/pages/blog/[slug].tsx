@@ -140,6 +140,6 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async (context) => 
       comments: comments.sort((a, b) => b.createdAt - a.createdAt),
     },
     // eslint-disable-next-line @typescript-eslint/camelcase
-    unstable_revalidate: process.env.REVALIDATE_COMMENTS,
+    unstable_revalidate: parseInt(process.env.REVALIDATE_COMMENTS),
   };
 };
