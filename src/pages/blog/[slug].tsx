@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import ReactMarkdown from 'react-markdown';
 import { NextSeo } from 'next-seo';
+import { Link } from 'react-scroll';
 import { getPostBySlug, getPosts, Post } from '~/utils/blogUtils';
 import { CodeBlock } from '~/components/markdown/CodeBlock';
 import { formatTimestamp } from '~/utils/timeUtils';
@@ -8,7 +10,6 @@ import styles from '~/components/markdown/markdown.module.scss';
 import { HeadingRenderer } from '~/components/markdown/Heading';
 import { firestore } from '~/services/firestore';
 import { CommentForm } from '~/components/blog/CommentForm';
-import { useState } from 'react';
 
 interface Anchor {
   title: string;
@@ -58,9 +59,15 @@ export default function BlogPost({ post, anchors, ...props }: BlogPostProps) {
           <div>Table of Contents</div>
           <ul>
             {anchors.map((anchor) => (
-              <a key={anchor.title} href={`#${anchor.slug}`}>
-                <li className="text-xs text-primary">{anchor.title}</li>
-              </a>
+              <Link
+                className="cursor-pointer"
+                to={anchor.slug}
+                smooth
+                duration={500}
+                key={anchor.title}
+              >
+                <li className="text-xs hover:text-pink-500 text-primary">{anchor.title}</li>
+              </Link>
             ))}
           </ul>
         </div>
