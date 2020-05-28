@@ -10,6 +10,7 @@ import styles from '~/components/markdown/markdown.module.scss';
 import { HeadingRenderer } from '~/components/markdown/Heading';
 import { firestore } from '~/services/firestore';
 import { CommentForm } from '~/components/blog/CommentForm';
+import styled from 'styled-components';
 
 interface Anchor {
   title: string;
@@ -29,10 +30,14 @@ interface BlogPostProps {
   comments: Comment[];
 }
 
+const Li = styled.li.attrs({ className: 'text-xs hover:text-pink-500 text-primary' })`
+  transition: all 300ms ease;
+`;
+
 export default function BlogPost({ post, anchors, ...props }: BlogPostProps) {
   const [comments, setComments] = useState<Comment[]>(props.comments);
 
-  const addNewComment = (comment) => setComments([comment, ...comments]);
+  const addNewComment = (comment: Comment) => setComments([comment, ...comments]);
 
   return (
     <div className="flex flex-row-reverse justify-center">
@@ -66,7 +71,7 @@ export default function BlogPost({ post, anchors, ...props }: BlogPostProps) {
                 duration={500}
                 key={anchor.title}
               >
-                <li className="text-xs hover:text-pink-500 text-primary">{anchor.title}</li>
+                <Li className="text-xs hover:text-pink-500 text-primary">{anchor.title}</Li>
               </Link>
             ))}
           </ul>
