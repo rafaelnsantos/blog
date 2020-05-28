@@ -1,7 +1,6 @@
 import { formatTimestamp } from '~/utils/timeUtils';
 import { Post } from '~/utils/blogUtils';
 import { TagChip } from './TagChip';
-import Link from 'next/link';
 
 interface PostPreviewProps {
   post: Post;
