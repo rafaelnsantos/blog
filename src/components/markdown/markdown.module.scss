@@ -8,7 +8,7 @@
   display: block;
   font-size: $fontSize;
   @include marginBlock($marginBlock);
-  font-weight: bold;
+  font-family: "Merriweather", monospace;
 }
 
 .markdown {
@@ -16,7 +16,7 @@
     @include header(2em, 0.67em);
   }
   h2 {
-    @include header(1.25em, 0.83em);
+    @include header(1.75em, 0.83em);
   }
   h3 {
     @include header(1.17em, 1em);

@@ -39,6 +39,12 @@ export default class MyDocument extends Document {
           <PageView />
           <link rel="preconnect" href="https://www.google-analytics.com" />
           <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com/" />
+          <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Merriweather&display=swap"
+            rel="stylesheet"
+          />
         </Head>
 
         <body>
