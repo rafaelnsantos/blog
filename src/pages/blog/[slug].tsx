@@ -1,82 +1,43 @@
-import { useState } from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
-import ReactMarkdown from 'react-markdown';
 import { NextSeo } from 'next-seo';
-import { Link } from 'react-scroll';
-import { getPostBySlug, getPosts, Post } from '~/utils/blogUtils';
-import { CodeBlock } from '~/components/markdown/CodeBlock';
-import { formatTimestamp } from '~/utils/timeUtils';
-import styles from '~/components/markdown/markdown.module.scss';
-import { HeadingRenderer } from '~/components/markdown/Heading';
+import { getPostBySlug, getPosts, Post as PostType } from '~/utils/blogUtils';
 import { Page } from '~/components/Page';
+import { Post } from '~/components/blog/Post';
 
-interface Anchor {
+export interface Anchor {
   title: string;
   slug: string;
 }
 
-interface BlogPostProps {
-  post: Post;
+export interface BlogPostProps {
+  post: PostType;
   anchors?: Anchor[];
 }
 
 export default function BlogPost({ post, anchors }: BlogPostProps) {
   return (
-    <Page>
-      <div className="flex flex-row-reverse justify-center">
-        <NextSeo
-          title={post.meta.title}
-          description={post.meta.description}
-          openGraph={{
-            title: post.meta.title,
-            description: post.meta.description,
-            url: `${process.env.NEXT_PUBLIC_URL}/blog/${post.slug}`,
-            images: [
-              {
-                url: `${process.env.NEXT_PUBLIC_URL}${post.meta.image}`,
-                width: 1200,
-                height: 630,
-                alt: post.meta.title,
-              },
-            ],
-            type: 'article',
-          }}
-        />
-        {anchors.length > 1 && (
-          <div className="hidden lg:block sticky top-0 overflow-auto h-full pl-20">
-            <div>Table of Contents</div>
-            <ul>
-              {anchors.map((anchor) => (
-                <Link
-                  className="cursor-pointer"
-                  to={anchor.slug}
-                  smooth
-                  duration={500}
-                  key={anchor.title}
-                >
-                  <li className="text-xs hover:text-pink-500 text-primary">{anchor.title}</li>
-                </Link>
-              ))}
-            </ul>
-          </div>
-        )}
-        <div className="w-full md:max-w-3xl">
-          <div className={styles.markdown}>
-            <div className="text-center">
-              <h1>{post.title}</h1>
-              <div className="text-sm">{formatTimestamp(post.timestamp)}</div>
-              <div>{post.readingTime} min read</div>
-            </div>
-            <ReactMarkdown
-              source={post.content}
-              renderers={{
-                code: CodeBlock,
-                heading: HeadingRenderer,
-              }}
-            />
-          </div>
-        </div>
-      </div>
+    <Page
+      seo={{
+        title: post.meta.title,
+        description: post.meta.description,
+        openGraph: {
+          title: post.meta.title,
+          description: post.meta.description,
+          url: `${process.env.NEXT_PUBLIC_URL}/blog/${post.slug}`,
+          images: [
+            {
+              url: `${process.env.NEXT_PUBLIC_URL}${post.meta.image}`,
+              width: 1200,
+              height: 630,
+              alt: post.meta.title,
+            },
+          ],
+          type: 'article',
+        },
+      }}
+    >
+      <NextSeo />
+      <Post post={post} anchors={anchors} />
     </Page>
   );
 }
@@ -107,6 +68,5 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async (context) => 
     }
   });
 
-  // eslint-disable-next-line @typescript-eslint/camelcase
   return { props: { post, anchors } };
 };

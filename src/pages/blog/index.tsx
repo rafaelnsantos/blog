@@ -22,7 +22,7 @@ export default function Blog({ posts, tags }: BlogProps) {
   const selectTag = (tag: CloudTag) => setSelectedTag(tag.value);
 
   return (
-    <Page>
+    <Page seo={{ title: 'Blog' }}>
       <div className="h-10">
         <TagCloud minSize={12} maxSize={24} tags={tags} onClick={selectTag} />
         <div>{selectedTag}</div>

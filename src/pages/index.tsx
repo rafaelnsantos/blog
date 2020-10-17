@@ -1,4 +1,3 @@
-import { NextSeo } from 'next-seo';
 import SEO from 'content/seo.json';
 import { Page } from '~/components/Page';
 
@@ -6,11 +5,11 @@ const youtube = 'tgbNymZ7vqY';
 
 export default function Index() {
   return (
-    <Page>
-      <NextSeo
-        title={SEO.title}
-        description={SEO.description}
-        openGraph={{
+    <Page
+      seo={{
+        title: SEO.title,
+        description: SEO.description,
+        openGraph: {
           type: 'website',
           locale: 'en_US',
           url: process.env.NEXT_PUBLIC_URL,
@@ -22,8 +21,9 @@ export default function Index() {
               alt: SEO.title,
             },
           ],
-        }}
-      />
+        },
+      }}
+    >
       <iframe
         title="video"
         width="420"
