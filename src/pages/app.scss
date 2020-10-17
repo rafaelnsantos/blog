@@ -30,17 +30,3 @@ a {
   border-width: 1px;
   border-radius: 5px;
 }
-
-form {
-  input,
-  textarea {
-    background: $backgroundPrimary;
-    @include borderForm();
-  }
-
-  button {
-    background: $textPrimary;
-    color: $backgroundPrimary;
-    @include borderForm();
-  }
-}
