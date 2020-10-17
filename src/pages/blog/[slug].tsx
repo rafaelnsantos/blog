@@ -8,37 +8,18 @@ import { CodeBlock } from '~/components/markdown/CodeBlock';
 import { formatTimestamp } from '~/utils/timeUtils';
 import styles from '~/components/markdown/markdown.module.scss';
 import { HeadingRenderer } from '~/components/markdown/Heading';
-import { firestore } from '~/services/firestore';
-import { CommentForm } from '~/components/blog/CommentForm';
-import styled from 'styled-components';
 
 interface Anchor {
   title: string;
   slug: string;
 }
 
-export interface Comment {
-  id: string;
-  user: string;
-  createdAt: number;
-  comment: string;
-}
-
 interface BlogPostProps {
   post: Post;
   anchors?: Anchor[];
-  comments: Comment[];
 }
 
-const Li = styled.li.attrs({ className: 'text-xs hover:text-pink-500 text-primary' })`
-  transition: all 300ms ease;
-`;
-
-export default function BlogPost({ post, anchors, ...props }: BlogPostProps) {
-  const [comments, setComments] = useState<Comment[]>(props.comments);
-
-  const addNewComment = (comment: Comment) => setComments([comment, ...comments]);
-
+export default function BlogPost({ post, anchors }: BlogPostProps) {
   return (
     <div className="flex flex-row-reverse justify-center">
       <NextSeo
@@ -92,14 +73,6 @@ export default function BlogPost({ post, anchors, ...props }: BlogPostProps) {
             }}
           />
         </div>
-        <div className="">
-          <CommentForm slug={post.slug} onNewComment={addNewComment} />
-          {comments.map((comment) => (
-            <div key={comment.id}>
-              {comment.user} - {comment.comment}
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
@@ -131,27 +104,6 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async (context) => 
     }
   });
 
-  const docs = await firestore.collection(slug as string).get();
-
-  const comments: Comment[] = [];
-
-  docs.forEach((doc) => {
-    const comment = doc.data();
-    comments.push({
-      id: doc.id,
-      comment: comment.comment,
-      user: comment.user,
-      createdAt: doc.createTime.toDate().getTime(),
-    });
-  });
-
-  return {
-    props: {
-      post,
-      anchors,
-      comments: comments.sort((a, b) => b.createdAt - a.createdAt),
-    },
-    // eslint-disable-next-line @typescript-eslint/camelcase
-    unstable_revalidate: parseInt(process.env.REVALIDATE_COMMENTS),
-  };
+  // eslint-disable-next-line @typescript-eslint/camelcase
+  return { props: { post, anchors } };
 };
