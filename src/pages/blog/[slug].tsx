@@ -52,7 +52,7 @@ export default function BlogPost({ post, anchors }: BlogPostProps) {
                 duration={500}
                 key={anchor.title}
               >
-                <Li className="text-xs hover:text-pink-500 text-primary">{anchor.title}</Li>
+                <li className="text-xs hover:text-pink-500 text-primary">{anchor.title}</li>
               </Link>
             ))}
           </ul>
