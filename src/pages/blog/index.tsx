@@ -3,6 +3,7 @@ import { TagCloud } from 'react-tagcloud';
 import { GetStaticProps } from 'next';
 import { getPosts, Post, getTags, CloudTag } from '~/utils/blogUtils';
 import { PostList } from '~/components/blog/PostList';
+import { Page } from '~/components/Page';
 
 interface BlogProps {
   posts: Post[];
@@ -21,14 +22,14 @@ export default function Blog({ posts, tags }: BlogProps) {
   const selectTag = (tag: CloudTag) => setSelectedTag(tag.value);
 
   return (
-    <div>
+    <Page>
       <div className="h-10">
         <TagCloud minSize={12} maxSize={24} tags={tags} onClick={selectTag} />
         <div>{selectedTag}</div>
         <div>{selectedTag && <button onClick={clearTag}>clear tag</button>}</div>
       </div>
       <PostList posts={postsToShow} />
-    </div>
+    </Page>
   );
 }
 

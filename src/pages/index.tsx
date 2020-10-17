@@ -1,11 +1,12 @@
 import { NextSeo } from 'next-seo';
 import SEO from 'content/seo.json';
+import { Page } from '~/components/Page';
 
 const youtube = 'tgbNymZ7vqY';
 
 export default function Index() {
   return (
-    <>
+    <Page>
       <NextSeo
         title={SEO.title}
         description={SEO.description}
@@ -29,6 +30,6 @@ export default function Index() {
         height="315"
         src={`https://www.youtube.com/embed/${youtube}`}
       />
-    </>
+    </Page>
   );
 }
