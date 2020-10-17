@@ -6,27 +6,18 @@ import { CodeBlock } from '~/components/markdown/CodeBlock';
 import { formatTimestamp } from '~/utils/timeUtils';
 import styles from '~/components/markdown/markdown.module.scss';
 import { HeadingRenderer } from '~/components/markdown/Heading';
-import { firestore } from '~/services/firestore';
 
 interface Anchor {
   title: string;
   slug: string;
 }
 
-interface Comment {
-  id: string;
-  user: string;
-  createdAt: number;
-  comment: string;
-}
-
 interface BlogPostProps {
   post: Post;
   anchors?: Anchor[];
-  comments: Comment[];
 }
 
-export default function BlogPost({ post, anchors, comments }: BlogPostProps) {
+export default function BlogPost({ post, anchors }: BlogPostProps) {
   return (
     <div className="flex flex-row-reverse justify-center">
       <NextSeo
@@ -74,13 +65,6 @@ export default function BlogPost({ post, anchors, comments }: BlogPostProps) {
             }}
           />
         </div>
-        <div className="">
-          {comments.map((comment) => (
-            <div key={comment.id}>
-              {comment.user} - {comment.comment}
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
@@ -112,20 +96,6 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async (context) => 
     }
   });
 
-  const docs = await firestore.collection(slug as string).get();
-
-  const comments: Comment[] = [];
-
-  docs.forEach((doc) => {
-    const comment = doc.data();
-    comments.push({
-      id: doc.id,
-      comment: comment.comment,
-      user: comment.user,
-      createdAt: new Date(comment.createdAt._seconds).getTime(),
-    });
-  });
-
   // eslint-disable-next-line @typescript-eslint/camelcase
-  return { props: { post, anchors, comments }, unstable_revalidate: 1 };
+  return { props: { post, anchors } };
 };
