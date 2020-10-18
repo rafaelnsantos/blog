@@ -3,8 +3,8 @@ import { CodeBlock } from '~/components/markdown/CodeBlock';
 import { formatTimestamp } from '~/utils/timeUtils';
 import styles from '~/components/markdown/markdown.module.scss';
 import { HeadingRenderer } from '~/components/markdown/Heading';
-import { BlogPostProps } from '~/pages/blog/[slug]';
 import { Anchors } from './Anchors';
+import { BlogPostProps } from '~/pages/blog/post/[slug]';
 
 export function Post({ post, anchors }: BlogPostProps) {
   return (

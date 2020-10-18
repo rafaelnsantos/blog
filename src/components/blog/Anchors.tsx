@@ -1,5 +1,5 @@
-import { Anchor } from '~/pages/blog/[slug]';
 import { Link } from 'react-scroll';
+import { Anchor } from '~/pages/blog/post/[slug]';
 
 interface AnchorsProps {
   anchors: Anchor[];
