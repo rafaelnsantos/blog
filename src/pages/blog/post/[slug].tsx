@@ -18,7 +18,7 @@ export default function BlogPost({ post, anchors }: BlogPostProps) {
     <Page
       title={post.meta.title}
       description={post.meta.description}
-      url={`/blog/${post.slug}`}
+      url={`/blog/post/${post.slug}`}
       image={post.meta.image}
     >
       <Post post={post} anchors={anchors} />

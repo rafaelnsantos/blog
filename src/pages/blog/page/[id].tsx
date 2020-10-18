@@ -14,7 +14,7 @@ const PAGE_SIZE = 2;
 
 export default function BlogPage({ posts, pages, page }: BlogProps) {
   return (
-    <Page title={`Blog page ${page}`} description="Blog">
+    <Page title={`Blog page ${page}`} description="Blog" url={`/page/${page}`}>
       <h1>Blog</h1>
       <PostList posts={posts} />
       <BlogPagination pages={pages} page={page} />

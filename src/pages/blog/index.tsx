@@ -22,7 +22,7 @@ export default function BlogPage({ posts, tags }: BlogProps) {
   const selectTag = (tag: CloudTag) => setSelectedTag(tag.value);
 
   return (
-    <Page title="Blog" description="Blog">
+    <Page title="Blog" description="Blog" url="/blog">
       <h1>Starred Posts</h1>
       <div className="h-10">
         <TagCloud minSize={12} maxSize={24} tags={tags} onClick={selectTag} />
