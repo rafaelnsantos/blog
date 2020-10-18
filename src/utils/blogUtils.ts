@@ -47,10 +47,16 @@ interface GetPostsConfig {
   starred?: boolean;
 }
 
-const getAllPosts = async (): Promise<Post[]> => {
+const getPostsFiles = () => {
   const dirname = path.join(process.cwd(), 'blog');
 
   const files = fs.readdirSync(dirname);
+
+  return files;
+};
+
+const getAllPosts = async (): Promise<Post[]> => {
+  const files = getPostsFiles();
 
   const posts = await Promise.all(
     files.map(async (file) => {
@@ -79,9 +85,7 @@ export const getPosts = async (options?: GetPostsConfig): Promise<Post[]> => {
 };
 
 export const getPostsCount = async (): Promise<number> => {
-  const dirname = path.join(process.cwd(), 'blog');
-
-  const files = fs.readdirSync(dirname);
+  const files = getPostsFiles();
 
   return files.length;
 };
