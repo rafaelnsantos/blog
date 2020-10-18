@@ -1,9 +1,19 @@
 import { Link } from 'react-scroll';
+import styled from 'styled-components';
 import { Anchor } from '~/pages/blog/post/[slug]';
 
 interface AnchorsProps {
   anchors: Anchor[];
 }
+
+const Li = styled.li`
+  color: var(--text-primary);
+  transition: color 300ms;
+
+  :hover {
+    color: var(--accent-pink);
+  }
+`;
 
 export function Anchors({ anchors }: AnchorsProps) {
   return (
@@ -19,7 +29,7 @@ export function Anchors({ anchors }: AnchorsProps) {
               duration={500}
               key={anchor.title}
             >
-              <li className="text-xs hover:text-pink-500 text-primary">{anchor.title}</li>
+              <Li className="text-xs">{anchor.title}</Li>
             </Link>
           ))}
         </ul>
