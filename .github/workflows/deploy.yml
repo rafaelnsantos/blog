@@ -1,0 +1,49 @@
+name: Deploy push
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - none
+  repository_dispatch:
+
+env:
+  NETLIFY_TOKEN: ${{secrets.NETLIFY_TOKEN}}
+  NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: node_modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          node_modules-
+    - name: Cache NextJS
+      uses: actions/cache@v2
+      with:
+        path: .next/cache
+        key: nextjs-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          nextjs-
+    - name: Install dependencies
+      run: yarn --frozen-lockfile
+
+    - name: Build
+      run: yarn export
+
+    - name: Deploy
+      run: yarn netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_TOKEN -p --dir ./out
