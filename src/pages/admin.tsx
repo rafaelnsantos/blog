@@ -70,18 +70,18 @@ const cmsConfig: ConfigFixed = {
 const CMS = dynamic(
   async () => {
     const cms = (await import('netlify-cms-app')).default;
-    const Div = () => <div />;
+    const CMS = () => <div />;
     cms.init({
       config: cmsConfig,
     });
-    return Div;
+    return CMS;
   },
   { ssr: false }
 );
 
 export default function AdminPage() {
   return (
-    <div id="nc-root">
+    <>
       <Head>
         <script
           type="text/javascript"
@@ -90,6 +90,6 @@ export default function AdminPage() {
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       <CMS />
-    </div>
+    </>
   );
 }
