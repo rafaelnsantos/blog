@@ -5,7 +5,8 @@
     "dev": "concurrently \"next dev\" \"netlify-cms-proxy-server\"",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export"
+    "export": "next build && next export",
+    "netlify": "netlify"
   },
   "dependencies": {
     "autoprefixer": "^9.8.0",
