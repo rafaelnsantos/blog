@@ -7,5 +7,6 @@ metaImage: /uploads/forestry.png
 tags:
   - forestry
   - git cms
+star: true
 ---
 Hello World from Forestry CMS.

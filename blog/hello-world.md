@@ -7,6 +7,7 @@ metaImage: /uploads/meta.jpg
 tags:
   - Hello
   - World
+star: false
 ---
 My **first** _blog_ posta
 

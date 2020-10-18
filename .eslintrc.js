@@ -6,7 +6,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    'plugin:jsx-a11y/recommended',
   ],
   rules: {
     'react/prop-types': 'warn',

@@ -22,6 +22,7 @@ const collections: CmsCollection[] = [
       { label: 'Meta Image', name: 'metaImage', widget: 'image' },
       { label: 'Body', name: 'body', widget: 'markdown' },
       { label: 'Tags', name: 'tags', widget: 'list' },
+      { label: 'Starred', name: 'star', widget: 'boolean' },
     ],
   },
   {

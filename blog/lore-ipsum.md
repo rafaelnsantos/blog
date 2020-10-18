@@ -8,6 +8,7 @@ tags:
   - Lore
   - Ipsum
   - Hello
+star: true
 ---
 
 ## Fructum Phoebus

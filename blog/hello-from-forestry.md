@@ -6,7 +6,7 @@ tags:
 metaTitle: Forestry CMS
 metaDescription: Forestry CMS Hello World
 metaImage: "/uploads/forestry.png"
-
+star: false
 ---
 Hello from Forestry CMS
 

@@ -10,7 +10,7 @@ interface BlogProps {
   tags: CloudTag[];
 }
 
-export default function Blog({ posts, tags }: BlogProps) {
+export default function BlogPage({ posts, tags }: BlogProps) {
   const [selectedTag, setSelectedTag] = useState<string>(null);
 
   const postsToShow = selectedTag
@@ -22,7 +22,8 @@ export default function Blog({ posts, tags }: BlogProps) {
   const selectTag = (tag: CloudTag) => setSelectedTag(tag.value);
 
   return (
-    <Page seo={{ title: 'Blog' }}>
+    <Page title="Blog" description="Blog">
+      <h1>Starred Posts</h1>
       <div className="h-10">
         <TagCloud minSize={12} maxSize={24} tags={tags} onClick={selectTag} />
         <div>{selectedTag}</div>
