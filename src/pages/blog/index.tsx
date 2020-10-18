@@ -35,7 +35,9 @@ export default function BlogPage({ posts, tags }: BlogProps) {
 }
 
 export const getStaticProps: GetStaticProps<BlogProps> = async () => {
-  const posts = await getPosts();
+  const posts = await getPosts({
+    starred: true,
+  });
   const tags = getTags(posts);
 
   return {
