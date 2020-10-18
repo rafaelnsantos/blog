@@ -24,6 +24,7 @@
   p {
     @include marginBlock(1em);
     display: block;
+    text-align: justify;
   }
   img {
     @apply rounded-lg;
