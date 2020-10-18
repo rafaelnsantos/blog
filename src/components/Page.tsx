@@ -16,15 +16,12 @@ const PageContainer = styled.div`
 `;
 
 export function Page({ children, ...seo }: PageProps) {
-  let seoImg = seo.image || SEO.image;
+  const seoImg = seo.image || SEO.image;
 
-  if (seoImg.startsWith('/')) {
-    seoImg = seoImg.substring(1);
-  }
+  const imgUrl = `${process.env.NEXT_PUBLIC_URL}/${
+    seoImg.startsWith('/') ? seoImg.substring(1) : seoImg
+  }`;
 
-  const imgUrl = `${process.env.NEXT_PUBLIC_URL}/${seoImg}`;
-
-  console.log(imgUrl);
   return (
     <PageContainer>
       <NextSeo
