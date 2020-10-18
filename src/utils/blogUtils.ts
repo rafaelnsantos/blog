@@ -44,34 +44,42 @@ export const getPostBySlug = async (slug: string): Promise<Post> => {
 };
 
 interface GetPostsConfig {
-  page: number;
-  size: number;
+  page?: {
+    page: number;
+    size: number;
+  };
+  starred?: boolean;
 }
 
-export const getPosts = async (options?: GetPostsConfig): Promise<Post[]> => {
+const getAllPosts = async (): Promise<Post[]> => {
   const dirname = path.join(process.cwd(), 'blog');
 
   const files = fs.readdirSync(dirname);
 
   const posts = await Promise.all(
-    options
-      ? files
-          .slice((options.page - 1) * options.size, options.page * options.size)
-          .map(async (file) => {
-            const slug = file.replace(/.md/, '');
-            const post = await getPostBySlug(slug);
-            return post;
-          })
-      : files.map(async (file) => {
-          const slug = file.replace(/.md/, '');
-          const post = await getPostBySlug(slug);
-          return post;
-        })
+    files.map(async (file) => {
+      const slug = file.replace(/.md/, '');
+      const post = await getPostBySlug(slug);
+      return post;
+    })
   );
 
-  return options
-    ? posts.sort((a, b) => b.timestamp - a.timestamp)
-    : posts.filter((post) => post.star).sort((a, b) => b.timestamp - a.timestamp);
+  return posts;
+};
+
+export const getPosts = async (options?: GetPostsConfig): Promise<Post[]> => {
+  let posts = await getAllPosts();
+
+  if (options?.page) {
+    const { page, size } = options.page;
+    posts = posts.slice((page - 1) * size, page * size);
+  }
+
+  if (options?.starred) {
+    posts = posts.filter((post) => post.star).sort((a, b) => b.timestamp - a.timestamp);
+  }
+
+  return posts;
 };
 
 export const getPostsCount = async (): Promise<number> => {

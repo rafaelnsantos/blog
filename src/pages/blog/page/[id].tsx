@@ -46,8 +46,10 @@ export const getStaticProps: GetStaticProps<BlogProps> = async (context) => {
   const page = parseInt(context.params.id as string);
 
   const posts = await getPosts({
-    page,
-    size: PAGE_SIZE,
+    page: {
+      page,
+      size: PAGE_SIZE,
+    },
   });
 
   const pages = Math.ceil((await getPostsCount()) / PAGE_SIZE);
