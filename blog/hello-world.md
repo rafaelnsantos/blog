@@ -9,9 +9,9 @@ tags:
   - World
 star: false
 ---
-My **first** _blog_ posta
+My **first** *blog* posta
 
-![alt text](/uploads/meta.jpg "title")
+![alt text](uploads/meta.jpg "title")
 
 ```jsx
 import test from 'asd'
