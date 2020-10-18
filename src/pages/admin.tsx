@@ -45,6 +45,13 @@ const collections: CmsCollection[] = [
         ],
       },
       {
+        file: 'content/analytics.json',
+        label: 'Analytics',
+        name: 'analytics',
+
+        fields: [{ name: 'gaTrackingID', label: 'Google Analytics Tracking ID', widget: 'string' }],
+      },
+      {
         file: 'content/pagination.json',
         label: 'Pagination',
         name: 'pagination',

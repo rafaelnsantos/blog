@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/camelcase */
-const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
+import { gaTrackingID as GA_TRACKING_ID } from 'content/analytics.json';
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: string) => {
