@@ -49,7 +49,7 @@ const collections: CmsCollection[] = [
         label: 'Pagination',
         name: 'pagination',
 
-        fields: [{ name: 'size', label: 'Size', widget: 'number' }],
+        fields: [{ name: 'size', label: 'Posts per page', widget: 'number' }],
       },
     ],
   },
