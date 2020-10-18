@@ -44,6 +44,13 @@ const collections: CmsCollection[] = [
           { name: 'image', label: 'Image', widget: 'image' },
         ],
       },
+      {
+        file: 'content/pagination.json',
+        label: 'Pagination',
+        name: 'pagination',
+
+        fields: [{ name: 'size', label: 'Size', widget: 'number' }],
+      },
     ],
   },
 ];

@@ -3,6 +3,7 @@ import { getPosts, getPostsCount, Post } from '~/utils/blogUtils';
 import { Page } from '~/components/Page';
 import { PostList } from '~/components/blog/PostList';
 import { BlogPagination } from '~/components/blog/BlogPagination';
+import pagination from 'content/pagination.json';
 
 interface BlogProps {
   posts: Post[];
@@ -10,7 +11,7 @@ interface BlogProps {
   page: number;
 }
 
-const PAGE_SIZE = 2;
+const PAGE_SIZE = pagination.size;
 
 export default function BlogPage({ posts, pages, page }: BlogProps) {
   return (
