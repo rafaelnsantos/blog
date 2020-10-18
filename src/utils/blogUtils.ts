@@ -76,10 +76,10 @@ export const getPosts = async (options?: GetPostsConfig): Promise<Post[]> => {
   }
 
   if (options?.starred) {
-    posts = posts.filter((post) => post.star).sort((a, b) => b.timestamp - a.timestamp);
+    posts = posts.filter((post) => post.star);
   }
 
-  return posts;
+  return posts.sort((a, b) => b.timestamp - a.timestamp);
 };
 
 export const getPostsCount = async (): Promise<number> => {
