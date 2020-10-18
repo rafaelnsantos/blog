@@ -1,11 +1,9 @@
 export function getInitialColorMode(): string {
   const persistedColorPreference = window.localStorage.getItem('color-mode');
 
-  const hasPersistedPreference = typeof persistedColorPreference === 'string';
-
   // If the user has explicitly chosen light or dark,
   // let's use it. Otherwise, this value will be null.
-  if (hasPersistedPreference) {
+  if (typeof persistedColorPreference === 'string') {
     return persistedColorPreference;
   }
 

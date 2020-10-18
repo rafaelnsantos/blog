@@ -36,9 +36,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<BlogPostProps> = async (context) => {
-  const { slug } = context.params;
+  const slug = context.params?.slug as string;
 
-  const post = await getPostBySlug(slug as string);
+  const post = await getPostBySlug(slug);
 
   const lines = post.content.split('\n');
 

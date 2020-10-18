@@ -19,28 +19,24 @@ export interface Post {
 }
 
 export const getPostBySlug = async (slug: string): Promise<Post> => {
-  try {
-    const mdFile = await import(`../../blog/${slug}.md`);
+  const mdFile = await import(`../../blog/${slug}.md`);
 
-    const post = matter(mdFile.default);
+  const post = matter(mdFile.default);
 
-    return {
-      content: post.content,
-      slug: slug,
-      title: post.data.title,
-      timestamp: new Date(post.data.date).getTime(),
-      tags: post.data.tags,
-      meta: {
-        title: post.data.metaTitle,
-        description: post.data.metaDescription,
-        image: post.data.metaImage,
-      },
-      readingTime: getReadingTime(post.content),
-      star: post.data.star,
-    };
-  } catch (err) {
-    return null;
-  }
+  return {
+    content: post.content,
+    slug: slug,
+    title: post.data.title,
+    timestamp: new Date(post.data.date).getTime(),
+    tags: post.data.tags,
+    meta: {
+      title: post.data.metaTitle,
+      description: post.data.metaDescription,
+      image: post.data.metaImage,
+    },
+    readingTime: getReadingTime(post.content),
+    star: post.data.star,
+  };
 };
 
 interface GetPostsConfig {

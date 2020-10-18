@@ -1,3 +1,3 @@
-export const slugfy = text => text.replace(/ /g, "-").toLowerCase()
+export const slugfy = (text: string) => text.replace(/ /g, '-').toLowerCase();
 
-export const deslugfy = text => text.replace(/-/g, " ")
+export const deslugfy = (text: string) => text.replace(/-/g, ' ');

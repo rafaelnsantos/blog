@@ -3,7 +3,7 @@ import useDarkMode from 'use-dark-mode';
 import COLORS from 'content/colors.json';
 
 export function ToggleThemeButton() {
-  const darkMode = useDarkMode(null, { storageKey: 'dark' });
+  const darkMode = useDarkMode(undefined, { storageKey: 'dark' });
 
   useEffect(() => {
     const mql = window.matchMedia('(prefers-color-scheme: dark)');

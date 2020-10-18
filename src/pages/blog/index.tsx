@@ -11,7 +11,7 @@ interface BlogProps {
 }
 
 export default function BlogPage({ posts, tags }: BlogProps) {
-  const [selectedTag, setSelectedTag] = useState<string>(null);
+  const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   const postsToShow = selectedTag
     ? posts.filter((post) => post.tags.includes(selectedTag as string))

@@ -27,7 +27,7 @@ export function setColorsByTheme(): void {
   Object.entries(colors).forEach(([name, colorByTheme]) => {
     const cssVarName = `--${name}`;
 
-    root.style.setProperty(cssVarName, colorByTheme[colorMode]);
+    root.style.setProperty(cssVarName, (colorByTheme as any)[colorMode]);
   });
 }
 
@@ -36,7 +36,7 @@ export function MagicScriptTag() {
 
   let calledFunction = `(${boundFn})()`;
 
-  calledFunction = Terser.minify(calledFunction).code;
+  calledFunction = Terser.minify(calledFunction).code as string;
 
   // eslint-disable-next-line react/no-danger
   return <script dangerouslySetInnerHTML={{ __html: calledFunction }} />;

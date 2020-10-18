@@ -39,7 +39,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps<BlogProps> = async (context) => {
-  const page = parseInt(context.params.id as string);
+  const page = parseInt(context.params?.id as string);
 
   const posts = await getPosts({
     page: {
