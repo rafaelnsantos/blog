@@ -7,7 +7,7 @@ interface AnchorsProps {
 }
 
 const Li = styled.li`
-  color: var(--text-primary);
+  color: var(--text-secondary);
   transition: color 300ms;
 
   :hover {
