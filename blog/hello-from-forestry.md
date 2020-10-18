@@ -1,11 +1,11 @@
 ---
 title: Hello from Forestry
 date: 2020-05-17
-tags:
-- forestry cms
 metaTitle: Forestry CMS
 metaDescription: Forestry CMS Hello World
-metaImage: "/uploads/forestry.png"
+metaImage: uploads/meta.jpg
+tags:
+  - forestry cms
 star: false
 ---
 Hello from Forestry CMS
