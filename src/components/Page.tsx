@@ -4,7 +4,7 @@ import { Header } from './header/Header';
 import SEO from 'content/seo.json';
 interface PageProps {
   children: React.ReactNode;
-  url?: string;
+  url: string;
   title: string;
   description: string;
   image?: string;
@@ -16,6 +16,15 @@ const PageContainer = styled.div`
 `;
 
 export function Page({ children, ...seo }: PageProps) {
+  let seoImg = seo.image || SEO.image;
+
+  if (seoImg.startsWith('/')) {
+    seoImg = seoImg.substring(1);
+  }
+
+  const imgUrl = `${process.env.NEXT_PUBLIC_URL}/${seoImg}`;
+
+  console.log(imgUrl);
   return (
     <PageContainer>
       <NextSeo
@@ -26,7 +35,7 @@ export function Page({ children, ...seo }: PageProps) {
           url: `${process.env.NEXT_PUBLIC_URL}${seo.url}`,
           images: [
             {
-              url: `${process.env.NEXT_PUBLIC_URL}${seo.image || SEO.image}`,
+              url: imgUrl,
               alt: seo.title,
             },
           ],
