@@ -70,13 +70,13 @@ const getAllPosts = async (): Promise<Post[]> => {
 export const getPosts = async (options?: GetPostsConfig): Promise<Post[]> => {
   let posts = await getAllPosts();
 
+  if (options?.starred) {
+    posts = posts.filter((post) => post.star);
+  }
+
   if (options?.page) {
     const { page, size } = options.page;
     posts = posts.slice((page - 1) * size, page * size);
-  }
-
-  if (options?.starred) {
-    posts = posts.filter((post) => post.star);
   }
 
   return posts.sort((a, b) => b.timestamp - a.timestamp);
