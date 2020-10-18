@@ -6,7 +6,7 @@ rendered.
 */
 
 import Terser from 'terser';
-import { COLORS } from './colors';
+import COLORS from 'content/colors.json';
 
 export function setColorsByTheme(): void {
   const colors = '🌈';

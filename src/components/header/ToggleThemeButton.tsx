@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import useDarkMode from 'use-dark-mode';
-import { COLORS } from '~/theme/colors';
+import COLORS from 'content/colors.json';
 
 export function ToggleThemeButton() {
   const darkMode = useDarkMode(null, { storageKey: 'dark' });

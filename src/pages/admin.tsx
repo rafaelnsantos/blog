@@ -2,7 +2,7 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { CmsConfig, CmsCollection } from 'netlify-cms-core';
-
+import COLORS from 'content/colors.json';
 interface ConfigFixed extends CmsConfig {
   local_backend?: boolean;
   load_config_file?: boolean;
@@ -50,6 +50,21 @@ const collections: CmsCollection[] = [
         name: 'pagination',
 
         fields: [{ name: 'size', label: 'Posts per page', widget: 'number' }],
+      },
+      {
+        file: 'content/colors.json',
+        label: 'Colors',
+        name: 'colors',
+
+        fields: Object.keys(COLORS).map((color) => ({
+          name: color,
+          label: color,
+          widget: 'object',
+          fields: [
+            { name: 'light', label: 'light', widget: 'string' },
+            { name: 'dark', label: 'dark', widget: 'string' },
+          ],
+        })),
       },
     ],
   },
