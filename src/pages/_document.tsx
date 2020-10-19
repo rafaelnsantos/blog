@@ -3,6 +3,7 @@ import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/do
 import { ServerStyleSheet } from 'styled-components';
 import { FallbackStyles, MagicScriptTag } from '~/theme/InlineCssVariables';
 import { Gtag, PageView } from '~/utils/gtag';
+import COLORS from 'content/colors.json';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -34,7 +35,7 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <FallbackStyles />
+          <FallbackStyles colors={COLORS} />
           <Gtag />
           <PageView />
           <link rel="preconnect" href="https://www.google-analytics.com" />
@@ -48,7 +49,7 @@ export default class MyDocument extends Document {
         </Head>
 
         <body>
-          <MagicScriptTag />
+          <MagicScriptTag colors={COLORS} />
           <Main />
           <NextScript />
         </body>

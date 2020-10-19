@@ -3,6 +3,8 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { CmsConfig, CmsCollection } from 'netlify-cms-core';
 import COLORS from 'content/colors.json';
+import { PostPreview } from '~/components/previews/PostPreview';
+import { ColorPreview } from '~/components/previews/ColorPreview';
 interface ConfigFixed extends CmsConfig {
   local_backend?: boolean;
   load_config_file?: boolean;
@@ -11,7 +13,7 @@ interface ConfigFixed extends CmsConfig {
 const collections: CmsCollection[] = [
   {
     name: 'blog',
-    label: 'Blog',
+    label: 'Post',
     folder: 'blog',
     create: true,
     fields: [
@@ -29,9 +31,7 @@ const collections: CmsCollection[] = [
     name: 'settings',
     label: 'Settings',
     extension: 'json',
-    editor: {
-      preview: false,
-    },
+
     files: [
       {
         file: 'content/seo.json',
@@ -96,6 +96,10 @@ const CMS = dynamic(
     cms.init({
       config: cmsConfig,
     });
+    cms.registerPreviewStyle('/style/preview/global.css');
+    cms.registerPreviewStyle('/style/preview/markdown.css');
+    cms.registerPreviewTemplate('blog', PostPreview);
+    cms.registerPreviewTemplate('colors', ColorPreview);
     return CMS;
   },
   { ssr: false }

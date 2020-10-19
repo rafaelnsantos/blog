@@ -31,8 +31,8 @@ export function setColorsByTheme(): void {
   });
 }
 
-export function MagicScriptTag() {
-  const boundFn = String(setColorsByTheme).replace("'🌈'", JSON.stringify(COLORS));
+export function MagicScriptTag({ colors }: FallbackStyles) {
+  const boundFn = String(setColorsByTheme).replace("'🌈'", JSON.stringify(colors));
 
   let calledFunction = `(${boundFn})()`;
 
@@ -42,11 +42,16 @@ export function MagicScriptTag() {
   return <script dangerouslySetInnerHTML={{ __html: calledFunction }} />;
 }
 
+interface FallbackStyles {
+  colors: typeof COLORS;
+  theme?: 'light' | 'dark';
+}
+
 // if user doesn't have JavaScript enabled, set variables properly in a
 // head style tag anyways (light mode)
-export function FallbackStyles() {
-  const cssVariableString = Object.entries(COLORS).reduce((acc, [name, colorByTheme]) => {
-    return `${acc}\n--color-${name}: ${colorByTheme.light};`;
+export function FallbackStyles({ colors, theme = 'light' }: FallbackStyles) {
+  const cssVariableString = Object.entries(colors).reduce((acc, [name, colorByTheme]) => {
+    return `${acc}\n--${name}: ${colorByTheme[theme]};`;
   }, '');
 
   const wrappedInSelector = `html { ${cssVariableString} }`;

@@ -13,7 +13,7 @@ export function Post({ post, anchors }: BlogPostProps) {
     <div className="flex flex-row-reverse justify-center">
       {anchors && <Anchors anchors={anchors} />}
       <div className="w-full md:max-w-3xl">
-        <div className={styles.markdown}>
+        <div className={`${styles.markdown} markdown`}>
           <div className="text-center">
             <h1>{post.title}</h1>
             <div className="text-sm">{formatTimestamp(post.timestamp)}</div>
