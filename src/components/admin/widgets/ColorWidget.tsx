@@ -47,26 +47,24 @@ interface ColorField extends CmsField {
 }
 
 export const ColorWidget = Widget<string, ColorField>(
-  (props) => {
-    const DEFAULT_COLOR = props.params.default || '#ffffff';
+  ({ onChange, params, value }) => {
+    const DEFAULT_COLOR = params.default || '#ffffff';
 
     const [displayColorPicker, setDisplayColorPicker] = useState(false);
 
     const handleChangeComplete = (color: ColorResult) => {
       let colorHex: string;
-      if (props.params.alpha && color.rgb.a) {
+      if (params.alpha && color.rgb.a) {
         colorHex = color.hex + Math.round(color.rgb.a * 255).toString(16);
       } else {
         colorHex = color.hex;
       }
-      props.onChange(colorHex.toUpperCase());
+      onChange(colorHex.toUpperCase());
     };
 
     const handleClick = () => setDisplayColorPicker(!displayColorPicker);
 
     const handleClose = () => setDisplayColorPicker(false);
-
-    const { value } = props;
 
     return (
       <div>
@@ -80,7 +78,7 @@ export const ColorWidget = Widget<string, ColorField>(
             <ChromePicker
               onChangeComplete={handleChangeComplete}
               color={value || DEFAULT_COLOR}
-              disableAlpha={!props.params.alpha}
+              disableAlpha={!params.alpha}
             />
           </PopOver>
         ) : null}

@@ -3,8 +3,8 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { CmsConfig, CmsCollection } from 'netlify-cms-core';
 import COLORS from 'content/colors.json';
-import { PostPreview } from '~/components/previews/PostPreview';
-import { ColorPreview } from '~/components/previews/ColorPreview';
+import { PostPreview } from '~/components/admin/previews/PostPreview';
+import { ColorPreview } from '~/components/admin/previews/ColorPreview';
 import { ColorWidget } from '~/components/admin/widgets/ColorWidget';
 
 interface ConfigFixed extends CmsConfig {

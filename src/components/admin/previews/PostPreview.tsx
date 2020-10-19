@@ -1,7 +1,7 @@
 import { PreviewTemplateComponentProps } from 'netlify-cms-core';
+import { Post } from '~/components/blog/Post';
 import { Post as PostType } from '~/utils/blogUtils';
-import { Post } from '../blog/Post';
-import { Preview } from '../Preview';
+import { Preview } from './Preview';
 
 export function PostPreview({ entry }: PreviewTemplateComponentProps) {
   const post: PostType = {

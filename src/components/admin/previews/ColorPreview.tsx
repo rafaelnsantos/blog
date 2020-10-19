@@ -1,8 +1,8 @@
 import { PreviewTemplateComponentProps } from 'netlify-cms-core';
 import { Post as PostType } from '~/utils/blogUtils';
-import { Post } from '../blog/Post';
-import { Preview } from '../Preview';
+import { Preview } from './Preview';
 import COLORS from 'content/colors.json';
+import { Post } from '~/components/blog/Post';
 
 export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
   const colors: any = {};
