@@ -26,3 +26,15 @@ export function HeaderNav({ links }: HeaderNavProps) {
   );
   return <nav className="flex flex-row">{links.map(renderLink)}</nav>;
 }
+
+export function HeaderNavPreview({ links }: HeaderNavProps) {
+  const active = '/';
+
+  const renderLink = (link: NavLink) => (
+    <div className="mr-6 cursor-pointer" key={link.title}>
+      {active === link.path ? link.title.toUpperCase() : <a>{link.title.toUpperCase()}</a>}
+    </div>
+  );
+
+  return <nav className="flex flex-row">{links.map(renderLink)}</nav>;
+}

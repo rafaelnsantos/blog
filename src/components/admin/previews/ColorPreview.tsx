@@ -4,6 +4,8 @@ import { Preview } from './Preview';
 import COLORS from 'content/colors.json';
 import { Post } from '~/components/blog/Post';
 import { useCallback } from 'react';
+import { HeaderNavPreview } from '~/components/header/HeaderNav';
+import { LandingPageTemplate } from '~/components/templates/LandingPage';
 
 export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
   const get = useCallback((keys: string[]) => entry.getIn(['data', ...keys]), [entry]);
@@ -34,6 +36,13 @@ export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
 
   return (
     <Preview colors={colors}>
+      <HeaderNavPreview
+        links={[
+          { title: 'home', path: '/' },
+          { title: 'blog', path: '/blog/page/1' },
+        ]}
+      />
+      <LandingPageTemplate />
       <Post post={post} />
     </Preview>
   );
