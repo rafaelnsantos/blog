@@ -66,7 +66,7 @@ const getAllPosts = async (): Promise<Post[]> => {
     })
   );
 
-  return posts;
+  return posts.sort((a, b) => b.timestamp - a.timestamp);
 };
 
 export const getPosts = async (options?: GetPostsConfig): Promise<Post[]> => {
@@ -81,7 +81,7 @@ export const getPosts = async (options?: GetPostsConfig): Promise<Post[]> => {
     posts = posts.slice((page - 1) * size, page * size);
   }
 
-  return posts.sort((a, b) => b.timestamp - a.timestamp);
+  return posts;
 };
 
 export const getPostsCount = async (): Promise<number> => {
