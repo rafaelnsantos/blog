@@ -5,6 +5,7 @@ import styles from '~/components/markdown/markdown.module.scss';
 import { HeadingRenderer } from '~/components/markdown/Heading';
 import { Anchors } from './Anchors';
 import { BlogPostProps } from '~/pages/blog/post/[slug]';
+import { Image } from '../markdown/Image';
 
 const Markdown = dynamic(() => import('react-markdown'));
 
@@ -24,6 +25,7 @@ export function Post({ post, anchors }: BlogPostProps) {
             renderers={{
               code: CodeBlock,
               heading: HeadingRenderer,
+              image: Image,
             }}
           />
         </div>

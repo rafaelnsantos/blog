@@ -3,7 +3,7 @@ title: Lore Ipsum
 date: 2020-05-17T00:00:00.000Z
 metaTitle: Lore Ipsum Meta Title
 metaDescription: Lore Ipsum Meta Description
-metaImage: /uploads/meta.jpg
+metaImage: uploads/meta.jpg
 tags:
   - Lore
   - Ipsum

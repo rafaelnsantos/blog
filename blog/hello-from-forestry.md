@@ -1,6 +1,6 @@
 ---
 title: Hello from Forestry
-date: 2020-05-17
+date: 2020-05-17T19:56:00.000Z
 metaTitle: Forestry CMS
 metaDescription: Forestry CMS Hello World
 metaImage: uploads/meta.jpg
