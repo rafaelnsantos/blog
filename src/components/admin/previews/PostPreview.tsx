@@ -1,22 +1,28 @@
 import { PreviewTemplateComponentProps } from 'netlify-cms-core';
+import { useCallback } from 'react';
 import { Post } from '~/components/blog/Post';
 import { Post as PostType } from '~/utils/blogUtils';
+import { getReadingTime } from '~/utils/getReadingTime';
 import { Preview } from './Preview';
 
 export function PostPreview({ entry }: PreviewTemplateComponentProps) {
+  const get = useCallback((keys: string[]) => entry.getIn(['data', ...keys]), [entry]);
+
+  const content = get(['body']);
+
   const post: PostType = {
-    title: entry.getIn(['data', 'title']),
-    content: entry.getIn(['data', 'body']),
-    timestamp: new Date().getTime(),
+    title: get(['title']),
+    content,
+    timestamp: get(['date']),
     meta: {
-      description: entry.getIn(['data', 'metaDescription']),
-      image: entry.getIn(['data', 'metaImage']),
-      title: entry.getIn(['data', 'metaTitle']),
+      description: get(['metaDescription']),
+      image: get(['metaImage']),
+      title: get(['metaTitle']),
     },
-    readingTime: 1,
+    readingTime: getReadingTime(content),
     slug: 'slug',
-    star: entry.getIn(['data', 'star']),
-    tags: entry.getIn(['data', 'tags']),
+    star: get(['star']),
+    tags: get(['tags']),
   };
 
   return (

@@ -3,14 +3,17 @@ import { Post as PostType } from '~/utils/blogUtils';
 import { Preview } from './Preview';
 import COLORS from 'content/colors.json';
 import { Post } from '~/components/blog/Post';
+import { useCallback } from 'react';
 
 export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
+  const get = useCallback((keys: string[]) => entry.getIn(['data', ...keys]), [entry]);
+
   const colors: any = {};
 
   Object.keys(COLORS).map((color) => {
     colors[color] = {
-      light: entry.getIn(['data', color, 'light']),
-      dark: entry.getIn(['data', color, 'dark']),
+      light: get([color, 'light']),
+      dark: get([color, 'dark']),
     };
   });
 
