@@ -1,5 +1,6 @@
+import { wordsPerMinute as WORDS_PER_MINUTE } from 'content/pagination.json';
+
 export function getReadingTime(post: string): number {
-  const WORDS_PER_MINUTE = 200;
   // Matches words
   // See
   // https://regex101.com/r/q2Kqjg/6

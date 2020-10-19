@@ -58,7 +58,15 @@ const collections: CmsCollection[] = [
         label: 'Pagination',
         name: 'pagination',
 
-        fields: [{ name: 'size', label: 'Posts per page', widget: 'number' }],
+        fields: [
+          { name: 'size', label: 'Posts per page', widget: 'number' },
+          {
+            name: 'wordsPerMinute',
+            label: 'Words per minute',
+            widget: 'number',
+            hint: 'To calculate post read time',
+          },
+        ],
       },
       {
         file: 'content/colors.json',
