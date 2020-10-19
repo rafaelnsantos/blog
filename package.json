@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "concurrently \"next dev\" \"netlify-cms-proxy-server\"",
+    "prebuild": "yarn export:css",
     "build": "next build",
     "start": "next start",
     "export": "next build && next export",
-    "netlify": "netlify"
+    "netlify": "netlify",
+    "export:css": "tailwindcss build src/theme/global.scss -o public/style/preview/global.css && sass src/components/markdown/markdown.module.scss  public/style/preview/markdown.css"
   },
   "dependencies": {
     "autoprefixer": "^9.8.0",
