@@ -5,6 +5,8 @@ import { CmsConfig, CmsCollection } from 'netlify-cms-core';
 import COLORS from 'content/colors.json';
 import { PostPreview } from '~/components/previews/PostPreview';
 import { ColorPreview } from '~/components/previews/ColorPreview';
+import { ColorWidget } from '~/components/admin/widgets/ColorWidget';
+
 interface ConfigFixed extends CmsConfig {
   local_backend?: boolean;
   load_config_file?: boolean;
@@ -68,8 +70,8 @@ const collections: CmsCollection[] = [
           label: color,
           widget: 'object',
           fields: [
-            { name: 'light', label: 'light', widget: 'string' },
-            { name: 'dark', label: 'dark', widget: 'string' },
+            { name: 'light', label: 'light', widget: 'color' },
+            { name: 'dark', label: 'dark', widget: 'color' },
           ],
         })),
       },
@@ -98,6 +100,7 @@ const CMS = dynamic(
     });
     cms.registerPreviewStyle('/style/preview/global.css');
     cms.registerPreviewStyle('/style/preview/markdown.css');
+    cms.registerWidget('color', ColorWidget);
     cms.registerPreviewTemplate('blog', PostPreview);
     cms.registerPreviewTemplate('colors', ColorPreview);
     return CMS;
