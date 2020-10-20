@@ -41,7 +41,7 @@ export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
       <HeaderNavPreview
         links={[
           { title: 'home', path: '/' },
-          { title: 'blog', path: '/blog/page/1' },
+          { title: 'blog', path: '/blog' },
         ]}
       />
       <LandingPageTemplate />

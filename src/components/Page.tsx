@@ -41,7 +41,7 @@ export function Page({ children, ...seo }: PageProps) {
       <Header
         links={[
           { title: 'home', path: '/' },
-          { title: 'blog', path: '/blog/page/1' },
+          { title: 'blog', path: '/blog' },
         ]}
       />
       {children}
