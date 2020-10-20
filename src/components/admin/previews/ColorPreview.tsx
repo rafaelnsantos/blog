@@ -2,7 +2,7 @@ import { PreviewTemplateComponentProps } from 'netlify-cms-core';
 import { Post as PostType, PostPreview } from '~/utils/blogUtils';
 import { Preview } from './Preview';
 import COLORS from 'content/colors.json';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { HeaderNavPreview } from '~/components/header/HeaderNav';
 import { LandingPageTemplate } from '~/components/templates/LandingPage';
 import { AboutPageTemplate } from '~/components/templates/AboutPage';
@@ -11,6 +11,8 @@ import { BlogTemplate } from '~/components/templates/Blog';
 
 export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
   const get = useCallback((keys: string[]) => entry.getIn(['data', ...keys]), [entry]);
+
+  const [selectedTemplate, setSelectedTemplate] = useState(<LandingPageTemplate />);
 
   const colors: any = {};
 
@@ -46,25 +48,38 @@ export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
 
   return (
     <Preview colors={colors}>
+      <div className="flex flex-row justify-evenly">
+        <button onClick={() => setSelectedTemplate(<LandingPageTemplate />)}>Landing</button>
+        <button onClick={() => setSelectedTemplate(<PostTemplate post={post} />)}>Post</button>
+        <button onClick={() => setSelectedTemplate(<AboutPageTemplate />)}>About</button>
+        <button
+          onClick={() =>
+            setSelectedTemplate(
+              <BlogTemplate
+                preview
+                posts={[postPreview, postPreview, postPreview, postPreview, postPreview]}
+                tags={[
+                  {
+                    count: 1,
+                    value: 'asd',
+                  },
+                ]}
+              />
+            )
+          }
+        >
+          Blog
+        </button>
+      </div>
+
       <HeaderNavPreview
         links={[
           { title: 'home', path: '/' },
           { title: 'blog', path: '/blog' },
         ]}
       />
-      <LandingPageTemplate />
-      <PostTemplate post={post} />
-      <AboutPageTemplate />
-      <BlogTemplate
-        preview
-        posts={[postPreview, postPreview, postPreview, postPreview, postPreview]}
-        tags={[
-          {
-            count: 1,
-            value: 'asd',
-          },
-        ]}
-      />
+
+      {selectedTemplate}
     </Preview>
   );
 }
