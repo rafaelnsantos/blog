@@ -24,7 +24,7 @@ export const Text = ({
   size = 1,
   color = 'text-primary',
   lineHeight = 1,
-  weigth = 500,
+  weigth = 400,
   align,
   className,
 }: TextProps) => {

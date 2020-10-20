@@ -1,7 +1,8 @@
 import { formatTimestamp } from '~/utils/timeUtils';
-import { Post } from '~/utils/blogUtils';
+import { PostPreview as Post } from '~/utils/blogUtils';
 import { TagChip } from './TagChip';
 import Link from 'next/link';
+import { Image } from '../atoms/Image';
 
 interface PostPreviewProps {
   post: Post;
@@ -19,6 +20,7 @@ export function PostPreview({ post, preview }: PostPreviewProps) {
           <a className="text-2xl">{post.title}</a>
         </Link>
       )}
+      <Image src={post.meta.image} width="300" />
       <div className="flex flex-row">
         {post.tags.map((tag) => (
           <TagChip tag={tag} key={tag} />

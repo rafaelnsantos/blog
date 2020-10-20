@@ -1,5 +1,5 @@
 import { PostPreview } from './PostPreview';
-import { Post } from '~/utils/blogUtils';
+import { PostPreview as Post } from '~/utils/blogUtils';
 
 interface PostListProps {
   posts: Post[];

@@ -18,6 +18,18 @@ export interface Post {
   star: boolean;
 }
 
+export interface PostPreview {
+  title: string;
+  timestamp: number;
+  slug: string;
+  meta: {
+    title: string;
+    description: string;
+    image: string;
+  };
+  tags: string[];
+}
+
 export const getPostBySlug = async (slug: string): Promise<Post> => {
   const mdFile = await import(`../../blog/${slug}.md`);
 
@@ -84,6 +96,18 @@ export const getPosts = async (options?: GetPostsConfig): Promise<Post[]> => {
   return posts;
 };
 
+export const getPostsPreview = async (options?: GetPostsConfig): Promise<PostPreview[]> => {
+  const posts = await getPosts(options);
+
+  return posts.map((post) => ({
+    meta: post.meta,
+    slug: post.slug,
+    tags: post.tags,
+    timestamp: post.timestamp,
+    title: post.title,
+  }));
+};
+
 export const getPostsCount = async (): Promise<number> => {
   const files = getPostsFiles();
 
@@ -95,7 +119,7 @@ export interface CloudTag {
   count: number;
 }
 
-export const getTags = (posts: Post[]): CloudTag[] => {
+export const getTags = (posts: PostPreview[]): CloudTag[] => {
   const tags: CloudTag[] = [];
 
   posts.map((post) => {

@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { TagCloud } from 'react-tagcloud';
 import { BlogProps } from '~/pages/blog/index';
 import { CloudTag } from '~/utils/blogUtils';
+import { Text } from '../atoms/Text';
 import { PostList } from '../blog/PostList';
 
 export function BlogTemplate({ posts, tags, preview }: BlogProps) {
+  console.log(posts);
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
   const postsToShow = selectedTag
@@ -17,7 +19,7 @@ export function BlogTemplate({ posts, tags, preview }: BlogProps) {
 
   return (
     <>
-      <h1>Starred Posts</h1>
+      <Text variant="h1">Blog</Text>
       <div className="h-10">
         <TagCloud minSize={12} maxSize={24} tags={tags} onClick={selectTag} />
         <div>{selectedTag}</div>

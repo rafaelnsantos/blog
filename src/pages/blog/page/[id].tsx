@@ -1,11 +1,11 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
-import { getPosts, getPostsCount, Post } from '~/utils/blogUtils';
+import { getPostsCount, getPostsPreview, PostPreview } from '~/utils/blogUtils';
 import { Page } from '~/components/Page';
 import pagination from 'content/pagination.json';
 import { BlogPageTemplate } from '~/components/templates/BlogPage';
 
 export interface BlogPageProps {
-  posts: Post[];
+  posts: PostPreview[];
   pages: number;
   page: number;
   preview?: boolean;
@@ -41,7 +41,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<BlogPageProps> = async (context) => {
   const page = parseInt(context.params?.id as string);
 
-  const posts = await getPosts({
+  const posts = await getPostsPreview({
     page: {
       page,
       size: PAGE_SIZE,
