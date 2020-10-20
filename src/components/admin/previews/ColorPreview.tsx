@@ -1,5 +1,5 @@
 import { PreviewTemplateComponentProps } from 'netlify-cms-core';
-import { Post as PostType } from '~/utils/blogUtils';
+import { Post as PostType, PostPreview } from '~/utils/blogUtils';
 import { Preview } from './Preview';
 import COLORS from 'content/colors.json';
 import { useCallback } from 'react';
@@ -36,6 +36,14 @@ export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
     tags: ['asdasd'],
   };
 
+  const postPreview: PostPreview = {
+    meta: post.meta,
+    slug: post.slug,
+    tags: post.tags,
+    timestamp: post.timestamp,
+    title: post.title,
+  };
+
   return (
     <Preview colors={colors}>
       <HeaderNavPreview
@@ -49,7 +57,7 @@ export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
       <AboutPageTemplate />
       <BlogTemplate
         preview
-        posts={[post, post, post, post, post]}
+        posts={[postPreview, postPreview, postPreview, postPreview, postPreview]}
         tags={[
           {
             count: 1,
