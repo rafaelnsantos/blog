@@ -5,6 +5,9 @@ import { FallbackStyles, MagicScriptTag } from '~/theme/InlineCssVariables';
 import { Gtag, PageView } from '~/utils/gtag';
 import COLORS from 'content/colors.json';
 
+import fs from 'fs';
+import path from 'path';
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
@@ -17,6 +20,17 @@ export default class MyDocument extends Document {
         });
 
       const initialProps = await Document.getInitialProps(ctx);
+
+      if (process.env.NODE_ENV !== 'development') {
+        const filePath = path.join(process.cwd(), 'public', 'style', 'preview', 'preview.css');
+
+        if (fs.existsSync(filePath)) {
+          fs.appendFileSync(filePath, sheet.getStyleTags());
+        } else {
+          fs.writeFileSync(filePath, sheet.getStyleTags());
+        }
+      }
+
       return {
         ...initialProps,
         styles: (

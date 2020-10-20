@@ -30,6 +30,7 @@ const CMS = dynamic(
     cms.init({
       config: cmsConfig,
     });
+    cms.registerPreviewStyle('/style/preview/preview.css');
     cms.registerPreviewStyle('/style/preview/global.css');
     cms.registerPreviewStyle('/style/preview/markdown.css');
     cms.registerWidget('color', ColorWidget);
