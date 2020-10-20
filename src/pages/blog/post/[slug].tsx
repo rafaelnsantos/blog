@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { getPostBySlug, getPosts, Post as PostType } from '~/utils/blogUtils';
 import { Page } from '~/components/Page';
-import { Post } from '~/components/blog/Post';
+import { PostTemplate } from '~/components/templates/Post';
 
 export interface Anchor {
   title: string;
@@ -21,7 +21,7 @@ export default function BlogPost({ post, anchors }: BlogPostProps) {
       url={`/blog/post/${post.slug}`}
       image={post.meta.image}
     >
-      <Post post={post} anchors={anchors} />
+      <PostTemplate post={post} anchors={anchors} />
     </Page>
   );
 }

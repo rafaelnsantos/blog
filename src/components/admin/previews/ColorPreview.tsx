@@ -2,10 +2,12 @@ import { PreviewTemplateComponentProps } from 'netlify-cms-core';
 import { Post as PostType } from '~/utils/blogUtils';
 import { Preview } from './Preview';
 import COLORS from 'content/colors.json';
-import { Post } from '~/components/blog/Post';
 import { useCallback } from 'react';
 import { HeaderNavPreview } from '~/components/header/HeaderNav';
 import { LandingPageTemplate } from '~/components/templates/LandingPage';
+import { AboutPageTemplate } from '~/components/templates/AboutPage';
+import { PostTemplate } from '~/components/templates/Post';
+import { BlogTemplate } from '~/components/templates/Blog';
 
 export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
   const get = useCallback((keys: string[]) => entry.getIn(['data', ...keys]), [entry]);
@@ -43,7 +45,18 @@ export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
         ]}
       />
       <LandingPageTemplate />
-      <Post post={post} />
+      <PostTemplate post={post} />
+      <AboutPageTemplate />
+      <BlogTemplate
+        preview
+        posts={[post, post, post, post, post]}
+        tags={[
+          {
+            count: 1,
+            value: 'asd',
+          },
+        ]}
+      />
     </Preview>
   );
 }

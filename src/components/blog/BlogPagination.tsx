@@ -5,6 +5,8 @@ import styled from 'styled-components';
 interface BlogPaginationProps {
   pages: number;
   page: number;
+
+  preview?: boolean;
 }
 
 const Container = styled.div`
@@ -27,13 +29,19 @@ export const BlogPagination = (props: BlogPaginationProps) => {
 
   return (
     <Container>
-      {pages.map((page) => (
-        <Link key={page} href={`/blog/page/${page}`}>
-          <a>
+      {pages.map((page) =>
+        props.preview ? (
+          <a key={page}>
             <Page active={page === props.page}>{page}</Page>
           </a>
-        </Link>
-      ))}
+        ) : (
+          <Link key={page} href={`/blog/page/${page}`}>
+            <a>
+              <Page active={page === props.page}>{page}</Page>
+            </a>
+          </Link>
+        )
+      )}
     </Container>
   );
 };

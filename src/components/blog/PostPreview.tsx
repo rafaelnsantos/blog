@@ -5,15 +5,20 @@ import Link from 'next/link';
 
 interface PostPreviewProps {
   post: Post;
+  preview?: boolean;
 }
 
-export function PostPreview({ post }: PostPreviewProps) {
+export function PostPreview({ post, preview }: PostPreviewProps) {
   return (
     <div className="mb-10">
       <div className="opacity-75 text-sm">{formatTimestamp(post.timestamp)}</div>
-      <Link href={`/blog/post/${post.slug}`}>
+      {preview ? (
         <a className="text-2xl">{post.title}</a>
-      </Link>
+      ) : (
+        <Link href={`/blog/post/${post.slug}`}>
+          <a className="text-2xl">{post.title}</a>
+        </Link>
+      )}
       <div className="flex flex-row">
         {post.tags.map((tag) => (
           <TagChip tag={tag} key={tag} />

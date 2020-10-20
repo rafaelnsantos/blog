@@ -1,7 +1,7 @@
 import { PreviewTemplateComponentProps } from 'netlify-cms-core';
 import { useCallback } from 'react';
-import { Post } from '~/components/blog/Post';
-import { Post as PostType } from '~/utils/blogUtils';
+import { PostTemplate } from '~/components/templates/Post';
+import { Post } from '~/utils/blogUtils';
 import { getReadingTime } from '~/utils/getReadingTime';
 import { Preview } from './Preview';
 
@@ -10,7 +10,7 @@ export function PostPreview({ entry }: PreviewTemplateComponentProps) {
 
   const content = get(['body']);
 
-  const post: PostType = {
+  const post: Post = {
     title: get(['title']),
     content,
     timestamp: get(['date']),
@@ -27,7 +27,7 @@ export function PostPreview({ entry }: PreviewTemplateComponentProps) {
 
   return (
     <Preview>
-      <Post post={post} />
+      <PostTemplate post={post} />
     </Preview>
   );
 }

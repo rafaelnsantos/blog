@@ -3,15 +3,15 @@ import { CodeBlock } from '~/components/markdown/CodeBlock';
 import { formatTimestamp } from '~/utils/timeUtils';
 import styles from '~/components/markdown/markdown.module.scss';
 import { Heading } from '~/components/markdown/Heading';
-import { Anchors } from './Anchors';
 import { BlogPostProps } from '~/pages/blog/post/[slug]';
 import { Image } from '../markdown/Image';
 import { useState } from 'react';
+import { Anchors } from '../blog/Anchors';
 
 const Markdown = dynamic(() => import('react-markdown'));
 
-export function Post({ post, anchors }: BlogPostProps) {
-  const [activeAnchor, setActiveAnchor] = useState('Fructum Phoebus');
+export function PostTemplate({ post, anchors }: BlogPostProps) {
+  const [activeAnchor, setActiveAnchor] = useState('');
   return (
     <div className="flex flex-row-reverse justify-center">
       {anchors && <Anchors anchors={anchors} active={activeAnchor} onClick={setActiveAnchor} />}
