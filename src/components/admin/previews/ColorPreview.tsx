@@ -27,7 +27,7 @@ export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
     timestamp: new Date().getTime(),
     meta: {
       description: 'asdasd',
-      image: 'asdasd',
+      image: 'MonxClosed.png',
       title: 'asdasd',
     },
     readingTime: 1,

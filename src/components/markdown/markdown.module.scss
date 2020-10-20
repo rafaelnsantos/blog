@@ -1,14 +1,14 @@
 @mixin marginBlock($marginBlock) {
-  margin-block-start: $marginBlock;
-  margin-block-end: $marginBlock;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
+  margin-block-start: $marginBlock !important;
+  margin-block-end: $marginBlock !important;
+  margin-inline-start: 0px !important;
+  margin-inline-end: 0px !important;
 }
 @mixin header($fontSize, $marginBlock) {
-  display: block;
-  font-size: $fontSize;
+  display: block !important;
+  font-size: $fontSize !important;
   @include marginBlock($marginBlock);
-  font-family: "Merriweather", monospace;
+  font-family: "Merriweather", monospace !important;
 }
 
 .markdown {
@@ -23,7 +23,7 @@
   }
   p {
     @include marginBlock(1em);
-    display: block;
+    display: block !important;
     text-align: justify;
   }
   img {
