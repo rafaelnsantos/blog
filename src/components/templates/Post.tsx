@@ -4,9 +4,10 @@ import { formatTimestamp } from '~/utils/timeUtils';
 import styles from '~/components/markdown/markdown.module.scss';
 import { Heading } from '~/components/markdown/Heading';
 import { BlogPostProps } from '~/pages/blog/post/[slug]';
-import { Image } from '../markdown/Image';
 import { useState } from 'react';
 import { Anchors } from '../blog/Anchors';
+import { Text } from '../atoms/Text';
+import { Image } from '../atoms/Image';
 
 const Markdown = dynamic(() => import('react-markdown'));
 
@@ -18,9 +19,12 @@ export function PostTemplate({ post, anchors }: BlogPostProps) {
       <div className="w-full md:max-w-3xl">
         <div className={`${styles.markdown} markdown`}>
           <div className="text-center">
-            <h1>{post.title}</h1>
-            <div className="text-sm">{formatTimestamp(post.timestamp)}</div>
-            <div>{post.readingTime} min read</div>
+            <Text variant="h1">{post.title}</Text>
+            <Image src={post.meta.image} />
+            <Text align="center">{formatTimestamp(post.timestamp)}</Text>
+            <Text size={0.85} align="center">
+              {post.readingTime} min read
+            </Text>
           </div>
           <Markdown
             source={post.content}
