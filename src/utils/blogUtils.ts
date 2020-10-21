@@ -16,6 +16,7 @@ export interface Post {
   readingTime: number;
   tags: string[];
   published: boolean;
+  authors: string[];
 }
 
 export interface PostPreview {
@@ -48,6 +49,7 @@ export const getPostBySlug = async (slug: string): Promise<Post> => {
     },
     readingTime: getReadingTime(post.content),
     published: post.data.published,
+    authors: post.data.authors,
   };
 };
 

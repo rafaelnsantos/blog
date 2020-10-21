@@ -20,11 +20,22 @@ export function PostTemplate({ post, anchors }: BlogPostProps) {
         <div className={`${styles.markdown} markdown`}>
           <div className="text-center">
             <Text variant="h1">{post.title}</Text>
-            <Image src={post.meta.image} />
+            <Image src={post.meta.image} alt={post.meta.title} />
             <Text align="center">{formatTimestamp(post.timestamp)}</Text>
             <Text size={0.85} align="center">
               {post.readingTime} min read
             </Text>
+            <div className="flex flex-row justify-center">
+              {post.authors.map((author) => (
+                <a key={author} href={`https://github.com/${author}`}>
+                  <img
+                    alt={`${author}'s github`}
+                    style={{ borderRadius: 20, margin: 10 }}
+                    src={`https://github.com/${author}.png?size=40`}
+                  />
+                </a>
+              ))}
+            </div>
           </div>
           <Markdown
             source={post.content}

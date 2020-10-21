@@ -1,12 +1,11 @@
 import { PreviewTemplateComponentProps } from 'netlify-cms-core';
-import { useCallback } from 'react';
 import { PostTemplate } from '~/components/templates/Post';
 import { Post } from '~/utils/blogUtils';
 import { getReadingTime } from '~/utils/getReadingTime';
 import { Preview } from './Preview';
 
 export function PostPreview({ entry }: PreviewTemplateComponentProps) {
-  const get = useCallback((keys: string[]) => entry.getIn(['data', ...keys]), [entry]);
+  const get = (keys: string[]) => entry.getIn(['data', ...keys]);
 
   const content = get(['body']);
 
@@ -23,6 +22,7 @@ export function PostPreview({ entry }: PreviewTemplateComponentProps) {
     slug: 'slug',
     published: get(['published']),
     tags: get(['tags']),
+    authors: get(['authors']),
   };
 
   return (
