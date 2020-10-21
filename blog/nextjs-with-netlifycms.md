@@ -13,6 +13,6 @@ star: true
 ---
 ## package netlify-cms-app
 
-## config netlify-cms with .ts file
+## config netlify-cms with .ts file
 
 ## import with next/dynamic
