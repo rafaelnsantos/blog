@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import styled from 'styled-components';
-import useDarkMode from 'use-dark-mode';
+import { useThemeMode } from '~/hooks/useThemeMode';
 
 const Container = styled.div`
   display: grid;
@@ -10,10 +11,12 @@ const Container = styled.div`
 `;
 
 export function LandingPageTemplate() {
-  const darkMode = useDarkMode(undefined, { storageKey: 'dark' });
+  const [image, setImage] = useState('');
+  useThemeMode((darkMode) => setImage(darkMode.value ? '/MonxOpen.png' : '/MonxClosed.png'));
+
   return (
     <Container>
-      <img width="200" src={darkMode.value ? '/MonxOpen.png' : '/MonxClosed.png'} />
+      <img width="200" src={image} />
     </Container>
   );
 }
