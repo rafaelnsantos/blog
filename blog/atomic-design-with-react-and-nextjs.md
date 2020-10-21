@@ -3,7 +3,7 @@ title: Atomic Design with React and NextJS
 date: 2020-10-21T18:14:00.870Z
 metaTitle: Atomic Design with React and NextJS
 metaDescription: Atomic Design with React and NextJS
-metaImage: uploads/atomic-design.png
+metaImage: uploads/atomicdesign.png
 tags:
   - atomic design
   - react
@@ -12,7 +12,7 @@ tags:
 authors:
   - rafaelnsantos
   - andrebonizi
-published: false
+star: true
 ---
 ## Atoms
 
@@ -22,8 +22,4 @@ published: false
 
 ## Templates
 
-Receives the content via props and use the organisms to create templates.
-
 ## Pages
-
-Get contents and use the page template.
