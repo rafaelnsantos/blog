@@ -22,6 +22,7 @@ const post: PostType = {
   slug: 'slug',
   published: true,
   tags: ['asdasd'],
+  authors: ['rafaelnsantos'],
 };
 
 const postPreview: PostPreview = {
