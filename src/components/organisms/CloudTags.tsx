@@ -3,6 +3,7 @@ import { TagCloud } from 'react-tagcloud';
 import styled from 'styled-components';
 import { useLocalStorage } from '~/hooks/useLocalStorage';
 import { useThemeMode } from '~/hooks/useThemeMode';
+import { useGoogleAnalytics } from '~/providers/GoogleAnalytics';
 import { CloudTag } from '~/utils/blogUtils';
 
 const StyledTagClod = styled(TagCloud)`
@@ -29,6 +30,8 @@ export function CloudTags(props: CloudTagsProps) {
     props.onSelectTag(selectedTag);
   }, [selectedTag]);
 
+  const ga = useGoogleAnalytics();
+
   return (
     <div className="flex justify-center md:max-w-screen-md m-auto px-10 h-40">
       {selectedTag ? (
@@ -42,7 +45,13 @@ export function CloudTags(props: CloudTagsProps) {
           minSize={12}
           maxSize={24}
           tags={props.tags}
-          onClick={(tag: CloudTag) => setSelectedTag(tag.value)}
+          onClick={(tag: CloudTag) => {
+            ga.event({
+              action: tag.value,
+              category: 'TagCloud',
+            });
+            setSelectedTag(tag.value);
+          }}
         />
       )}
     </div>
