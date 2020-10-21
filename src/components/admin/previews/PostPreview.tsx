@@ -7,23 +7,25 @@ import { Preview } from './Preview';
 export function PostPreview({ entry }: PreviewTemplateComponentProps) {
   const get = (keys: string[]) => entry.getIn(['data', ...keys]);
 
-  const content = get(['body']);
+  const content = get(['body']) || 'content';
 
   const post: Post = {
-    title: get(['title']),
+    title: get(['title']) || 'Title',
     content,
-    timestamp: get(['date']),
+    timestamp: get(['date']) || new Date().getTime(),
     meta: {
-      description: get(['metaDescription']),
-      image: get(['metaImage']),
-      title: get(['metaTitle']),
+      description: get(['metaDescription'] || 'description'),
+      image: get(['metaImage']) || '',
+      title: get(['metaTitle']) || '',
     },
     readingTime: getReadingTime(content),
     slug: 'slug',
-    published: get(['published']),
-    tags: get(['tags']),
-    authors: get(['authors']),
+    published: get(['published']) || true,
+    tags: get(['tags']) || [''],
+    authors: get(['authors']) || ['rafa'],
   };
+
+  console.log(post);
 
   return (
     <Preview>
