@@ -23,53 +23,53 @@ const cmsConfig: ConfigFixed = {
   load_config_file: false,
 };
 
-const Identity = dynamic(
-  async () => {
-    const identity = await import('netlify-identity-widget');
+// const Identity = dynamic(
+//   async () => {
+//     const identity = await import('netlify-identity-widget');
 
-    identity.init({
-      APIUrl:
-        process.env.NODE_ENV === 'production'
-          ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
-          : undefined,
-      logo: false,
-    });
+//     identity.init({
+//       APIUrl:
+//         process.env.NODE_ENV === 'production'
+//           ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
+//           : undefined,
+//       logo: false,
+//     });
 
-    const Identity = () => {
-      const [user, setUser] = useState(identity.currentUser());
+//     const Identity = () => {
+//       const [user, setUser] = useState(identity.currentUser());
 
-      useEffect(() => {
-        if (!user) {
-          identity.open('login');
-        } else {
-          identity.close();
-        }
-      }, [user]);
+//       useEffect(() => {
+//         if (!user) {
+//           identity.open('login');
+//         } else {
+//           identity.open();
+//         }
+//       }, [user]);
 
-      useEffect(() => {
-        identity.on('login', setUser);
-        identity.on('logout', () => setUser(null));
-        identity.on('init', setUser);
-        identity.on('error', (err) => {
-          console.log(err);
-        });
-        identity.on('close', () => setUser(user));
+//       useEffect(() => {
+//         identity.on('login', setUser);
+//         identity.on('logout', () => setUser(null));
+//         identity.on('init', setUser);
+//         identity.on('error', (err) => {
+//           console.log(err);
+//         });
+//         identity.on('close', () => setUser(user));
 
-        return () => {
-          identity.off('login');
-          identity.off('logout');
-          identity.off('init');
-          identity.off('error');
-          identity.off('close');
-        };
-      }, []);
-      return <div />;
-    };
+//         return () => {
+//           identity.off('login');
+//           identity.off('logout');
+//           identity.off('init');
+//           identity.off('error');
+//           identity.off('close');
+//         };
+//       }, []);
+//       return <div />;
+//     };
 
-    return Identity;
-  },
-  { ssr: false }
-);
+//     return Identity;
+//   },
+//   { ssr: false }
+// );
 
 const CMS = dynamic(
   async () => {
@@ -92,11 +92,7 @@ const CMS = dynamic(
         cms.registerPreviewTemplate('blog', PostPreview);
         cms.registerPreviewTemplate('colors', ColorPreview);
       }, []);
-      return (
-        <div>
-          <Identity />
-        </div>
-      );
+      return <div>{/* <Identity /> */}</div>;
     };
 
     return CMS;
@@ -108,6 +104,10 @@ export default function AdminPage() {
   return (
     <>
       <Head>
+        <script
+          type="text/javascript"
+          src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+        />
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       <CMS />
