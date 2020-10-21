@@ -2514,6 +2514,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/netlify-identity-widget@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@types/netlify-identity-widget/-/netlify-identity-widget-1.9.0.tgz#b7628eb5c76228aa9477f1b6caef9f1f16e6e4aa"
+  integrity sha512-2g5N3v2sOsLCiDrtGQfZwnmTkikMPUKb5VtsJ5BTPsBDHLfxsCsFEE6MnZHKavAK/nTJWh0MkqylkhnyjoWU5Q==
+
 "@types/node-fetch@^2.1.6":
   version "2.5.7"
   resolved "https://registry.yarnpkg.com/@types/node-fetch/-/node-fetch-2.5.7.tgz#20a2afffa882ab04d44ca786449a276f9f6bbf3c"
@@ -9932,6 +9937,11 @@ netlify-cms-widget-text@^2.3.4:
   integrity sha512-cWSoSxb0+H5F8v1ubn71QabY8zDgSEI83VTAFVzBUkp6MmYp2mulyYy6/ebhHZdCcmik8/clrRwOXgI17N/G3Q==
   dependencies:
     react-textarea-autosize "^8.0.0"
+
+netlify-identity-widget@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/netlify-identity-widget/-/netlify-identity-widget-1.9.1.tgz#9e716c4b92b9f0cc041074eb86fc962f35295b46"
+  integrity sha512-9oIWjwUSdRk3SkREcZNjZaVuDDx9T/wSIXZNQsQeY4qoXic/FiXVEGgu2RU3IuA4OI3L2652xY1o+PpS03Ugaw==
 
 netlify-redirect-parser@^2.5.0:
   version "2.5.0"

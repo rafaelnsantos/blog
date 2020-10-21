@@ -3,7 +3,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { CmsConfig } from 'netlify-cms-core';
 import { collections } from '~/config/admin';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 interface ConfigFixed extends CmsConfig {
   local_backend?: boolean;
@@ -22,13 +22,15 @@ const cmsConfig: ConfigFixed = {
   load_config_file: false,
 };
 
-interface CMSProps {
-  onLoaded: () => void;
-}
-
 const CMS = dynamic(
   async () => {
     const cms = (await import('netlify-cms-app')).default;
+    const identity = await import('netlify-identity-widget');
+
+    identity.init({
+      container: '#netlify-identity',
+      logo: false,
+    });
 
     cms.init({
       config: cmsConfig,
@@ -38,7 +40,7 @@ const CMS = dynamic(
     const { ColorPreview } = await import('~/components/admin/previews/ColorPreview');
     const { ColorWidget } = await import('~/components/admin/widgets/ColorWidget');
 
-    const CMS = ({ onLoaded }: CMSProps) => {
+    const CMS = () => {
       useEffect(() => {
         cms.registerPreviewStyle('/style/preview/preview.css');
         cms.registerPreviewStyle('/style/preview/global.css');
@@ -46,7 +48,6 @@ const CMS = dynamic(
         cms.registerWidget('color', ColorWidget);
         cms.registerPreviewTemplate('blog', PostPreview);
         cms.registerPreviewTemplate('colors', ColorPreview);
-        onLoaded();
       }, []);
       return <div />;
     };
@@ -57,21 +58,13 @@ const CMS = dynamic(
 );
 
 export default function AdminPage() {
-  const [loaded, setLoaded] = useState(false);
   return (
     <>
       <Head>
-        <link rel="preconnect" href="https://identity.netlify.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://identity.netlify.com" crossOrigin="anonymous" />
-        {loaded && (
-          <script
-            type="text/javascript"
-            src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-          />
-        )}
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <CMS onLoaded={() => setLoaded(true)} />
+      <div id="netlify-identity" />
+      <CMS />
     </>
   );
 }
