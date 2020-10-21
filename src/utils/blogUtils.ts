@@ -15,7 +15,7 @@ export interface Post {
   content: string;
   readingTime: number;
   tags: string[];
-  star: boolean;
+  published: boolean;
 }
 
 export interface PostPreview {
@@ -47,7 +47,7 @@ export const getPostBySlug = async (slug: string): Promise<Post> => {
       image: post.data.metaImage,
     },
     readingTime: getReadingTime(post.content),
-    star: post.data.star,
+    published: post.data.published,
   };
 };
 
@@ -56,7 +56,6 @@ interface GetPostsConfig {
     page: number;
     size: number;
   };
-  starred?: boolean;
 }
 
 const getPostsFiles = () => {
@@ -78,15 +77,11 @@ const getAllPosts = async (): Promise<Post[]> => {
     })
   );
 
-  return posts.sort((a, b) => b.timestamp - a.timestamp);
+  return posts.sort((a, b) => b.timestamp - a.timestamp).filter((post) => !post.published);
 };
 
 export const getPosts = async (options?: GetPostsConfig): Promise<Post[]> => {
   let posts = await getAllPosts();
-
-  if (options?.starred) {
-    posts = posts.filter((post) => post.star);
-  }
 
   if (options?.page) {
     const { page, size } = options.page;

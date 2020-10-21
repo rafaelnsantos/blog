@@ -16,7 +16,7 @@ export const collections: CmsCollection[] = [
       { label: 'Body', name: 'body', widget: 'markdown' },
       { label: 'Tags', name: 'tags', widget: 'list' },
       { label: 'Authors', name: 'authors', widget: 'list' },
-      { label: 'Starred', name: 'star', widget: 'boolean' },
+      { label: 'Published', name: 'published', widget: 'boolean' },
     ],
   },
   {

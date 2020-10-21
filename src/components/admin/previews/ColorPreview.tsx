@@ -20,7 +20,7 @@ const post: PostType = {
   },
   readingTime: 1,
   slug: 'slug',
-  star: true,
+  published: true,
   tags: ['asdasd'],
 };
 

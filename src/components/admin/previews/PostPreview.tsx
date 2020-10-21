@@ -21,7 +21,7 @@ export function PostPreview({ entry }: PreviewTemplateComponentProps) {
     },
     readingTime: getReadingTime(content),
     slug: 'slug',
-    star: get(['star']),
+    published: get(['published']),
     tags: get(['tags']),
   };
 

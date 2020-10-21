@@ -12,7 +12,7 @@ tags:
 authors:
   - rafaelnsantos
   - andrebonizi
-star: true
+published: false
 ---
 ## Atoms
 
@@ -22,4 +22,8 @@ star: true
 
 ## Templates
 
+Receives the content via props and use the organisms to create templates.
+
 ## Pages
+
+Get contents and use the page template.

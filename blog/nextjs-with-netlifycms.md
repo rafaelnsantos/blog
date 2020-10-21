@@ -12,7 +12,7 @@ tags:
 authors:
   - rafaelnsantos
   - andrebonizi
-star: true
+published: false
 ---
 ## package netlify-cms-app
 
