@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import useDarkMode from 'use-dark-mode';
 import COLORS from 'content/colors.json';
+import { FaSun, FaMoon } from 'react-icons/fa';
 
 export function ToggleThemeButton() {
   const darkMode = useDarkMode(undefined, { storageKey: 'dark' });
@@ -21,5 +22,13 @@ export function ToggleThemeButton() {
 
   if (darkMode.value === null) return null;
 
-  return <button onClick={darkMode.toggle}>{darkMode.value ? 'light theme' : 'dark theme'}</button>;
+  return (
+    <button onClick={darkMode.toggle}>
+      {darkMode.value ? (
+        <FaSun color="var(--accent-yellow)" />
+      ) : (
+        <FaMoon color="var(--accent-blue)" />
+      )}
+    </button>
+  );
 }

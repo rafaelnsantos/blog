@@ -1,3 +1,3 @@
 export function HeaderLogo() {
-  return <div></div>;
+  return <div>Logo</div>;
 }

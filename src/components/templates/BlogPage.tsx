@@ -1,6 +1,6 @@
 import { BlogPageProps } from '~/pages/blog/page/[id]';
 import { BlogPagination } from '../blog/BlogPagination';
-import { PostList } from '../blog/PostList';
+import { PostList } from '../organisms/PostList';
 
 export function BlogPageTemplate({ posts, pages, page, preview }: BlogPageProps) {
   return (
