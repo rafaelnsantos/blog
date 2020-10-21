@@ -13,6 +13,7 @@ env:
   NETLIFY_TOKEN: ${{secrets.NETLIFY_TOKEN}}
   NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
   NEXT_PUBLIC_URL: ${{secrets.NEXT_PUBLIC_URL}}
+  GOOGLE_ANALYTICS_KEY: ${{secrets.GOOGLE_ANALYTICS_KEY}}
   
 jobs:
   build:
