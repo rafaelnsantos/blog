@@ -9,6 +9,9 @@ tags:
   - react
   - nextjs
   - typescript
+authors:
+  - rafaelnsantos
+  - andrebonizi
 star: true
 ---
 ## Atoms

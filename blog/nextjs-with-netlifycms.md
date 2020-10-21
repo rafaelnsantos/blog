@@ -9,6 +9,9 @@ tags:
   - nextjs
   - netlify cms
   - typescript
+authors:
+  - rafaelnsantos
+  - andrebonizi
 star: true
 ---
 ## package netlify-cms-app
