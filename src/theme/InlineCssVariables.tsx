@@ -7,13 +7,25 @@ rendered.
 
 import Terser from 'terser';
 import COLORS from 'content/colors.json';
-import { setHTMLColors } from '~/utils/setHtmlColors';
 
 export function setColorsByTheme(): void {
   const colors = '🌈';
 
-  setHTMLColors(colors as any, {
-    localStorageKey: true,
+  let colorMode: 'light' | 'dark' = 'light';
+  const hasUsedToggle = window.localStorage.getItem('dark');
+
+  if (hasUsedToggle) {
+    colorMode = hasUsedToggle === 'true' ? 'dark' : 'light';
+  }
+
+  const meta = document.querySelector('meta[name=theme-color]');
+  meta && meta.setAttribute('content', (colors as any)['bg-primary'][colorMode]);
+
+  const root = document.documentElement;
+  Object.entries(colors).forEach(([name, colorByTheme]) => {
+    const cssVarName = `--${name}`;
+
+    root.style.setProperty(cssVarName, (colorByTheme as any)[colorMode]);
   });
 }
 
