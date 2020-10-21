@@ -1,7 +1,7 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import { FallbackStyles, MagicScriptTag } from '~/theme/InlineCssVariables';
+import { MagicScriptTag } from '~/theme/InlineCssVariables';
 import { Gtag, PageView } from '~/utils/gtag';
 import COLORS from 'content/colors.json';
 
@@ -49,7 +49,6 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <FallbackStyles colors={COLORS} />
           <Gtag />
           <PageView />
           <link rel="preconnect" href="https://www.google-analytics.com" />
