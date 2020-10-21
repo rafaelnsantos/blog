@@ -3,7 +3,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { CmsConfig } from 'netlify-cms-core';
 import { collections } from '~/config/admin';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface ConfigFixed extends CmsConfig {
   local_backend?: boolean;
@@ -22,6 +22,10 @@ const cmsConfig: ConfigFixed = {
   load_config_file: false,
 };
 
+interface CMSProps {
+  onLoaded: () => void;
+}
+
 const CMS = dynamic(
   async () => {
     const cms = (await import('netlify-cms-app')).default;
@@ -34,7 +38,7 @@ const CMS = dynamic(
     const { ColorPreview } = await import('~/components/admin/previews/ColorPreview');
     const { ColorWidget } = await import('~/components/admin/widgets/ColorWidget');
 
-    const CMS = () => {
+    const CMS = ({ onLoaded }: CMSProps) => {
       useEffect(() => {
         cms.registerPreviewStyle('/style/preview/preview.css');
         cms.registerPreviewStyle('/style/preview/global.css');
@@ -42,6 +46,7 @@ const CMS = dynamic(
         cms.registerWidget('color', ColorWidget);
         cms.registerPreviewTemplate('blog', PostPreview);
         cms.registerPreviewTemplate('colors', ColorPreview);
+        onLoaded();
       }, []);
       return <div />;
     };
@@ -52,16 +57,19 @@ const CMS = dynamic(
 );
 
 export default function AdminPage() {
+  const [loaded, setLoaded] = useState(false);
   return (
     <>
       <Head>
-        <script
-          type="text/javascript"
-          src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-        />
+        {loaded && (
+          <script
+            type="text/javascript"
+            src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+          />
+        )}
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <CMS />
+      <CMS onLoaded={() => setLoaded(true)} />
     </>
   );
 }
