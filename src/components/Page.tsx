@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 interface PageProps {
   children: React.ReactNode;
-  url: string;
   title: string;
   description: string;
   image?: string;
@@ -39,7 +38,7 @@ export function Page({ children, ...seo }: PageProps) {
         description={seo.description}
         openGraph={{
           type: 'website',
-          url: `${process.env.NEXT_PUBLIC_URL}${seo.url}`,
+          url: `${process.env.NEXT_PUBLIC_URL}${router.asPath}`,
           images: [
             {
               url: imgUrl,

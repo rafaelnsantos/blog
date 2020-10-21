@@ -3,7 +3,7 @@ import { AboutPageTemplate } from '~/components/templates/AboutPage';
 
 export default function About() {
   return (
-    <Page title="About" description="about page" url="/about">
+    <Page title="About" description="about page">
       <AboutPageTemplate />
     </Page>
   );

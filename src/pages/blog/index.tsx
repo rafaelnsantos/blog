@@ -12,7 +12,7 @@ export interface BlogProps {
 
 export default function BlogPage({ posts, tags }: BlogProps) {
   return (
-    <Page title="Blog" description="Blog" url="/blog">
+    <Page title="Blog" description="Blog">
       <BlogTemplate posts={posts} tags={tags} />
     </Page>
   );

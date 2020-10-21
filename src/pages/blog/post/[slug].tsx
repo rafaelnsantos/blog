@@ -15,12 +15,7 @@ export interface BlogPostProps {
 
 export default function BlogPost({ post, anchors }: BlogPostProps) {
   return (
-    <Page
-      title={post.meta.title}
-      description={post.meta.description}
-      url={`/blog/post/${post.slug}`}
-      image={post.meta.image}
-    >
+    <Page title={post.meta.title} description={post.meta.description} image={post.meta.image}>
       <PostTemplate post={post} anchors={anchors} />
     </Page>
   );
