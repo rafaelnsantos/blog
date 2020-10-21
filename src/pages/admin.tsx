@@ -49,7 +49,6 @@ const CMS = dynamic(
       const [user, setUser] = useState(identity.currentUser());
 
       useEffect(() => {
-        console.log(user);
         if (!user) {
           identity.open('login');
         } else {
@@ -78,7 +77,7 @@ const CMS = dynamic(
           identity.off('error');
         };
       }, []);
-      return <></>;
+      return <div />;
     };
 
     return CMS;
@@ -92,8 +91,8 @@ export default function AdminPage() {
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <div id="netlify-identity" />
       <CMS />
+      <div id="netlify-identity" />
     </>
   );
 }
