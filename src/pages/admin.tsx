@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { CmsConfig } from 'netlify-cms-core';
 import { collections } from '~/config/admin';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 interface ConfigFixed extends CmsConfig {
   local_backend?: boolean;
@@ -33,12 +34,15 @@ const Identity = dynamic(
 
     const Identity = () => {
       const [user, setUser] = useState(identity.currentUser());
+      const router = useRouter();
 
       useEffect(() => {
         if (!user) {
           identity.open('login');
+          router.push('/admin');
         } else {
           identity.close();
+          router.push('/admin/');
         }
       }, [user]);
 
