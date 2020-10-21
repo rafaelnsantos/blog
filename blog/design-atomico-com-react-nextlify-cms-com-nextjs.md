@@ -1,5 +1,5 @@
 ---
-title: Design Atomico com React, Nextlify cms com NextJS
+title: Design Atomico com React
 date: 2020-10-21T18:02:08.275Z
 metaTitle: Design Atomico com React
 metaDescription: Design Atomico com React
