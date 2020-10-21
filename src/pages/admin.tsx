@@ -46,9 +46,10 @@ const CMS = dynamic(
     const { ColorWidget } = await import('~/components/admin/widgets/ColorWidget');
 
     const CMS = () => {
-      const [user, setUser] = useState<User>();
+      const [user, setUser] = useState(identity.currentUser());
 
       useEffect(() => {
+        console.log(user);
         if (!user) {
           identity.open('login');
         } else {
@@ -64,8 +65,18 @@ const CMS = dynamic(
         cms.registerPreviewTemplate('blog', PostPreview);
         cms.registerPreviewTemplate('colors', ColorPreview);
         identity.on('login', setUser);
-        identity.on('logout', () => setUser(undefined));
-        identity.on('init', (user) => setUser(user || undefined));
+        identity.on('logout', () => setUser(null));
+        identity.on('init', setUser);
+        identity.on('error', (err) => {
+          console.log(err);
+        });
+
+        return () => {
+          identity.off('login');
+          identity.off('logout');
+          identity.off('init');
+          identity.off('error');
+        };
       }, []);
       return <></>;
     };
@@ -81,7 +92,7 @@ export default function AdminPage() {
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-
+      <div id="netlify-identity" />
       <CMS />
     </>
   );
