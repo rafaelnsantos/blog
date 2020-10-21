@@ -27,7 +27,7 @@ export function CloudTags(props: CloudTagsProps) {
   }, [selectedTag]);
 
   return (
-    <div className="flex justify-center md:max-w-screen-md m-auto px-10">
+    <div className="flex justify-center md:max-w-screen-md m-auto px-10 h-40">
       {selectedTag ? (
         <>
           <div>{selectedTag}</div>
