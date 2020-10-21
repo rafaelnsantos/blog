@@ -37,14 +37,12 @@ const Identity = dynamic(
 
     const Identity = () => {
       const [user, setUser] = useState(identity.currentUser());
-      const router = useRouter();
 
       useEffect(() => {
         if (!user) {
           identity.open('login');
         } else {
           identity.close();
-          router.push('/admin/');
         }
       }, [user]);
 
@@ -94,7 +92,11 @@ const CMS = dynamic(
         cms.registerPreviewTemplate('blog', PostPreview);
         cms.registerPreviewTemplate('colors', ColorPreview);
       }, []);
-      return <div />;
+      return (
+        <div>
+          <Identity />
+        </div>
+      );
     };
 
     return CMS;
@@ -109,7 +111,6 @@ export default function AdminPage() {
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       <CMS />
-      <Identity />
     </>
   );
 }
