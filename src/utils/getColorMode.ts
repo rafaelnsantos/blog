@@ -1,4 +1,4 @@
-interface GetColorModeOptions {
+export interface GetColorModeOptions {
   darkMode?: boolean;
   localStorageKey?: boolean;
 }

@@ -1,6 +1,8 @@
 import COLORS from 'content/colors.json';
+import { getColorMode, GetColorModeOptions } from './getColorMode';
+import { setThemeColor } from './setThemeColor';
 
-export function setHtmlColors(colors = COLORS, theme: 'light' | 'dark') {
+function setHtmlColors(theme: 'light' | 'dark', colors = COLORS): void {
   const root = document.documentElement;
 
   Object.entries(colors).forEach(([name, colorByTheme]) => {
@@ -8,4 +10,12 @@ export function setHtmlColors(colors = COLORS, theme: 'light' | 'dark') {
 
     root.style.setProperty(cssVarName, colorByTheme[theme]);
   });
+}
+
+export function setHTMLColors(colors: typeof COLORS, options?: GetColorModeOptions) {
+  const colorMode = getColorMode(options);
+
+  setThemeColor(colors['bg-primary'][colorMode]);
+
+  setHtmlColors(colorMode, colors);
 }

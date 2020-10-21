@@ -2,20 +2,14 @@ import { useEffect, useState } from 'react';
 import useDarkMode from 'use-dark-mode';
 import COLORS from 'content/colors.json';
 import { FaSun, FaMoon } from 'react-icons/fa';
-import { setThemeColor } from '~/utils/setThemeColor';
-import { setHtmlColors } from '~/utils/setHtmlColors';
-import { getColorMode } from '~/utils/getColorMode';
+import { setHTMLColors } from '~/utils/setHtmlColors';
 
 export function ToggleThemeButton() {
   const darkMode = useDarkMode(undefined, { storageKey: 'dark' });
   const [icon, setIcon] = useState<JSX.Element | null>(null);
 
   useEffect(() => {
-    const colorMode = getColorMode({ darkMode: darkMode.value });
-
-    setThemeColor(COLORS['bg-primary'][colorMode]);
-
-    setHtmlColors(COLORS, colorMode);
+    setHTMLColors(COLORS, { darkMode: darkMode.value });
 
     setIcon(
       darkMode.value ? (

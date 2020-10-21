@@ -7,20 +7,14 @@ rendered.
 
 import Terser from 'terser';
 import COLORS from 'content/colors.json';
-import { setThemeColor } from '~/utils/setThemeColor';
-import { setHtmlColors } from '~/utils/setHtmlColors';
-import { getColorMode } from '~/utils/getColorMode';
+import { setHTMLColors } from '~/utils/setHtmlColors';
 
 export function setColorsByTheme(): void {
   const colors = '🌈';
 
-  const colorMode = getColorMode({
+  setHTMLColors(colors as any, {
     localStorageKey: true,
   });
-
-  setThemeColor((colors as any)['bg-primary'][colorMode]);
-
-  setHtmlColors(colors as any, colorMode);
 }
 
 export function MagicScriptTag({ colors }: FallbackStyles) {
