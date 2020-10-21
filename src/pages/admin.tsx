@@ -2,10 +2,9 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { CmsConfig } from 'netlify-cms-core';
-import { PostPreview } from '~/components/admin/previews/PostPreview';
-import { ColorPreview } from '~/components/admin/previews/ColorPreview';
-import { ColorWidget } from '~/components/admin/widgets/ColorWidget';
 import { collections } from '~/config/admin';
+import { useEffect } from 'react';
+
 interface ConfigFixed extends CmsConfig {
   local_backend?: boolean;
   load_config_file?: boolean;
@@ -26,16 +25,27 @@ const cmsConfig: ConfigFixed = {
 const CMS = dynamic(
   async () => {
     const cms = (await import('netlify-cms-app')).default;
-    const CMS = () => <div />;
+
     cms.init({
       config: cmsConfig,
     });
-    cms.registerPreviewStyle('/style/preview/preview.css');
-    cms.registerPreviewStyle('/style/preview/global.css');
-    cms.registerPreviewStyle('/style/preview/markdown.css');
-    cms.registerWidget('color', ColorWidget);
-    cms.registerPreviewTemplate('blog', PostPreview);
-    cms.registerPreviewTemplate('colors', ColorPreview);
+
+    const { PostPreview } = await import('~/components/admin/previews/PostPreview');
+    const { ColorPreview } = await import('~/components/admin/previews/ColorPreview');
+    const { ColorWidget } = await import('~/components/admin/widgets/ColorWidget');
+
+    const CMS = () => {
+      useEffect(() => {
+        cms.registerPreviewStyle('/style/preview/preview.css');
+        cms.registerPreviewStyle('/style/preview/global.css');
+        cms.registerPreviewStyle('/style/preview/markdown.css');
+        cms.registerWidget('color', ColorWidget);
+        cms.registerPreviewTemplate('blog', PostPreview);
+        cms.registerPreviewTemplate('colors', ColorPreview);
+      }, []);
+      return <div />;
+    };
+
     return CMS;
   },
   { ssr: false }
