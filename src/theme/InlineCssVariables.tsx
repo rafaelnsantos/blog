@@ -28,6 +28,11 @@ export function setColorsByTheme(): void {
     const cssVarName = `--${name}`;
 
     root.style.setProperty(cssVarName, (colorByTheme as any)[colorMode]);
+    if (name !== 'bg-primary') return;
+
+    const meta = document.querySelector('meta[name=theme-color]');
+
+    meta && meta.setAttribute('content', (colorByTheme as any)[colorMode]);
   });
 }
 
