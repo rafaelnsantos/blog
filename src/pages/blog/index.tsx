@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps<BlogProps> = async () => {
       posts,
       tags: data.rows
         ? data.rows.reduce((prev, row) => {
-            const tag = prev.find((t) => t.value === row[0]);
+            const tag = prev.find((t) => t.value === row[0].toLowerCase());
             if (tag) tag.count += parseInt(row[1]);
 
             return prev;

@@ -40,7 +40,7 @@ export const getPostBySlug = async (slug: string): Promise<Post> => {
     slug: slug,
     title: post.data.title,
     timestamp: new Date(post.data.date).getTime(),
-    tags: post.data.tags,
+    tags: post.data.tags.map((tag: string) => tag.toLowerCase()),
     meta: {
       title: post.data.metaTitle,
       description: post.data.metaDescription,
@@ -128,7 +128,7 @@ export const getTags = (posts: PostPreview[]): CloudTag[] => {
       if (found !== -1) {
         tags[found].count += 1;
       } else {
-        tags.push({ value: tag, count: 1 });
+        tags.push({ value: tag.toLocaleLowerCase(), count: 1 });
       }
     });
   });
