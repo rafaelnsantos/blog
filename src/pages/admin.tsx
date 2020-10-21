@@ -61,6 +61,8 @@ export default function AdminPage() {
   return (
     <>
       <Head>
+        <link rel="preconnect" href="https://identity.netlify.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://identity.netlify.com" crossOrigin="anonymous" />
         {loaded && (
           <script
             type="text/javascript"
