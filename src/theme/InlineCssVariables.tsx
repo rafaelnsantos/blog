@@ -7,33 +7,20 @@ rendered.
 
 import Terser from 'terser';
 import COLORS from 'content/colors.json';
+import { setThemeColor } from '~/utils/setThemeColor';
+import { setHtmlColors } from '~/utils/setHtmlColors';
+import { getColorMode } from '~/utils/getColorMode';
 
 export function setColorsByTheme(): void {
   const colors = '🌈';
 
-  const mql = window.matchMedia('(prefers-color-scheme: dark)');
-  const prefersDarkFromMQ = mql.matches;
-
-  let colorMode = prefersDarkFromMQ ? 'dark' : 'light';
-
-  const hasUsedToggle = window.localStorage.getItem('dark');
-
-  if (hasUsedToggle) {
-    colorMode = hasUsedToggle === 'true' ? 'dark' : 'light';
-  }
-
-  const root = document.documentElement;
-
-  Object.entries(colors).forEach(([name, colorByTheme]) => {
-    const cssVarName = `--${name}`;
-
-    root.style.setProperty(cssVarName, (colorByTheme as any)[colorMode]);
-    if (name !== 'bg-primary') return;
-
-    const meta = document.querySelector('meta[name=theme-color]');
-
-    meta && meta.setAttribute('content', (colorByTheme as any)[colorMode]);
+  const colorMode = getColorMode({
+    localStorageKey: true,
   });
+
+  setThemeColor((colors as any)['bg-primary'][colorMode]);
+
+  setHtmlColors(colors as any, colorMode);
 }
 
 export function MagicScriptTag({ colors }: FallbackStyles) {
