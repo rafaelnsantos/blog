@@ -3,7 +3,7 @@ title: NextJS with NetlifyCMS
 date: 2020-10-21T18:16:16.239Z
 metaTitle: NextJS with NetlifyCMS
 metaDescription: NextJS with NetlifyCMS
-metaImage: uploads/monxopen.png
+metaImage: uploads/meta.jpg
 tags:
   - react
   - nextjs
@@ -19,3 +19,5 @@ published: true
 ## config netlify-cms with .ts file
 
 ## import with next/dynamic
+
+## export styled-components to css file for Previews
