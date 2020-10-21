@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next';
 import { getTags, CloudTag, PostPreview, getPostsPreview } from '~/utils/blogUtils';
 import { Page } from '~/components/Page';
 import { BlogTemplate } from '~/components/templates/Blog';
-
+import { analytics } from '~/services/analytics';
 export interface BlogProps {
   posts: PostPreview[];
   tags: CloudTag[];
@@ -22,10 +22,24 @@ export const getStaticProps: GetStaticProps<BlogProps> = async () => {
   const posts = await getPostsPreview();
   const tags = getTags(posts);
 
+  const { data } = await analytics({
+    'start-date': '7daysAgo',
+    'end-date': 'today',
+    metrics: 'ga:uniqueEvents',
+    dimensions: 'ga:eventAction',
+  });
+
   return {
     props: {
       posts,
-      tags,
+      tags: data.rows
+        ? data.rows.reduce((prev, row) => {
+            const tag = prev.find((t) => t.value === row[0]);
+            if (tag) tag.count += parseInt(row[1]);
+
+            return prev;
+          }, tags)
+        : tags,
     },
   };
 };

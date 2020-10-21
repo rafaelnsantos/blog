@@ -40,7 +40,11 @@ export const collections: CmsCollection[] = [
         label: 'Analytics',
         name: 'analytics',
 
-        fields: [{ name: 'gaTrackingID', label: 'Google Analytics Tracking ID', widget: 'string' }],
+        fields: [
+          { name: 'gaTrackingID', label: 'Google Analytics Tracking ID', widget: 'string' },
+          { name: 'clientEmail', label: 'Analytics Client Email', widget: 'string' },
+          { name: 'viewID', label: 'Analytics View ID', widget: 'string' },
+        ],
       },
       {
         file: 'content/pagination.json',

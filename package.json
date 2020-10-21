@@ -13,6 +13,7 @@
   "dependencies": {
     "autoprefixer": "^9.8.0",
     "date-fns": "^2.13.0",
+    "googleapis": "^61.0.0",
     "gray-matter": "^4.0.2",
     "netlify-cms-app": "^2.12.27",
     "next": "^9.5.5",
