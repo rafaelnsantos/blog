@@ -14,6 +14,10 @@ export function ToggleThemeButton() {
 
     const root = document.documentElement;
 
+    const meta = document.querySelector('meta[name=theme-color]');
+
+    meta && meta.setAttribute('content', COLORS['bg-primary'][darkMode.value ? 'dark' : 'light']);
+
     Object.entries(COLORS).forEach(([name, colorByTheme]) => {
       const cssVarName = `--${name}`;
 
