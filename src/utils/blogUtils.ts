@@ -77,7 +77,7 @@ const getAllPosts = async (): Promise<Post[]> => {
     })
   );
 
-  return posts.sort((a, b) => b.timestamp - a.timestamp).filter((post) => !post.published);
+  return posts.sort((a, b) => b.timestamp - a.timestamp).filter((post) => post.published);
 };
 
 export const getPosts = async (options?: GetPostsConfig): Promise<Post[]> => {
