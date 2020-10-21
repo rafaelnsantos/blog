@@ -6,7 +6,7 @@ metaDescription: Atomic Design with React and NextJS
 metaImage: uploads/meta.jpg
 tags:
   - atomic design
-  - reactjs
+  - react
   - nextjs
   - typescript
 star: true
