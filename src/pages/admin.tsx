@@ -27,10 +27,7 @@ const Identity = dynamic(
   async () => {
     const identity = await import('netlify-identity-widget');
 
-    identity.init({
-      container: '#netlify-identity',
-      logo: false,
-    });
+    identity.init();
 
     const Identity = () => {
       const [user, setUser] = useState(identity.currentUser());
