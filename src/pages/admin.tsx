@@ -3,7 +3,8 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { CmsConfig } from 'netlify-cms-core';
 import { collections } from '~/config/admin';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { User } from 'netlify-identity-widget';
 
 interface ConfigFixed extends CmsConfig {
   local_backend?: boolean;
@@ -30,6 +31,10 @@ const CMS = dynamic(
     identity.init({
       container: '#netlify-identity',
       logo: false,
+      APIUrl:
+        process.env.NODE_ENV === 'development'
+          ? undefined
+          : `${process.env.NEXT_PUBLIC_URL}/.netlify/functions/identity`,
     });
 
     cms.init({
@@ -48,11 +53,17 @@ const CMS = dynamic(
         cms.registerWidget('color', ColorWidget);
         cms.registerPreviewTemplate('blog', PostPreview);
         cms.registerPreviewTemplate('colors', ColorPreview);
-        identity.open('login');
-        identity.on('login', () => identity.close());
-        identity.on('logout', () => identity.open('login'));
+        identity.on('login', () => {
+          identity.close();
+        });
+        identity.on('logout', () => {
+          identity.open('login');
+        });
+        identity.on('init', (user) => {
+          if (!user) identity.open('login');
+        });
       }, []);
-      return <div />;
+      return <></>;
     };
 
     return CMS;
@@ -66,7 +77,7 @@ export default function AdminPage() {
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <div id="netlify-identity" />
+
       <CMS />
     </>
   );

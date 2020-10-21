@@ -68,6 +68,7 @@ export default class MyDocument extends Document {
           <MagicScriptTag colors={COLORS} />
           <Main />
           <NextScript />
+          <div id="netlify-identity" />
         </body>
       </Html>
     );
