@@ -27,7 +27,12 @@ const Identity = dynamic(
   async () => {
     const identity = await import('netlify-identity-widget');
 
-    identity.init();
+    identity.init({
+      APIUrl:
+        process.env.NODE_ENV === 'production'
+          ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
+          : undefined,
+    });
 
     const Identity = () => {
       const [user, setUser] = useState(identity.currentUser());
