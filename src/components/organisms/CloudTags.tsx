@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { TagCloud } from 'react-tagcloud';
 import styled from 'styled-components';
+import { useLocalStorage } from '~/hooks/useLocalStorage';
 import { useThemeMode } from '~/hooks/useThemeMode';
 import { CloudTag } from '~/utils/blogUtils';
 
@@ -19,7 +20,7 @@ interface CloudTagsProps {
 }
 
 export function CloudTags(props: CloudTagsProps) {
-  const [selectedTag, setSelectedTag] = useState<string | null>(null);
+  const [selectedTag, setSelectedTag] = useLocalStorage<string | null>('selectedTag', null);
   const [luminosity, setLuminosity] = useState('');
 
   useThemeMode((darkMode) => setLuminosity(darkMode.value ? 'light' : 'dark'));
