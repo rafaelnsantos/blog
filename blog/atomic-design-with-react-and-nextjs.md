@@ -12,6 +12,7 @@ tags:
 authors:
   - rafaelnsantos
   - andrebonizi
+published: true
 star: true
 ---
 ## Atoms
