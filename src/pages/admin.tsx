@@ -39,7 +39,6 @@ const Identity = dynamic(
       useEffect(() => {
         if (!user) {
           identity.open('login');
-          router.push('/admin');
         } else {
           identity.close();
           router.push('/admin/');
@@ -53,12 +52,14 @@ const Identity = dynamic(
         identity.on('error', (err) => {
           console.log(err);
         });
+        identity.on('close', () => setUser(user));
 
         return () => {
           identity.off('login');
           identity.off('logout');
           identity.off('init');
           identity.off('error');
+          identity.off('close');
         };
       }, []);
       return <div />;
