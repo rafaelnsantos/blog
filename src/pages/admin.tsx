@@ -34,7 +34,7 @@ const CMS = dynamic(
       APIUrl:
         process.env.NODE_ENV === 'development'
           ? undefined
-          : `${process.env.NEXT_PUBLIC_URL}/.netlify/functions/identity`,
+          : `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`,
     });
 
     cms.init({
@@ -46,6 +46,16 @@ const CMS = dynamic(
     const { ColorWidget } = await import('~/components/admin/widgets/ColorWidget');
 
     const CMS = () => {
+      const [user, setUser] = useState<User>();
+
+      useEffect(() => {
+        if (!user) {
+          identity.open('login');
+        } else {
+          identity.close();
+        }
+      }, [user]);
+
       useEffect(() => {
         cms.registerPreviewStyle('/style/preview/preview.css');
         cms.registerPreviewStyle('/style/preview/global.css');
@@ -53,15 +63,9 @@ const CMS = dynamic(
         cms.registerWidget('color', ColorWidget);
         cms.registerPreviewTemplate('blog', PostPreview);
         cms.registerPreviewTemplate('colors', ColorPreview);
-        identity.on('login', () => {
-          identity.close();
-        });
-        identity.on('logout', () => {
-          identity.open('login');
-        });
-        identity.on('init', (user) => {
-          if (!user) identity.open('login');
-        });
+        identity.on('login', setUser);
+        identity.on('logout', () => setUser(undefined));
+        identity.on('init', (user) => setUser(user || undefined));
       }, []);
       return <></>;
     };
