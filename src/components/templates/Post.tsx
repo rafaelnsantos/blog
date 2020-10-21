@@ -27,7 +27,12 @@ export function PostTemplate({ post, anchors }: BlogPostProps) {
             </Text>
             <div className="flex flex-row justify-center">
               {post.authors.map((author) => (
-                <a key={author} href={`https://github.com/${author}`}>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  key={author}
+                  href={`https://github.com/${author}`}
+                >
                   <img
                     alt={`${author}'s github`}
                     style={{ borderRadius: 20, margin: 10 }}
