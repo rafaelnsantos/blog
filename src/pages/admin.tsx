@@ -44,6 +44,8 @@ const Identity = dynamic(
         }
       }, [user]);
 
+      const element = document.getElementsByClassName('providersGroup')[0];
+
       useEffect(() => {
         identity.on('login', setUser);
         identity.on('logout', () => setUser(null));
@@ -64,6 +66,9 @@ const Identity = dynamic(
       return (
         <div>
           <CMS />
+          {!user && element && (
+            <div className="absolute top-0 bottom-0 left-0 right-0">{element}</div>
+          )}
         </div>
       );
     };
