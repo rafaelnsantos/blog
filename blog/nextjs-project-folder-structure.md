@@ -8,40 +8,84 @@ tags:
   - nextjs
   - react
   - atomic design
+  - netlify cms
 authors:
   - rafaelnsantos
   - andrebonizi
-published: false
+published: true
 ---
 ```
 ├── blog
 ├── content
 ├── public
-|  ├── style
-|  |  └── preview
 |  └── uploads
 └── src
    ├── components
-   |  ├── admin
-   |  |  ├── previews
-   |  |  └── widgets
-   |  ├── atoms
-   |  ├── blog
-   |  ├── header
-   |  ├── markdown
-   |  ├── molecules
-   |  ├── organisms
-   |  └── templates
    ├── config
    ├── hooks
    ├── pages
-   |  └── blog
-   |     ├── page
-   |     └── post
    ├── providers
    ├── services
    ├── theme
    └── utils
 ```
 
-## Finish components refactor
+## **blog** 
+
+posts created with netlify cms
+
+## **content**
+
+configuration files managed with netlify cms
+
+```
+├── analytics.json
+├── colors.json
+├── pagination.json
+└── seo.json
+```
+
+## **public** 
+
+static files
+
+```
+├── favicon.ico
+├── MonxClosed.png
+└── MonxOpen.png
+```
+
+### ***uploads*** 
+
+images uploaded within netlify cms
+
+## **src**
+
+### components
+
+```
+├── admin
+├── atoms
+├── molecules
+├── organisms
+└── templates
+```
+
+#### admin
+
+```
+├── previews
+└── widgets
+```
+
+##### previews
+
+##### widgets
+
+#### atoms
+
+#### molecules
+
+#### organisms
+
+#### templates
