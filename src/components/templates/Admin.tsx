@@ -2,15 +2,24 @@ import { InitOptions } from 'netlify-identity-widget';
 import { CmsConfigFixed } from '~/config/admin';
 import { CMS } from '../organisms/NetlifyCMS';
 import { IdentityWidget } from '../organisms/IdentityWidget';
-
-import { PostPreview } from '~/components/admin/previews/PostPreview';
-import { ColorPreview } from '~/components/admin/previews/ColorPreview';
-import { ColorWidget } from '~/components/admin/widgets/ColorWidget';
+import dynamic from 'next/dynamic';
 
 interface AdminTemplateProps {
   cmsConfig: CmsConfigFixed;
   identityConfig?: InitOptions;
 }
+
+const PostPreview = dynamic(
+  async () => (await import('~/components/admin/previews/PostPreview')).PostPreview
+);
+
+const ColorPreview = dynamic(
+  async () => (await import('~/components/admin/previews/ColorPreview')).ColorPreview
+);
+
+const ColorWidget = dynamic(
+  async () => (await import('~/components/admin/widgets/ColorWidget')).ColorWidget
+);
 
 export function AdminTemplate(props: AdminTemplateProps) {
   return (
