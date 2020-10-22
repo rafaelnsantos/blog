@@ -1,6 +1,6 @@
 import dynamic from 'next/dynamic';
 import { InitOptions } from 'netlify-identity-widget';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const IdentityWidget = dynamic(
   async () => {
@@ -13,13 +13,30 @@ export const IdentityWidget = dynamic(
     }
 
     const Identity = (props: IdentityProps) => {
+      const [loaded, setLoaded] = useState(process.env.NODE_ENV !== 'production');
       useEffect(() => {
         identity.init(props.config);
         identity.on('init', () => {
-          identity.close();
+          setLoaded(true);
         });
       }, []);
 
+      if (!loaded) {
+        return (
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 999,
+            }}
+          >
+            loading
+          </div>
+        );
+      }
       return <div></div>;
     };
 
