@@ -27,7 +27,7 @@ const Identity = dynamic(
   async () => {
     const identity = await import('netlify-identity-widget');
 
-    (window as any).netlifyIdentity = identity;
+    // (window as any).netlifyIdentity = identity;
 
     identity.init({
       APIUrl:
@@ -110,10 +110,6 @@ export default function AdminPage() {
   return (
     <>
       <Head>
-        {/* <script
-          type="text/javascript"
-          src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-        /> */}
         <meta name="robots" content="noindex, nofollow" />
       </Head>
       <Identity />
