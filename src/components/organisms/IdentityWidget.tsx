@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { RingLoader } from 'react-spinners';
 
-const Loading = styled.div`
+const Loading = styled.div<{ index: number }>`
   display: grid;
   place-items: center;
   position: absolute;
@@ -13,7 +13,7 @@ const Loading = styled.div`
   bottom: 0;
   left: 0;
   background: var(--bg-primary);
-  z-index: 9999;
+  z-index: ${(props) => props.index};
 `;
 
 export const IdentityWidget = dynamic(
@@ -28,20 +28,41 @@ export const IdentityWidget = dynamic(
 
     const Identity = (props: IdentityProps) => {
       const [loading, setLoading] = useState(process.env.NODE_ENV === 'production');
+      const [logged, setLogged] = useState(process.env.NODE_ENV !== 'production');
+
       useEffect(() => {
         identity.init(props.config);
-        identity.on('init', () => {
+
+        identity.on('init', (user) => {
           setLoading(false);
+          setLogged(!!user);
+        });
+
+        identity.on('login', (user) => {
+          setLogged(!!user);
+        });
+
+        identity.on('logout', () => {
+          setLogged(false);
         });
       }, []);
 
       if (loading) {
         return (
-          <Loading>
+          <Loading index={9999}>
             <RingLoader size="35vh" color="var(--text-primary)" />
           </Loading>
         );
       }
+
+      if (!logged) {
+        return (
+          <Loading index={95}>
+            <button onClick={() => identity.open('login')}>login</button>
+          </Loading>
+        );
+      }
+
       return <div></div>;
     };
 
