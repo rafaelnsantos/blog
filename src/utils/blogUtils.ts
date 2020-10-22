@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { getReadingTime } from './getReadingTime';
+import { analytics } from '~/services/analytics';
 
 export interface Post {
   title: string;
@@ -116,7 +117,26 @@ export interface CloudTag {
   count: number;
 }
 
-export const getTags = (posts: PostPreview[]): CloudTag[] => {
+async function withAnalytics(tags: CloudTag[]) {
+  const { data } = await analytics({
+    'start-date': '7daysAgo',
+    'end-date': 'today',
+    metrics: 'ga:uniqueEvents',
+    dimensions: 'ga:eventAction',
+  });
+
+  return data.rows
+    ? data.rows.reduce((prev, row) => {
+        const tag = prev.find((t) => t.value === row[0].toLowerCase());
+
+        if (tag) tag.count += parseInt(row[1]);
+
+        return prev;
+      }, tags)
+    : tags;
+}
+
+export const getTags = async (posts: PostPreview[], analytics = false): Promise<CloudTag[]> => {
   const tags: CloudTag[] = [];
 
   posts.map((post) => {
@@ -129,6 +149,10 @@ export const getTags = (posts: PostPreview[]): CloudTag[] => {
       }
     });
   });
+
+  if (analytics) {
+    return withAnalytics(tags);
+  }
 
   return tags;
 };
