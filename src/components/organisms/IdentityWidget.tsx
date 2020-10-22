@@ -1,6 +1,17 @@
 import dynamic from 'next/dynamic';
 import { InitOptions } from 'netlify-identity-widget';
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+
+const Loading = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--bg-primary);
+  z-index: 9999;
+`;
 
 export const IdentityWidget = dynamic(
   async () => {
@@ -22,20 +33,7 @@ export const IdentityWidget = dynamic(
       }, []);
 
       if (!loaded) {
-        return (
-          <div
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              zIndex: 999,
-            }}
-          >
-            loading
-          </div>
-        );
+        return <Loading>loading</Loading>;
       }
       return <div></div>;
     };
