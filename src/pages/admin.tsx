@@ -54,6 +54,7 @@ const CMS = dynamic(
         cms.registerWidget('color', ColorWidget);
         cms.registerPreviewTemplate('blog', PostPreview);
         cms.registerPreviewTemplate('colors', ColorPreview);
+        identity.open('login');
       }, []);
       return <div></div>;
     };
