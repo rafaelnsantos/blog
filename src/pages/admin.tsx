@@ -22,6 +22,8 @@ const cmsConfig: ConfigFixed = {
   load_config_file: false,
 };
 
+const Loading = () => <div>loading</div>;
+
 const CMS = dynamic(
   async () => {
     const identity = await import('netlify-identity-widget');
@@ -61,7 +63,7 @@ const CMS = dynamic(
 
     return CMS;
   },
-  { ssr: false }
+  { ssr: false, loading: Loading }
 );
 
 export default function AdminPage() {
