@@ -66,11 +66,7 @@ const CMS = dynamic(
         cms.registerPreviewTemplate('blog', PostPreview);
         cms.registerPreviewTemplate('colors', ColorPreview);
       }, []);
-      return (
-        <div>
-          <Identity />
-        </div>
-      );
+      return <div></div>;
     };
 
     return CMS;
@@ -84,6 +80,7 @@ export default function AdminPage() {
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
+      <Identity />
       <CMS />
     </>
   );
