@@ -65,7 +65,11 @@ const Identity = dynamic(
           identity.off('close');
         };
       }, []);
-      return <div />;
+      return (
+        <div>
+          <CMS />
+        </div>
+      );
     };
 
     return Identity;
@@ -94,11 +98,7 @@ const CMS = dynamic(
         cms.registerPreviewTemplate('blog', PostPreview);
         cms.registerPreviewTemplate('colors', ColorPreview);
       }, []);
-      return (
-        <div>
-          <Identity />
-        </div>
-      );
+      return <div></div>;
     };
 
     return CMS;
@@ -116,7 +116,7 @@ export default function AdminPage() {
         /> */}
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <CMS />
+      <Identity />
     </>
   );
 }
