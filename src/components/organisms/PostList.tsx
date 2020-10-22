@@ -15,11 +15,13 @@ const StyledPostList = styled.div`
   justify-content: center;
 
   margin: auto;
+
+  padding: 5px;
 `;
 
 export function PostList({ posts, preview }: PostListProps) {
   return (
-    <StyledPostList className="md:max-w-screen-xl">
+    <StyledPostList>
       {posts.map((post, i) => (
         <PostPreview post={post} key={i} preview={preview} />
       ))}

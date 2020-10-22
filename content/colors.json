@@ -6,6 +6,14 @@
   "bg-secondary": {
     "light": "#ffffff",
     "dark": "#151617"
+  },  
+  "bg-inset": {
+    "light": "#a9abb6",
+    "dark": "#2f3037"
+  },
+  "shadow-bg-inset": {
+    "light": "rgba(82,85,96,0.5)",
+    "dark": "#050505"
   },
   "border-primary": {
     "light": "rgba(65,67,78,0.16)",
