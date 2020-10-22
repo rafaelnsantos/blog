@@ -5,7 +5,7 @@ import styles from '~/components/markdown/markdown.module.scss';
 import { Heading } from '~/components/markdown/Heading';
 import { BlogPostProps } from '~/pages/blog/post/[slug]';
 import { useState } from 'react';
-import { Anchors } from '../blog/Anchors';
+import { Anchors } from '../molecules/Anchors';
 import { Text } from '../atoms/Text';
 import { Image } from '../atoms/Image';
 
