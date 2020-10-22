@@ -22,7 +22,7 @@ const cmsConfig: ConfigFixed = {
   load_config_file: false,
 };
 
-const Identity = dynamic(
+const CMS = dynamic(
   async () => {
     const identity = await import('netlify-identity-widget');
 
@@ -36,17 +36,6 @@ const Identity = dynamic(
       logo: false,
     });
 
-    const Identity = () => {
-      return <div></div>;
-    };
-
-    return Identity;
-  },
-  { ssr: false }
-);
-
-const CMS = dynamic(
-  async () => {
     const cms = (await import('netlify-cms-app')).default;
 
     cms.init({
@@ -80,7 +69,6 @@ export default function AdminPage() {
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <Identity />
       <CMS />
     </>
   );
