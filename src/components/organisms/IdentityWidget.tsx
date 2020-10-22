@@ -47,6 +47,12 @@ export const IdentityWidget = dynamic(
         identity.on('logout', () => {
           setLogged(false);
         });
+
+        return () => {
+          identity.off('init');
+          identity.off('login');
+          identity.off('logout');
+        };
       }, []);
 
       if (loading) {
