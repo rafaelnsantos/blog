@@ -105,4 +105,5 @@ export const identityConfig: InitOptions = {
     process.env.NODE_ENV === 'production'
       ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
       : undefined,
+  logo: false,
 };
