@@ -7,7 +7,7 @@ export function BlogTemplate({ posts, tags, preview }: BlogProps) {
   const [postsToShow, setPostsToShow] = useState(posts);
 
   return (
-    <div className="md:max-w-screen-xl m-auto">
+    <div className="m-auto">
       <CloudTags
         onSelectTag={(tag) =>
           setPostsToShow(tag ? posts.filter((post) => post.tags.includes(tag)) : posts)

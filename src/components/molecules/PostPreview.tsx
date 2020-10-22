@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Image } from '../atoms/Image';
 import { TagChip } from '../blog/TagChip';
 import styled from 'styled-components';
+import { Text } from '../atoms/Text';
 
 interface PostPreviewProps {
   post: Post;
@@ -11,22 +12,49 @@ interface PostPreviewProps {
 }
 
 const Container = styled.div`
-  flex: 1 0 300px;
+  background: var(--bg-inset);
+
+  border-radius: 5px;
+
+  box-shadow: 5px 5px 5px var(--shadow-bg-inset);
+`;
+
+const StyledLink = styled.a`
+  color: var(--text-primary);
+
+  cursor: pointer;
+
+  transition: color 300ms;
+
+  :hover {
+    color: var(--text-link);
+  }
 `;
 
 export function PostPreview({ post, preview }: PostPreviewProps) {
   return (
-    <Container className="flex flex-col p-6 h-full ma">
-      <div className="opacity-75 text-sm">{formatTimestamp(post.timestamp)}</div>
+    <Container className="flex flex-col m-3 p-3 h-full min-w-full sm:min-w-0">
       {preview ? (
-        <a className="text-2xl">{post.title}</a>
+        <>
+          <StyledLink className="text-2xl">{post.title}</StyledLink>
+          <Image src={post.meta.image} width="300" className="self-center" />
+        </>
       ) : (
-        <Link href={`/blog/post/${post.slug}`}>
-          <a className="text-2xl">{post.title}</a>
-        </Link>
+        <>
+          <Link href={`/blog/post/${post.slug}`}>
+            <StyledLink className="text-2xl">{post.title}</StyledLink>
+          </Link>
+          <Link href={`/blog/post/${post.slug}`}>
+            <Image src={post.meta.image} width="300" className="self-center" />
+          </Link>
+        </>
       )}
-      <Image src={post.meta.image} width="300" />
-      <div className="flex flex-row flex-wrap">
+      <div className="opacity-75 justify-end">
+        <Text align="right" size={0.7}>
+          {formatTimestamp(post.timestamp)}
+        </Text>
+      </div>
+      <div className="flex flex-row flex-wrap self-center">
         {post.tags.map((tag) => (
           <TagChip tag={tag} key={tag} />
         ))}
