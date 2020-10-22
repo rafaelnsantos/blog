@@ -16,7 +16,7 @@ export const IdentityWidget = dynamic(
       useEffect(() => {
         identity.init(props.config);
         identity.on('init', () => {
-          identity.open('login');
+          identity.close();
         });
       }, []);
 
