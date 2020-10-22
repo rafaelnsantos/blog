@@ -59,7 +59,7 @@ export default class MyDocument extends Document {
 
           <meta name="theme-color" content="" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Merriweather&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Merriweather&family=Handlee&display=swap"
             rel="stylesheet"
           />
         </Head>

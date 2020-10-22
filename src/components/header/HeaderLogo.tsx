@@ -3,5 +3,9 @@ interface HeaderLogoProps {
 }
 
 export function HeaderLogo({ text }: HeaderLogoProps) {
-  return <div>{text}</div>;
+  return (
+    <>
+      <div style={{ fontFamily: 'Handlee', fontSize: '2rem', fontWeight: 800 }}>{text}</div>
+    </>
+  );
 }

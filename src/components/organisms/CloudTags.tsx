@@ -15,6 +15,21 @@ const StyledTagClod = styled(TagCloud)`
   align-self: center;
 `;
 
+const SelectedTagContainer = styled.div`
+  position: relative;
+`;
+
+const CloseTagButton = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  padding: 5px;
+  margin-left: 10px;
+  margin-top: -30px;
+`;
+
 interface CloudTagsProps {
   onSelectTag: (tag: string | null) => void;
   tags: CloudTag[];
@@ -35,10 +50,10 @@ export function CloudTags(props: CloudTagsProps) {
   return (
     <div className="flex justify-center md:max-w-screen-md m-auto px-10 h-40">
       {selectedTag ? (
-        <>
+        <SelectedTagContainer>
           <div>{selectedTag}</div>
-          <button onClick={() => setSelectedTag(null)}>clear tag</button>
-        </>
+          <CloseTagButton onClick={() => setSelectedTag(null)}>X</CloseTagButton>
+        </SelectedTagContainer>
       ) : (
         <StyledTagClod
           colorOptions={{ luminosity }}
