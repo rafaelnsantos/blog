@@ -38,6 +38,10 @@ const Identity = dynamic(
     });
 
     const Identity = () => {
+      useEffect(() => {
+        identity.open('login');
+      }, []);
+
       return (
         <div>
           <CMS />
