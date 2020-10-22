@@ -38,33 +38,6 @@ const Identity = dynamic(
     });
 
     const Identity = () => {
-      const [user, setUser] = useState(identity.currentUser());
-
-      useEffect(() => {
-        if (!user) {
-          identity.open('login');
-        } else {
-          identity.close();
-        }
-      }, [user]);
-
-      useEffect(() => {
-        identity.on('login', setUser);
-        identity.on('logout', () => setUser(null));
-        identity.on('init', setUser);
-        identity.on('error', (err) => {
-          console.log(err);
-        });
-        identity.on('close', () => setUser(user));
-
-        return () => {
-          identity.off('login');
-          identity.off('logout');
-          identity.off('init');
-          identity.off('error');
-          identity.off('close');
-        };
-      }, []);
       return (
         <div>
           <CMS />
