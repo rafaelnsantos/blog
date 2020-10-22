@@ -3,8 +3,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { CmsConfig } from 'netlify-cms-core';
 import { collections } from '~/config/admin';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 interface ConfigFixed extends CmsConfig {
   local_backend?: boolean;
@@ -38,15 +37,7 @@ const Identity = dynamic(
     });
 
     const Identity = () => {
-      useEffect(() => {
-        identity.open('login');
-      }, []);
-
-      return (
-        <div>
-          <CMS />
-        </div>
-      );
+      return <div></div>;
     };
 
     return Identity;
@@ -75,7 +66,11 @@ const CMS = dynamic(
         cms.registerPreviewTemplate('blog', PostPreview);
         cms.registerPreviewTemplate('colors', ColorPreview);
       }, []);
-      return <div></div>;
+      return (
+        <div>
+          <Identity />
+        </div>
+      );
     };
 
     return CMS;
@@ -89,7 +84,7 @@ export default function AdminPage() {
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <Identity />
+      <CMS />
     </>
   );
 }
