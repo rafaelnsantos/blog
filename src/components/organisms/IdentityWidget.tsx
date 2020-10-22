@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import { InitOptions } from 'netlify-identity-widget';
-import { useEffect } from 'react';
+import { ComponentProps, useEffect } from 'react';
+import { CMS } from './NetlifyCMS';
 
 export const IdentityWidget = dynamic(
   async () => {
@@ -10,6 +11,7 @@ export const IdentityWidget = dynamic(
 
     interface IdentityProps {
       config?: InitOptions;
+      cmsConfig: ComponentProps<typeof CMS>;
     }
 
     const Identity = (props: IdentityProps) => {
@@ -17,7 +19,11 @@ export const IdentityWidget = dynamic(
         identity.init(props.config);
       }, []);
 
-      return <div></div>;
+      return (
+        <div>
+          <CMS config={props.cmsConfig.config} onLoad={props.cmsConfig.onLoad} />
+        </div>
+      );
     };
 
     return Identity;
