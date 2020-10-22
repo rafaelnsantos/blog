@@ -43,6 +43,8 @@ const Identity = dynamic(
       useEffect(() => {
         if (!user) {
           identity.open('login');
+        } else {
+          identity.close();
         }
       }, [user]);
 
