@@ -27,13 +27,9 @@ const Identity = dynamic(
   async () => {
     const identity = await import('netlify-identity-widget');
 
-    // (window as any).netlifyIdentity = identity;
+    (window as any).netlifyIdentity = identity;
 
     identity.init({
-      APIUrl:
-        process.env.NODE_ENV === 'production'
-          ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
-          : undefined,
       logo: false,
     });
 
