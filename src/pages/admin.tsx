@@ -30,6 +30,10 @@ const Identity = dynamic(
     (window as any).netlifyIdentity = identity;
 
     identity.init({
+      APIUrl:
+        process.env.NODE_ENV === 'production'
+          ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
+          : undefined,
       logo: false,
     });
 
@@ -51,13 +55,7 @@ const Identity = dynamic(
         identity.on('error', (err) => {
           console.log(err);
         });
-        identity.on('close', () => {
-          if (!user) {
-            identity.open('login');
-          } else {
-            identity.open();
-          }
-        });
+        identity.on('close', () => setUser(user));
 
         return () => {
           identity.off('login');
