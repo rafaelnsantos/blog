@@ -54,13 +54,8 @@ const CMS = dynamic(
 
     const { ColorWidget } = await import('~/components/admin/widgets/ColorWidget');
     cms.registerWidget('color', ColorWidget);
-    
-
 
     const CMS = () => {
-      useEffect(() => {
-        identity.open('login');
-      }, []);
       return <div></div>;
     };
 
