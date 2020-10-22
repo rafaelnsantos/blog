@@ -42,18 +42,23 @@ const CMS = dynamic(
       config: cmsConfig,
     });
 
+    cms.registerPreviewStyle('/style/preview/preview.css');
+    cms.registerPreviewStyle('/style/preview/global.css');
+    cms.registerPreviewStyle('/style/preview/markdown.css');
+
     const { PostPreview } = await import('~/components/admin/previews/PostPreview');
+    cms.registerPreviewTemplate('blog', PostPreview);
+
     const { ColorPreview } = await import('~/components/admin/previews/ColorPreview');
+    cms.registerPreviewTemplate('colors', ColorPreview);
+
     const { ColorWidget } = await import('~/components/admin/widgets/ColorWidget');
+    cms.registerWidget('color', ColorWidget);
+    
+
 
     const CMS = () => {
       useEffect(() => {
-        cms.registerPreviewStyle('/style/preview/preview.css');
-        cms.registerPreviewStyle('/style/preview/global.css');
-        cms.registerPreviewStyle('/style/preview/markdown.css');
-        cms.registerWidget('color', ColorWidget);
-        cms.registerPreviewTemplate('blog', PostPreview);
-        cms.registerPreviewTemplate('colors', ColorPreview);
         identity.open('login');
       }, []);
       return <div></div>;
