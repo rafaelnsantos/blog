@@ -36,6 +36,7 @@ export const IdentityWidget = dynamic(
         identity.on('init', (user) => {
           setLoading(false);
           setLogged(!!user);
+          identity.open('login');
         });
 
         identity.on('login', (user) => {
