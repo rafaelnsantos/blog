@@ -23,7 +23,7 @@ const CloseTagButton = styled.button`
   position: absolute;
   top: 0;
   right: 0;
-  background-color: whitesmoke;
+  background-color: var(--accent-red);
   border-radius: 20px;
   padding: 5px;
   margin-left: 10px;
@@ -50,9 +50,9 @@ export function CloudTags(props: CloudTagsProps) {
   return (
     <div className="flex justify-center md:max-w-screen-md m-auto px-10 h-40">
       {selectedTag ? (
-        <SelectedTagContainer>
+        <SelectedTagContainer onClick={() => setSelectedTag(null)}>
           <div>{selectedTag}</div>
-          <CloseTagButton onClick={() => setSelectedTag(null)}>X</CloseTagButton>
+          <CloseTagButton>X</CloseTagButton>
         </SelectedTagContainer>
       ) : (
         <StyledTagClod
