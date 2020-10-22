@@ -2,8 +2,11 @@ import dynamic from 'next/dynamic';
 import { InitOptions } from 'netlify-identity-widget';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { RingLoader } from 'react-spinners';
 
 const Loading = styled.div`
+  display: grid;
+  place-items: center;
   position: absolute;
   top: 0;
   right: 0;
@@ -24,16 +27,20 @@ export const IdentityWidget = dynamic(
     }
 
     const Identity = (props: IdentityProps) => {
-      const [loaded, setLoaded] = useState(process.env.NODE_ENV !== 'production');
+      const [loading, setLoading] = useState(process.env.NODE_ENV === 'production');
       useEffect(() => {
         identity.init(props.config);
         identity.on('init', () => {
-          setLoaded(true);
+          setLoading(false);
         });
       }, []);
 
-      if (!loaded) {
-        return <Loading>loading</Loading>;
+      if (loading) {
+        return (
+          <Loading>
+            <RingLoader size="35vh" color="var(--text-primary)" />
+          </Loading>
+        );
       }
       return <div></div>;
     };
