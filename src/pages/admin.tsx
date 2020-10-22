@@ -26,18 +26,6 @@ const Loading = () => <div>loading</div>;
 
 const CMS = dynamic(
   async () => {
-    const identity = await import('netlify-identity-widget');
-
-    (window as any).netlifyIdentity = identity;
-
-    identity.init({
-      APIUrl:
-        process.env.NODE_ENV === 'production'
-          ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
-          : undefined,
-      logo: false,
-    });
-
     const cms = (await import('netlify-cms-app')).default;
 
     cms.init({
@@ -56,6 +44,18 @@ const CMS = dynamic(
 
     const { ColorWidget } = await import('~/components/admin/widgets/ColorWidget');
     cms.registerWidget('color', ColorWidget);
+
+    const identity = await import('netlify-identity-widget');
+
+    (window as any).netlifyIdentity = identity;
+
+    identity.init({
+      APIUrl:
+        process.env.NODE_ENV === 'production'
+          ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
+          : undefined,
+      logo: false,
+    });
 
     const CMS = () => {
       return <div></div>;
