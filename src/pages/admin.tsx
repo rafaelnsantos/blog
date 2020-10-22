@@ -3,7 +3,6 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { CmsConfig } from 'netlify-cms-core';
 import { collections } from '~/config/admin';
-import { useEffect } from 'react';
 
 interface ConfigFixed extends CmsConfig {
   local_backend?: boolean;
@@ -35,7 +34,6 @@ const CMS = dynamic(
         process.env.NODE_ENV === 'production'
           ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
           : undefined,
-      logo: false,
     });
 
     const cms = (await import('netlify-cms-app')).default;
