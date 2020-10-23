@@ -39,13 +39,13 @@ An example of an Atom can be a Text or an Image element, they can be used in so 
 
 When there are co-dependent Atoms we can define them as a Molecule. Since each Atom has only one function, usually it won't solve many problems by itself, so we need to combine different Atoms to build functions that work together to result in a combined function, this is what defines a Molecule. A good example of a Molecule can be a Search Bar, it has two important Atoms at least, the InputText and the SubmitButton, each Atom has its own function, but to actually do a search you will need to set these two Atoms for the Molecule function to work, if you click the SubmitButton when there is no InputText nothing will happen, the same thing will happen if you fill the InputText and never click the SubmitButton. The SearchBar needs both of the components set to work, so we define it as a Molecule. 
 
-\n
+
 
 ## Organisms
 
 Organisms are groups of Molecules, build to organize complex functions and complete scopes. An example can be a Form, it needs many kinds of information and it can leads to many different results.  The definition of an Organism depends on the size of the project, in a smaller project a Molecule and an Organism can be the same thing frequently.
 
-\n
+
 
 ## Templates
 
