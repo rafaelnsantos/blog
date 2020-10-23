@@ -28,6 +28,14 @@ jobs:
       with:
         node-version: '12.x'
 
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: node_modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          node_modules-
+
     - name: Cache NextJS
       uses: actions/cache@v2
       with:
