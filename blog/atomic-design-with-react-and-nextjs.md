@@ -59,11 +59,7 @@ Organisms are groups of Molecules, build to organize complex functions and compl
 <NavBar>
   <Logo />
   <Text>Title</Text>
-  <SearchBar>
-    <InputText size={1} color=black>{content}</InputText>
-    <SubmitButton>Search!</SubmitButton>
-  </SearchBar>
-
+  <SearchBar />
   <NavLinks />
 </NavBar>
 ```
