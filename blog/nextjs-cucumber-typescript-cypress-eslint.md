@@ -1,18 +1,15 @@
 ---
-title: Setup NextJS, cucumber, typescript, cypress, eslint
+title: Setup cucumber and cypress on NextJS
 date: 2020-10-23T05:12:55.252Z
-metaTitle: NextJS, cucumber, typescript, cypress, eslint
-metaDescription: NextJS, cucumber, typescript, cypress, eslint
+metaTitle: Setup cucumber and cypress on NextJS
+metaDescription: Setup cucumber and cypress on NextJS
 metaImage: uploads/meta.jpg
 tags:
-  - bdd
+  - setup
   - cucumber
   - typescript
   - nextjs
   - cypress
-  - continuous integration
-  - end to end testing
-  - github actions
   - eslint
 authors:
   - rafaelnsantos
