@@ -14,7 +14,7 @@ tags:
 authors:
   - rafaelnsantos
   - andrebonizi
-published: false
+published: true
 star: true
 ---
 ## What is Atomic Design?
