@@ -50,7 +50,9 @@ export function PostPreview({ post, preview }: PostPreviewProps) {
             <StyledLink className="text-2xl">{post.title}</StyledLink>
           </Link>
           <Link href={`/blog/post/${post.slug}`}>
-            <Image src={post.meta.image} width="300" className="self-center" />
+            <StyledLink className="text-2xl">
+              <Image src={post.meta.image} width="300" className="self-center" />
+            </StyledLink>
           </Link>
         </>
       )}
