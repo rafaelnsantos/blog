@@ -1,6 +1,6 @@
 ---
 title: Atomic Design with React and NextJS
-date: 2020-10-21T18:14:00.870Z
+date: 2020-10-23T16:22:01.760Z
 metaTitle: Atomic Design with React and NextJS
 metaDescription: There are many ways to define a component, but we choose to use
   the atomic design in our projects to organize our code. This post talks about
