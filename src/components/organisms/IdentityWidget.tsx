@@ -57,6 +57,7 @@ export const IdentityWidget = dynamic(
       return <div></div>;
     };
 
+    return Identity;
   },
   { ssr: false }
 );
