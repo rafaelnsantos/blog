@@ -103,7 +103,7 @@ export const cmsConfig: CmsConfigFixed = {
 export const identityConfig: InitOptions = {
   APIUrl:
     process.env.NODE_ENV === 'production'
-      ? `${process.env.IDENTITY_URL}/.netlify/identity`
+      ? `${process.env.NEXT_PUBLIC_IDENTITY_URL}/.netlify/identity`
       : undefined,
   logo: false,
 };
