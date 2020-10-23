@@ -98,6 +98,7 @@ export const cmsConfig: CmsConfigFixed = {
   collections,
   local_backend: process.env.NODE_ENV !== 'production',
   load_config_file: false,
+  site_url: process.env.NEXT_PUBLIC_IDENTITY_URL,
 };
 
 export const identityConfig: InitOptions = {
