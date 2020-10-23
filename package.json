@@ -15,6 +15,7 @@
   "dependencies": {
     "autoprefixer": "^9.8.0",
     "date-fns": "^2.13.0",
+    "formik": "^2.2.0",
     "googleapis": "^61.0.0",
     "gray-matter": "^4.0.2",
     "netlify-cms-app": "^2.12.27",
@@ -37,7 +38,8 @@
     "styled-components": "^5.1.0",
     "tailwindcss": "^1.4.6",
     "terser": "^4.6.13",
-    "use-dark-mode": "^2.3.1"
+    "use-dark-mode": "^2.3.1",
+    "yup": "^0.29.3"
   },
   "license": "ISC",
   "devDependencies": {
