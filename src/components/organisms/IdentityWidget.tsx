@@ -24,9 +24,10 @@ export const IdentityWidget = dynamic(
         identity.init(props.config);
 
         identity.on('init', (user) => {
-          setLoading(false);
-
-          if (props.onInit) setTimeout(() => props.onInit && props.onInit(identity, user), 100);
+          setTimeout(() => {
+            setLoading(false);
+            if (props.onInit) props.onInit(identity, user);
+          }, 100);
         });
 
         identity.on('login', (user) => {
