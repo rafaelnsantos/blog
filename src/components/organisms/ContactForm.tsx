@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Form } from '../Form';
 import { TextInput } from '../molecules/TextInput';
-
+import * as yup from 'yup';
 interface Form {
   name: string;
   email: string;
@@ -34,13 +34,18 @@ export function ContactForm(props: ContactFormProps) {
       onSubmit={async (values, bag) => {
         try {
           await props.onSubmit(values);
+          bag.resetForm();
         } catch (err) {
           console.log(err);
         } finally {
           bag.setSubmitting(false);
-          bag.setFieldError('name', 'error');
         }
       }}
+      validationSchema={yup.object().shape({
+        name: yup.string().required('Name is required'),
+        email: yup.string().required('Email is required').email('Invalid email'),
+        message: yup.string().required('Message is required'),
+      })}
     >
       <TextInput id="name" label="Name" />
       <TextInput id="email" label="Email" />

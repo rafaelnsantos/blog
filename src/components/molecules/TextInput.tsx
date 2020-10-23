@@ -32,6 +32,7 @@ const StyledInput = styled.div<{ focus: boolean; empty: boolean }>`
 const StyledError = styled.div<{ visible: boolean }>`
   opacity: ${(props) => (props.visible ? 1 : 0)};
   transition: opacity ${(props) => (props.visible ? '200ms' : '0')} ease-in;
+  color: var(--accent-red);
 `;
 
 export function TextInput({ id, label, className, ...props }: TextInputProps) {
