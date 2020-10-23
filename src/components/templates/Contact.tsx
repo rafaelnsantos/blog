@@ -1,4 +1,5 @@
 import { ComponentProps } from 'react';
+import { Text } from '../atoms/Text';
 import { ContactForm } from '../organisms/ContactForm';
 
 interface ContactTemplateProps {
@@ -8,7 +9,9 @@ interface ContactTemplateProps {
 export function ContactTemplate({ onSend }: ContactTemplateProps) {
   return (
     <div className="max-w-screen-sm mx-auto">
-      <h1>Contact Page</h1>
+      <Text variant="h1" size={3} lineHeight={5} align="center">
+        Contact Page
+      </Text>
       <ContactForm onSubmit={onSend} />
     </div>
   );

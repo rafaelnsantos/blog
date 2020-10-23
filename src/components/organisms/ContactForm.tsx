@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { Form } from '../Form';
 import { TextInput } from '../molecules/TextInput';
 
@@ -11,6 +12,15 @@ interface Form {
 interface ContactFormProps {
   onSubmit: (values: Form) => Promise<unknown>;
 }
+
+const StyledButton = styled.button`
+  background: var(--accent-green);
+  padding: 10px;
+  border-radius: 10px;
+  float: right;
+  box-shadow: 3px 5px 6px var(--shadow-bg-inset);
+  color: black;
+`;
 
 export function ContactForm(props: ContactFormProps) {
   return (
@@ -28,6 +38,7 @@ export function ContactForm(props: ContactFormProps) {
           console.log(err);
         } finally {
           bag.setSubmitting(false);
+          bag.setFieldError('name', 'error');
         }
       }}
     >
@@ -35,7 +46,7 @@ export function ContactForm(props: ContactFormProps) {
       <TextInput id="email" label="Email" />
       <TextInput id="phone" label="Phone" />
       <TextInput id="message" label="Message" />
-      <button type="submit">Enviar</button>
+      <StyledButton type="submit">Enviar</StyledButton>
     </Form>
   );
 }

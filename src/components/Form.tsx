@@ -26,6 +26,9 @@ const Backdrop = styled.div<{ visible: boolean }>`
 
 const StyledForm = styled.form`
   transition: opacity 300ms ease-in;
+  background: var(--bg-inset);
+  padding: 10px;
+  border-radius: 10px;
 `;
 
 export function Form<T>({ children, ...props }: FormProps<T>) {
