@@ -1,5 +1,5 @@
 ---
-title: NextJS, cucumber, typescript, cypress, eslint
+title: Setup NextJS, cucumber, typescript, cypress, eslint
 date: 2020-10-23T05:12:55.252Z
 metaTitle: NextJS, cucumber, typescript, cypress, eslint
 metaDescription: NextJS, cucumber, typescript, cypress, eslint
@@ -20,16 +20,6 @@ authors:
 published: true
 ---
 [commit](https://github.com/rafaelnsantos/blog/commit/cd5957999e1fd8136dfc48f99bca9ba70bc5afb6)
-
-## Behaviour Driven Development
-
-### Gherkin
-
-### Cucumber
-
-## Continuous Integration
-
-### GitHub Actions
 
 ## Setup
 
