@@ -101,6 +101,19 @@ export const collections: CmsCollection[] = [
           },
         ],
       },
+      {
+        file: 'content/contact.json',
+        label: 'Contact',
+        name: 'contact',
+
+        fields: [
+          {
+            name: 'discord',
+            label: 'Discord Webhook',
+            widget: 'string',
+          },
+        ],
+      },
     ],
   },
 ];
