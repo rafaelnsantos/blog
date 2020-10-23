@@ -57,6 +57,15 @@ export const IdentityWidget = dynamic(
           if (!logged) identity.open('login');
         });
 
+        const iframe = document.getElementById('netlify-identity-widget');
+        if (iframe) {
+          const element = (iframe as any).contentWindow.document.querySelector(
+            'button[class="btnClose"]'
+          );
+
+          if (element) element.setAttribute('display', 'none');
+        }
+
         return () => {
           identity.off('init');
           identity.off('login');
