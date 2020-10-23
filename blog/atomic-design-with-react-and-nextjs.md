@@ -33,7 +33,9 @@ Below there is an explanation about each level of the Atomic Design hierarchy an
 
 Atoms are usually independent components, with a simple and clear function that can work in any scope. Anything that cannot, or should not, be split in two different parts can be defined as a atom. An atom can have many different properties but one function only. 
 
-`<Text size={1} color=black>{content}</Text>`
+```tsx
+<Text size={1} color=black>{content}</Text>
+```
 
 
 
