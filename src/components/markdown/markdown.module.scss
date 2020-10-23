@@ -29,4 +29,9 @@
   img {
     @apply rounded-lg;
   }
+  blockquote{
+    padding: 10px;
+    border-left: solid var(--text-secondary);
+    background-color: var(--bg-inset);
+  }
 }
