@@ -21,6 +21,7 @@ const StyledInput = styled.div<{ focus: boolean; empty: boolean }>`
   }
   label {
     height: 1.5rem;
+    color: var(--text-quaternary);
     transform: translateY(${(props) => (props.focus || !props.empty ? 0 : 30)}px)
       translateX(${(props) => (props.focus || !props.empty ? 0 : 20)}px);
     font-size: ${(props) => (props.focus || !props.empty ? 1 : 1.5)}rem;
