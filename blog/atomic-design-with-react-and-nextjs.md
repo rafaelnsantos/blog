@@ -31,7 +31,9 @@ Below there is an explanation about each level of the Atomic Design hierarchy an
 
 Atoms are usually independent components, with a simple and clear function that can work in any scope. Anything that cannot, or should not, be split in two different parts can be defined as a atom. An atom can have many different properties but one function only. 
 
-`<Text size={1} color=black>{content}</Text>`
+```tsx
+<Text size={1} color=black>{content}</Text>
+```
 
 
 
@@ -39,13 +41,34 @@ An example of an Atom can be a Text or an Image element, they can be used in so 
 
 ## Molecules
 
-When there are co-dependent Atoms we can define them as a Molecule. Since each Atom has only one function, usually it won't solve many problems by itself, so we need to combine different Atoms to build functions that work together to result in a combined function, this is what defines a Molecule. A good example of a Molecule can be a Search Bar, it has two important Atoms at least, the InputText and the SubmitButton, each Atom has its own function, but to actually do a search you will need to set these two Atoms for the Molecule function to work, if you click the SubmitButton when there is no InputText nothing will happen, the same thing will happen if you fill the InputText and never click the SubmitButton. The SearchBar needs both of the components set to work, so we define it as a Molecule. 
+When there are co-dependent Atoms we can define them as a Molecule. Since each Atom has only one function, usually it won't solve many problems by itself, so we need to combine different Atoms to build functions that work together to result in a combined function, this is what defines a Molecule. 
+```tsx
+<SearchBar>
+  <InputText size={1} color=black>{content}</InputText>
+  <SubmitButton>Search!</SubmitButton>
+</SearchBar>
+```
+A good example of a Molecule can be a Search Bar, it has two important Atoms at least, the InputText and the SubmitButton, each Atom has its own function, but to actually do a search you will need to set these two Atoms for the Molecule function to work, if you click the SubmitButton when there is no InputText nothing will happen, the same thing will happen if you fill the InputText and never click the SubmitButton. The SearchBar needs both of the components set to work, so we define it as a Molecule. 
 
 
 
 ## Organisms
 
-Organisms are groups of Molecules, build to organize complex functions and complete scopes. An example can be a Form, it needs many kinds of information and it can leads to many different results.  The definition of an Organism depends on the size of the project, in a smaller project a Molecule and an Organism can be the same thing frequently.
+Organisms are groups of Molecules, build to organize complex functions and complete scopes. An example can be a Form, it needs many kinds of information and it can leads to many different results.  
+```tsx
+<NavBar>
+  <Logo />
+  <Text>Title</Text>
+  <SearchBar>
+    <InputText size={1} color=black>{content}</InputText>
+    <SubmitButton>Search!</SubmitButton>
+  </SearchBar>
+
+  <NavLinks />
+</NavBar>
+```
+
+The definition of an Organism depends on the size of the project, in a smaller project a Molecule and an Organism can be the same thing frequently.
 
 
 
