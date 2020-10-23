@@ -42,6 +42,11 @@ export const IdentityWidget = dynamic(
 
         identity.on('login', (user) => {
           setLogged(!!user);
+          if (user) {
+            identity.close();
+          } else {
+            identity.open('login');
+          }
         });
 
         identity.on('logout', () => {
