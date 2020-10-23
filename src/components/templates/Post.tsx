@@ -19,7 +19,9 @@ export function PostTemplate({ post, anchors }: BlogPostProps) {
       <div className="w-full md:max-w-3xl">
         <div className={`${styles.markdown} markdown`}>
           <div className="text-center">
-            <Text variant="h1">{post.title}</Text>
+            <Text variant="h1" lineHeight={3}>
+              {post.title}
+            </Text>
             <Image src={post.meta.image} alt={post.meta.title} />
             <Text align="center">{formatTimestamp(post.timestamp)}</Text>
             <Text size={0.85} align="center">

@@ -11,7 +11,7 @@ interface TextInputProps
 const StyledInput = styled.div<{ focus: boolean; empty: boolean }>`
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 5px 20px 10px;
   background-color: var(--bg-inset);
   input {
     background: var(--bg-secondary);

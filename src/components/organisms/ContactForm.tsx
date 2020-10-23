@@ -16,6 +16,7 @@ interface ContactFormProps {
 const StyledButton = styled.button`
   background: var(--accent-green);
   padding: 10px;
+  margin-right: 30px;
   border-radius: 10px;
   float: right;
   box-shadow: 3px 5px 6px var(--shadow-bg-inset);
