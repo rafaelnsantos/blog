@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import { InitOptions } from 'netlify-identity-widget';
+import { InitOptions, User } from 'netlify-identity-widget';
 import { ReactNode, useEffect, useState } from 'react';
 
 export const IdentityWidget = dynamic(
@@ -10,39 +10,35 @@ export const IdentityWidget = dynamic(
 
     interface IdentityProps {
       config?: InitOptions;
-      onLogin?: (identit: typeof identity, logged: boolean) => void;
+      onLogin?: (identit: typeof identity, user: User | null) => void;
       onLogout?: (identit: typeof identity) => void;
-      onInit?: (identit: typeof identity, logged: boolean) => void;
-      onClose?: (identit: typeof identity, logged: boolean) => void;
+      onInit?: (identit: typeof identity, user: User | null) => void;
+      onClose?: (identit: typeof identity, user: User | null) => void;
       Loading?: ReactNode;
     }
 
     const Identity = (props: IdentityProps) => {
       const [loading, setLoading] = useState(process.env.NODE_ENV === 'production');
-      const [logged, setLogged] = useState(process.env.NODE_ENV !== 'production');
 
       useEffect(() => {
         identity.init(props.config);
 
         identity.on('init', (user) => {
           setLoading(false);
-          setLogged(!!user);
 
-          if (props.onInit) setTimeout(() => props.onInit && props.onInit(identity, !!user), 100);
+          if (props.onInit) setTimeout(() => props.onInit && props.onInit(identity, user), 100);
         });
 
         identity.on('login', (user) => {
-          setLogged(!!user);
-          if (props.onLogin) props.onLogin(identity, !!user);
+          if (props.onLogin) props.onLogin(identity, user);
         });
 
         identity.on('logout', () => {
-          setLogged(false);
           if (props.onLogout) props.onLogout(identity);
         });
 
         identity.on('close', () => {
-          if (props.onClose) props.onClose(identity, logged);
+          if (props.onClose) props.onClose(identity, identity.currentUser());
         });
 
         return () => {

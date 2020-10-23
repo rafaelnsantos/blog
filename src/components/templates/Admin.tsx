@@ -40,9 +40,9 @@ export function AdminTemplate(props: AdminTemplateProps) {
     <>
       <IdentityWidget
         config={props.identityConfig}
-        onInit={(identity, logged) => !logged && setTimeout(() => identity.open('login'), 100)}
-        onLogin={(identity, logged) => (logged ? identity.close() : identity.open('login'))}
-        onClose={(identity, logged) => !logged && identity.open('login')}
+        onInit={(identity, user) => !user && setTimeout(() => identity.open('login'), 100)}
+        onLogin={(identity, user) => (user ? identity.close() : identity.open('login'))}
+        onClose={(identity, user) => !user && identity.open('login')}
         onLogout={(identity) => identity.open('login')}
         Loading={
           <Loading index={9999}>
