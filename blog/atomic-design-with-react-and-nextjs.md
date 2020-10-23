@@ -23,7 +23,7 @@ Atomic design consists in separating components in a hierarchy. Since a componen
 
 > Atomic design is not a linear process, but rather a mental model to help us think of our user interfaces as both a cohesive whole and a collection of parts *at the same time*.
 >
-> Brad Frost, Atomic Design
+> *Brad Frost*, **Atomic Design**
 
 The idea is simple but very useful when creating a new software. Code and Layout design can offer go to different directions, and without a standard that suits them both it can be hard or very time consuming to maintain a project. Atomic Design helps to define a standard that works well in both cases, code and layout, that is why we choose to use it.
 
@@ -32,6 +32,10 @@ Below there is an explanation about each level of the Atomic Design hierarchy an
 ## Atoms
 
 Atoms are usually independent components, with a simple and clear function that can work in any scope. Anything that cannot, or should not, be split in two different parts can be defined as a atom. An atom can have many different properties but one function only. 
+
+`<Text size={1} color=black>{content}</Text>`
+
+
 
 An example of an Atom can be a Text or an Image element, they can be used in so many different scopes but they only need their own attribute to work and be displayed, the Text only needs a string and the Image only needs an image file. Inside the layout the same principles are applied, a button or a text can be placed anywhere in the screen, this characteristic defines the component as an Atom.
 
