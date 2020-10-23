@@ -16,18 +16,29 @@ const StyledTagClod = styled(TagCloud)`
 `;
 
 const SelectedTagContainer = styled.div`
-  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background: var(--accent-purple);
+  height: 30px;
+  align-self: center;
+  padding-left: 20px;
+  border-radius: 10px;
+  transition: opacity 150ms ease;
+  cursor: pointer;
+  :hover {
+    opacity: 0.7;
+  }
 `;
 
 const CloseTagButton = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
+  margin-top: -30px;
   background-color: var(--accent-red);
   border-radius: 20px;
-  padding: 5px;
-  margin-left: 10px;
-  margin-top: -30px;
+  opacity: 0.7;
+  width: 20px;
+  height: 20px;
+  font-size: 13px;
 `;
 
 interface CloudTagsProps {
