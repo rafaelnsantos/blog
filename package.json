@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "concurrently \"next dev\" \"netlify-cms-proxy-server\"",
+    "dev:test": "concurrently \"next dev\" \"cypress open\"",
     "prebuild": "yarn export:css",
     "build": "next build",
     "start": "next start",
     "export": "yarn build && next export",
     "netlify": "netlify",
+    "cypress": "cypress",
     "export:css": "tailwindcss build src/theme/global.scss -o public/style/preview/global.css && sass src/components/markdown/markdown.module.scss  public/style/preview/markdown.css"
   },
   "dependencies": {
@@ -39,6 +41,9 @@
   },
   "license": "ISC",
   "devDependencies": {
+    "@cucumber/cucumber": "^7.0.0-rc.0",
+    "@cypress/browserify-preprocessor": "^3.0.1",
+    "@types/cypress-cucumber-preprocessor": "^3.0.0",
     "@types/netlify-identity-widget": "^1.9.0",
     "@types/node": "^14.0.1",
     "@types/react": "^16.9.35",
@@ -51,9 +56,12 @@
     "@typescript-eslint/parser": "^2.33.0",
     "babel-plugin-styled-components": "^1.10.7",
     "concurrently": "^5.3.0",
+    "cypress": "^5.4.0",
+    "cypress-cucumber-preprocessor": "^4.0.0",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-cypress": "^2.11.2",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-node": "^11.1.0",

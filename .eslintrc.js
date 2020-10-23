@@ -1,11 +1,12 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'react', 'jsx-a11y'],
+  plugins: ['@typescript-eslint', 'react', 'jsx-a11y', 'cypress'],
   extends: [
     'standard',
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
+    'plugin:cypress/recommended',
   ],
   rules: {
     'react/prop-types': 'warn',
@@ -31,5 +32,8 @@ module.exports = {
     react: {
       version: 'detect',
     },
+  },
+  env: {
+    'cypress/globals': true,
   },
 };
