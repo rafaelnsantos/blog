@@ -31,6 +31,11 @@ const StyledLink = styled.a`
   }
 `;
 
+const StyledDescription = styled.div`
+ max-width: 500px;
+
+`;
+
 export function PostPreview({ post, preview }: PostPreviewProps) {
   return (
     <Container className="flex flex-col m-3 p-3 h-full min-w-full sm:min-w-0">
@@ -59,7 +64,7 @@ export function PostPreview({ post, preview }: PostPreviewProps) {
           <TagChip tag={tag} key={tag} />
         ))}
       </div>
-      <div>{post.meta.description}</div>
+      <StyledDescription>{post.meta.description}</StyledDescription>
     </Container>
   );
 }
