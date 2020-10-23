@@ -84,6 +84,23 @@ export const collections: CmsCollection[] = [
           ],
         })),
       },
+      {
+        file: 'content/navigation.json',
+        label: 'Pages',
+        name: 'navigation',
+
+        fields: [
+          {
+            name: 'links',
+            label: 'Links',
+            widget: 'list',
+            fields: [
+              { name: 'title', label: 'Title', widget: 'string' },
+              { name: 'path', label: 'path', widget: 'string' },
+            ],
+          },
+        ],
+      },
     ],
   },
 ];

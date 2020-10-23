@@ -5,6 +5,8 @@ import SEO from 'content/seo.json';
 import { useGoogleAnalytics } from '~/providers/GoogleAnalytics';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { links } from 'content/navigation.json';
+
 interface PageProps {
   children: React.ReactNode;
   title: string;
@@ -47,13 +49,7 @@ export function Page({ children, ...seo }: PageProps) {
           ],
         }}
       />
-      <Header
-        title={SEO.title}
-        links={[
-          { title: 'home', path: '/' },
-          { title: 'blog', path: '/blog' },
-        ]}
-      />
+      <Header title={SEO.title} links={links} />
       {children}
     </PageContainer>
   );
