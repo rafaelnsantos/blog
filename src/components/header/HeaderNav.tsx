@@ -19,7 +19,7 @@ export function HeaderNav({ links }: HeaderNavProps) {
         link.title.toUpperCase()
       ) : (
         <Link href={link.path}>
-          <a>{link.title.toUpperCase()}</a>
+          <a id={`link${link.path.replace('/', '-')}`}>{link.title.toUpperCase()}</a>
         </Link>
       )}
     </div>
