@@ -44,6 +44,9 @@ jobs:
         restore-keys: |
           nextjs-
 
+    - name: Install dependencies
+      run: yarn --frozen-lockfile
+
     - name: Cypress run
       uses: cypress-io/github-action@v2
       with:
