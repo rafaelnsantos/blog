@@ -39,6 +39,7 @@ jobs:
     - name: Cypress run
       uses: cypress-io/github-action@v2
       with:
+        cache-key: cypress-${{ hashFiles('**/yarn.lock') }}
         build: yarn export
         start: yarn start
 
