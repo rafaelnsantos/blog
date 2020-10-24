@@ -13,30 +13,31 @@ export interface IdentityProps {
 export const IdentityWidget = (props: IdentityProps) => {
   const [loading, setLoading] = useState(process.env.NODE_ENV === 'production');
 
+  (window as any).netlifyIdentity = identity;
+
   useEffect(() => {
-    (window as any).netlifyIdentity = identity;
     setTimeout(() => {
       identity.init(props.config);
+    }, 200);
 
-      identity.on('init', (user) => {
-        setTimeout(() => {
-          setLoading(false);
-          if (props.onInit) props.onInit(identity, user);
-        }, 100);
-      });
+    identity.on('init', (user) => {
+      setTimeout(() => {
+        setLoading(false);
+        if (props.onInit) props.onInit(identity, user);
+      }, 100);
+    });
 
-      identity.on('login', (user) => {
-        if (props.onLogin) props.onLogin(identity, user);
-      });
+    identity.on('login', (user) => {
+      if (props.onLogin) props.onLogin(identity, user);
+    });
 
-      identity.on('logout', () => {
-        if (props.onLogout) props.onLogout(identity);
-      });
+    identity.on('logout', () => {
+      if (props.onLogout) props.onLogout(identity);
+    });
 
-      identity.on('close', () => {
-        if (props.onClose) props.onClose(identity, identity.currentUser());
-      });
-    }, 100);
+    identity.on('close', () => {
+      if (props.onClose) props.onClose(identity, identity.currentUser());
+    });
 
     return () => {
       identity.off('init');
