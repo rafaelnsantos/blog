@@ -10,12 +10,12 @@ interface IdentityProps {
   Loading?: ReactNode;
 }
 
-(window as any).netlifyIdentity = identity;
-
 export const IdentityWidget = (props: IdentityProps) => {
   const [loading, setLoading] = useState(process.env.NODE_ENV === 'production');
 
   useEffect(() => {
+    (window as any).netlifyIdentity = identity;
+
     identity.init(props.config);
 
     identity.on('init', (user) => {
