@@ -29,15 +29,15 @@ export function AdminTemplate(props: AdminTemplateProps) {
     <>
       <IdentityWidget
         config={props.identityConfig}
-        onInit={(identity, user) => !user && setTimeout(() => identity.open('login'), 100)}
+        onInit={(identity, user) => !user && identity.open('login')}
         onLogin={(identity, user) => (user ? identity.close() : identity.open('login'))}
         onClose={(identity, user) => !user && identity.open('login')}
         onLogout={(identity) => identity.open('login')}
-        Loading={
-          <Loading index={9999}>
-            <RingLoader size="35vh" color="var(--text-primary)" />
-          </Loading>
-        }
+        // Loading={
+        //   <Loading index={9999}>
+        //     <RingLoader size="35vh" color="var(--text-primary)" />
+        //   </Loading>
+        // }
       />
       <NetlifyCMS
         config={props.cmsConfig}
