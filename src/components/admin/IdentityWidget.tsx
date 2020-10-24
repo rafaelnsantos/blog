@@ -1,12 +1,12 @@
-import identity, { InitOptions, User } from 'netlify-identity-widget';
+import * as identity from 'netlify-identity-widget';
 import { ReactNode, useEffect, useState } from 'react';
 
 export interface IdentityProps {
-  config?: InitOptions;
-  onLogin?: (identit: typeof identity, user: User | null) => void;
+  config?: identity.InitOptions;
+  onLogin?: (identit: typeof identity, user: identity.User | null) => void;
   onLogout?: (identit: typeof identity) => void;
-  onInit?: (identit: typeof identity, user: User | null) => void;
-  onClose?: (identit: typeof identity, user: User | null) => void;
+  onInit?: (identit: typeof identity, user: identity.User | null) => void;
+  onClose?: (identit: typeof identity, user: identity.User | null) => void;
   Loading?: ReactNode;
 }
 
@@ -16,9 +16,7 @@ export const IdentityWidget = (props: IdentityProps) => {
   (window as any).netlifyIdentity = identity;
 
   useEffect(() => {
-    setTimeout(() => {
-      identity.init(props.config);
-    }, 200);
+    identity.init(props.config);
 
     identity.on('init', (user) => {
       setTimeout(() => {
