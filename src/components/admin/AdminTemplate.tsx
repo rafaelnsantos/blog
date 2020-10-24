@@ -1,7 +1,5 @@
 import { NetlifyCMS, NetlifyCMSProps } from './NetlifyCMS';
 import { IdentityProps, IdentityWidget } from './IdentityWidget';
-import styled from 'styled-components';
-import { RingLoader } from 'react-spinners';
 
 import { PostPreview } from './previews/PostPreview';
 import { ColorPreview } from './previews/ColorPreview';
@@ -12,18 +10,6 @@ interface AdminTemplateProps {
   identityConfig?: IdentityProps['config'];
 }
 
-const Loading = styled.div<{ index: number }>`
-  display: grid;
-  place-items: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background: var(--bg-primary);
-  z-index: ${(props) => props.index};
-`;
-
 export function AdminTemplate(props: AdminTemplateProps) {
   return (
     <>
@@ -33,11 +19,6 @@ export function AdminTemplate(props: AdminTemplateProps) {
         onLogin={(identity, user) => (user ? identity.close() : identity.open('login'))}
         onClose={(identity, user) => !user && identity.open('login')}
         onLogout={(identity) => identity.open('login')}
-        Loading={
-          <Loading index={9999}>
-            <RingLoader size="35vh" color="var(--text-primary)" />
-          </Loading>
-        }
       />
       <NetlifyCMS
         config={props.cmsConfig}

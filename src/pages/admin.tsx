@@ -1,32 +1,42 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { GetStaticProps } from 'next';
-import { ComponentProps } from 'react';
+import { cmsConfig, identityConfig } from '~/components/admin/config';
+import styled from 'styled-components';
+import { RingLoader } from 'react-spinners';
+
+const Loading = styled.div<{ index: number }>`
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: var(--bg-primary);
+  z-index: 9999;
+`;
+
+const LoadingAdmin = () => (
+  <Loading index={9999}>
+    <RingLoader size="35vh" color="var(--text-primary)" />
+  </Loading>
+);
 
 const AdminTemplate = dynamic(
   async () => (await import('~/components/admin/AdminTemplate')).AdminTemplate,
-  { ssr: false }
+  {
+    ssr: false,
+    loading: LoadingAdmin,
+  }
 );
 
-type AdminPageProps = ComponentProps<typeof AdminTemplate>;
-
-export default function AdminPage(props: AdminPageProps) {
+export default function AdminPage() {
   return (
     <>
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <AdminTemplate cmsConfig={props.cmsConfig} identityConfig={props.identityConfig} />
+      <AdminTemplate cmsConfig={cmsConfig} identityConfig={identityConfig} />
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps<AdminPageProps> = async () => {
-  const config = await import('~/components/admin/config');
-  return {
-    props: {
-      cmsConfig: config.cmsConfig,
-      identityConfig: config.identityConfig,
-    },
-  };
-};

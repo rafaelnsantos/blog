@@ -1,5 +1,5 @@
 import * as identity from 'netlify-identity-widget';
-import { ReactNode, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export interface IdentityProps {
   config?: identity.InitOptions;
@@ -7,16 +7,12 @@ export interface IdentityProps {
   onLogout?: (identit: typeof identity) => void;
   onInit?: (identit: typeof identity, user: identity.User | null) => void;
   onClose?: (identit: typeof identity, user: identity.User | null) => void;
-  Loading?: ReactNode;
 }
 
 export const IdentityWidget = (props: IdentityProps) => {
-  const [loading, setLoading] = useState(process.env.NODE_ENV === 'production');
-
   (window as any).netlifyIdentity = identity;
   useEffect(() => {
     identity.on('init', (user) => {
-      setLoading(false);
       if (props.onInit) props.onInit(identity, user);
     });
 
@@ -41,10 +37,6 @@ export const IdentityWidget = (props: IdentityProps) => {
       identity.off('close');
     };
   }, []);
-  console.log(loading);
-  if (loading && props.Loading) {
-    return <>{props.Loading}</>;
-  }
 
   return <div></div>;
 };
