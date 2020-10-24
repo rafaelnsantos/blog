@@ -1,17 +1,15 @@
-import { InitOptions } from 'netlify-identity-widget';
-import { CmsConfigFixed } from '../admin/config';
-import { NetlifyCMS } from '../admin/NetlifyCMS';
-import { IdentityWidget } from '../admin/IdentityWidget';
+import { NetlifyCMS, NetlifyCMSProps } from './NetlifyCMS';
+import { IdentityProps, IdentityWidget } from './IdentityWidget';
 import styled from 'styled-components';
 import { RingLoader } from 'react-spinners';
 
-import { PostPreview } from '../admin/previews/PostPreview';
-import { ColorPreview } from '../admin/previews/ColorPreview';
-import { ColorWidget } from '../admin/widgets/ColorWidget';
+import { PostPreview } from './previews/PostPreview';
+import { ColorPreview } from './previews/ColorPreview';
+import { ColorWidget } from './widgets/ColorWidget';
 
 interface AdminTemplateProps {
-  cmsConfig: CmsConfigFixed;
-  identityConfig?: InitOptions;
+  cmsConfig: NetlifyCMSProps['config'];
+  identityConfig?: IdentityProps['config'];
 }
 
 const Loading = styled.div<{ index: number }>`

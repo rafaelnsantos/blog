@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { CmsConfigFixed } from './config';
 import CMS from 'netlify-cms-app';
 
-interface CMSProps {
+export interface NetlifyCMSProps {
   config: CmsConfigFixed;
   onLoad?: (cms: typeof CMS) => void;
 }
 
-export const NetlifyCMS = (props: CMSProps) => {
+export const NetlifyCMS = (props: NetlifyCMSProps) => {
   useEffect(() => {
     CMS.init({
       config: props.config,

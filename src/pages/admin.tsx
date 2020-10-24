@@ -3,7 +3,7 @@ import { cmsConfig, identityConfig } from '~/components/admin/config';
 import dynamic from 'next/dynamic';
 
 const AdminTemplate = dynamic(
-  async () => (await import('~/components/templates/Admin')).AdminTemplate,
+  async () => (await import('~/components/admin/AdminTemplate')).AdminTemplate,
   { ssr: false }
 );
 

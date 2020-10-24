@@ -1,7 +1,7 @@
 import identity, { InitOptions, User } from 'netlify-identity-widget';
 import { ReactNode, useEffect, useState } from 'react';
 
-interface IdentityProps {
+export interface IdentityProps {
   config?: InitOptions;
   onLogin?: (identit: typeof identity, user: User | null) => void;
   onLogout?: (identit: typeof identity) => void;
