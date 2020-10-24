@@ -1,6 +1,11 @@
 import Head from 'next/head';
-import { AdminTemplate } from '~/components/templates/Admin';
-import { cmsConfig, identityConfig } from '~/config/admin';
+import { cmsConfig, identityConfig } from '~/components/admin/config';
+import dynamic from 'next/dynamic';
+
+const AdminTemplate = dynamic(
+  async () => (await import('~/components/templates/Admin')).AdminTemplate,
+  { ssr: false }
+);
 
 export default function AdminPage() {
   return (

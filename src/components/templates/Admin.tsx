@@ -1,27 +1,18 @@
 import { InitOptions } from 'netlify-identity-widget';
-import { CmsConfigFixed } from '~/config/admin';
-import { CMS } from '../organisms/NetlifyCMS';
-import { IdentityWidget } from '../organisms/IdentityWidget';
-import dynamic from 'next/dynamic';
+import { CmsConfigFixed } from '../admin/config';
+import { NetlifyCMS } from '../admin/NetlifyCMS';
+import { IdentityWidget } from '../admin/IdentityWidget';
 import styled from 'styled-components';
 import { RingLoader } from 'react-spinners';
+
+import { PostPreview } from '../admin/previews/PostPreview';
+import { ColorPreview } from '../admin/previews/ColorPreview';
+import { ColorWidget } from '../admin/widgets/ColorWidget';
 
 interface AdminTemplateProps {
   cmsConfig: CmsConfigFixed;
   identityConfig?: InitOptions;
 }
-
-const PostPreview = dynamic(
-  async () => (await import('~/components/admin/previews/PostPreview')).PostPreview
-);
-
-const ColorPreview = dynamic(
-  async () => (await import('~/components/admin/previews/ColorPreview')).ColorPreview
-);
-
-const ColorWidget = dynamic(
-  async () => (await import('~/components/admin/widgets/ColorWidget')).ColorWidget
-);
 
 const Loading = styled.div<{ index: number }>`
   display: grid;
@@ -50,7 +41,7 @@ export function AdminTemplate(props: AdminTemplateProps) {
           </Loading>
         }
       />
-      <CMS
+      <NetlifyCMS
         config={props.cmsConfig}
         onLoad={(cms) => {
           cms.registerPreviewStyle('/style/preview/preview.css');
