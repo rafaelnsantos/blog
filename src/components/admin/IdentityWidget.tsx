@@ -14,9 +14,10 @@ export const IdentityWidget = (props: IdentityProps) => {
   const [loading, setLoading] = useState(process.env.NODE_ENV === 'production');
 
   (window as any).netlifyIdentity = identity;
-  identity.init(props.config);
 
   useEffect(() => {
+    (window as any).netlifyIdentity.init(props.config);
+
     identity.on('init', (user) => {
       setTimeout(() => {
         setLoading(false);
