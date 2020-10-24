@@ -33,11 +33,11 @@ export function AdminTemplate(props: AdminTemplateProps) {
         onLogin={(identity, user) => (user ? identity.close() : identity.open('login'))}
         onClose={(identity, user) => !user && identity.open('login')}
         onLogout={(identity) => identity.open('login')}
-        // Loading={
-        //   <Loading index={9999}>
-        //     <RingLoader size="35vh" color="var(--text-primary)" />
-        //   </Loading>
-        // }
+        Loading={
+          <Loading index={9999}>
+            <RingLoader size="35vh" color="var(--text-primary)" />
+          </Loading>
+        }
       />
       <NetlifyCMS
         config={props.cmsConfig}

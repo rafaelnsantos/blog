@@ -28,12 +28,22 @@ jobs:
       with:
         node-version: '12.x'
 
+    - name: Cache node_modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: node_modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          node_modules-${{ hashFiles('**/yarn.lock') }}
+          node_modules-
+
     - name: Cache NextJS
       uses: actions/cache@v2
       with:
         path: .next/cache
         key: nextjs-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
+          nextjs-${{ hashFiles('**/yarn.lock') }}
           nextjs-
 
     - name: Cypress run

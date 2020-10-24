@@ -15,8 +15,6 @@ export const IdentityWidget = (props: IdentityProps) => {
 
   (window as any).netlifyIdentity = identity;
   useEffect(() => {
-    identity.init(props.config);
-
     identity.on('init', (user) => {
       setLoading(false);
       if (props.onInit) props.onInit(identity, user);
@@ -34,6 +32,8 @@ export const IdentityWidget = (props: IdentityProps) => {
       if (props.onClose) props.onClose(identity, identity.currentUser());
     });
 
+    identity.init(props.config);
+
     return () => {
       identity.off('init');
       identity.off('login');
@@ -41,7 +41,7 @@ export const IdentityWidget = (props: IdentityProps) => {
       identity.off('close');
     };
   }, []);
-
+  console.log(loading);
   if (loading && props.Loading) {
     return <>{props.Loading}</>;
   }
