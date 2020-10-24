@@ -13,11 +13,11 @@ export interface IdentityProps {
 export const IdentityWidget = (props: IdentityProps) => {
   const [loading, setLoading] = useState(process.env.NODE_ENV === 'production');
 
-  (window as any).netlifyIdentity = identity;
-
   useEffect(() => {
-    (window as any).netlifyIdentity.init(props.config);
-
+    (window as any).netlifyIdentity = identity;
+    setTimeout(() => {
+      identity.init(props.config);
+    }, 100);
     identity.on('init', (user) => {
       setTimeout(() => {
         setLoading(false);
