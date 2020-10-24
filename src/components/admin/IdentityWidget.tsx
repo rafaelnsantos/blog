@@ -17,25 +17,26 @@ export const IdentityWidget = (props: IdentityProps) => {
     (window as any).netlifyIdentity = identity;
     setTimeout(() => {
       identity.init(props.config);
+
+      identity.on('init', (user) => {
+        setTimeout(() => {
+          setLoading(false);
+          if (props.onInit) props.onInit(identity, user);
+        }, 100);
+      });
+
+      identity.on('login', (user) => {
+        if (props.onLogin) props.onLogin(identity, user);
+      });
+
+      identity.on('logout', () => {
+        if (props.onLogout) props.onLogout(identity);
+      });
+
+      identity.on('close', () => {
+        if (props.onClose) props.onClose(identity, identity.currentUser());
+      });
     }, 100);
-    identity.on('init', (user) => {
-      setTimeout(() => {
-        setLoading(false);
-        if (props.onInit) props.onInit(identity, user);
-      }, 100);
-    });
-
-    identity.on('login', (user) => {
-      if (props.onLogin) props.onLogin(identity, user);
-    });
-
-    identity.on('logout', () => {
-      if (props.onLogout) props.onLogout(identity);
-    });
-
-    identity.on('close', () => {
-      if (props.onClose) props.onClose(identity, identity.currentUser());
-    });
 
     return () => {
       identity.off('init');
