@@ -1,18 +1,15 @@
-import { ComponentProps } from 'react';
 import { Text } from '../atoms/Text';
-import { ContactForm } from '../organisms/ContactForm';
+import { ContactForm, ContactFormProps } from '../organisms/ContactForm';
 
-interface ContactTemplateProps {
-  onSend: ComponentProps<typeof ContactForm>['onSubmit'];
-}
+type ContactTemplateProps = ContactFormProps;
 
-export function ContactTemplate({ onSend }: ContactTemplateProps) {
+export function ContactTemplate(props: ContactTemplateProps) {
   return (
     <div className="max-w-screen-sm mx-auto">
       <Text variant="h1" size={3} lineHeight={5} align="center">
         Contact Page
       </Text>
-      <ContactForm onSubmit={onSend} />
+      <ContactForm {...props} />
     </div>
   );
 }

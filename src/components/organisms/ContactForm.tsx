@@ -1,17 +1,16 @@
 import styled from 'styled-components';
-import { Form } from '../Form';
+import { Form, FormProps } from '../Form';
 import { TextInput } from '../molecules/TextInput';
 import * as yup from 'yup';
-interface Form {
+
+interface ContactFormData {
   name: string;
   email: string;
   phone?: string;
   message: string;
 }
 
-interface ContactFormProps {
-  onSubmit: (values: Form) => Promise<unknown>;
-}
+export type ContactFormProps = FormProps<ContactFormData>;
 
 const StyledButton = styled.button`
   background: var(--accent-green);
@@ -25,24 +24,15 @@ const StyledButton = styled.button`
 
 export function ContactForm(props: ContactFormProps) {
   return (
-    <Form
+    <Form<ContactFormData>
+      {...props}
       initialValues={{
         name: '',
         email: '',
-        message: '',
         phone: '',
+        message: '',
       }}
-      onSubmit={async (values, bag) => {
-        try {
-          await props.onSubmit(values);
-          bag.resetForm();
-        } catch (err) {
-          console.log(err);
-        } finally {
-          bag.setSubmitting(false);
-        }
-      }}
-      validationSchema={yup.object().shape({
+      validationSchema={yup.object().shape<ContactFormData>({
         name: yup.string().required('Name is required'),
         email: yup.string().required('Email is required').email('Invalid email'),
         message: yup.string().required('Message is required'),

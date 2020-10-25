@@ -3,8 +3,14 @@ import { FormikProvider, useFormik, FormikConfig } from 'formik';
 import styled from 'styled-components';
 import { RingLoader } from 'react-spinners';
 
-interface FormProps<Values> extends FormikConfig<Values> {
+interface FormPropsA<Values> extends Omit<FormikConfig<Values>, 'onSubmit'>, FormProps<Values> {
   children: ReactNode;
+}
+
+export interface FormProps<Values> {
+  onSubmit: (values: Values) => Promise<unknown>;
+  onError?: (error: Error) => void;
+  onSuccess?: (response: any) => void;
 }
 
 const Backdrop = styled.div<{ visible: boolean }>`
@@ -31,8 +37,21 @@ const StyledForm = styled.form`
   border-radius: 10px;
 `;
 
-export function Form<T>({ children, ...props }: FormProps<T>) {
-  const formik = useFormik(props);
+export function Form<T>({ children, onSubmit, onSuccess, onError, ...props }: FormPropsA<T>) {
+  const formik = useFormik<T>({
+    ...props,
+    onSubmit: async (values, bag) => {
+      try {
+        const res = await onSubmit(values);
+        if (onSuccess) onSuccess(res);
+        bag.resetForm();
+      } catch (err) {
+        if (onError) onError(err);
+      } finally {
+        bag.setSubmitting(false);
+      }
+    },
+  });
 
   const { isSubmitting } = formik;
 

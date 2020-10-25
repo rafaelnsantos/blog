@@ -9,14 +9,14 @@ export default function ContactPage() {
   return (
     <Page description="Contact form" title="Contact">
       <ContactTemplate
-        onSend={async (values) => {
-          await sendMessage({
+        onSubmit={(values) =>
+          sendMessage({
             message: values.message,
             username: `${values.name} - ${values.email} - ${values.phone}`,
-          });
-
-          alert('mensagem enviada');
-        }}
+          })
+        }
+        onSuccess={(res: Response) => alert('success' + res.json())}
+        onError={(err) => alert('oh no ' + err.message)}
       />
     </Page>
   );
