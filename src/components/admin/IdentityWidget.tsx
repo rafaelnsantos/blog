@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 export type OnLoad<T> = (item: T) => void | (() => void | undefined);
 
 export interface IdentityProps {
-  config?: identity.InitOptions;
+  config: identity.InitOptions;
   onLoad?: OnLoad<typeof identity>;
 }
 

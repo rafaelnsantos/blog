@@ -4,6 +4,10 @@ import { cmsConfig, identityConfig } from '~/components/admin/config';
 import styled from 'styled-components';
 import { RingLoader } from 'react-spinners';
 
+import { PostPreview } from '~/components/admin/previews/PostPreview';
+import { ColorPreview } from '~/components/admin/previews/ColorPreview';
+import { ColorWidget } from '~/components/admin/widgets/ColorWidget';
+
 const Loading = styled.div`
   display: grid;
   place-items: center;
@@ -36,7 +40,22 @@ export default function AdminPage() {
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <AdminTemplate cmsConfig={cmsConfig} identityConfig={identityConfig} />
+      <AdminTemplate
+        cms={{
+          config: cmsConfig,
+          onLoad: (cms) => {
+            cms.registerPreviewStyle('/style/preview/preview.css');
+            cms.registerPreviewStyle('/style/preview/global.css');
+            cms.registerPreviewStyle('/style/preview/markdown.css');
+            cms.registerPreviewTemplate('blog', PostPreview);
+            cms.registerPreviewTemplate('colors', ColorPreview);
+            cms.registerWidget('color', ColorWidget);
+          },
+        }}
+        identity={{
+          config: identityConfig,
+        }}
+      />
     </>
   );
 }

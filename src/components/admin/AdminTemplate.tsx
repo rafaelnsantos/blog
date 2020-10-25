@@ -1,24 +1,23 @@
 import { NetlifyCMS, NetlifyCMSProps } from './NetlifyCMS';
 import { IdentityProps, IdentityWidget } from './IdentityWidget';
 
-import { PostPreview } from './previews/PostPreview';
-import { ColorPreview } from './previews/ColorPreview';
-import { ColorWidget } from './widgets/ColorWidget';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface AdminTemplateProps {
-  cmsConfig: NetlifyCMSProps['config'];
-  identityConfig?: IdentityProps['config'];
+  cms: NetlifyCMSProps;
+  identity: IdentityProps;
 }
 
 export function AdminTemplate(props: AdminTemplateProps) {
-  const [logged, setLogged] = useState(false);
+  const [logged, setLogged] = useState(process.env.NODE_ENV === 'development');
 
   return (
     <>
       <IdentityWidget
-        config={props.identityConfig}
+        config={props.identity.config}
         onLoad={(identity) => {
+          if (props.identity.onLoad) props.identity.onLoad(identity);
+
           identity.on('init', (user) => {
             if (user) {
               setLogged(true);
@@ -47,17 +46,7 @@ export function AdminTemplate(props: AdminTemplateProps) {
           };
         }}
       />
-      <NetlifyCMS
-        config={props.cmsConfig}
-        onLoad={(cms) => {
-          cms.registerPreviewStyle('/style/preview/preview.css');
-          cms.registerPreviewStyle('/style/preview/global.css');
-          cms.registerPreviewStyle('/style/preview/markdown.css');
-          cms.registerPreviewTemplate('blog', PostPreview);
-          cms.registerPreviewTemplate('colors', ColorPreview);
-          cms.registerWidget('color', ColorWidget);
-        }}
-      />
+      <NetlifyCMS {...props.cms} />
     </>
   );
 }
