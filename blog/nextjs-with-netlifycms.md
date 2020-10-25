@@ -110,11 +110,11 @@ export const NetlifyCMS = (props: NetlifyCMSProps) => {
 ### admin/IdentityWidget.tsx
 
 ```typescript
-import identity from 'netlify-identity-widget';
+import identity, { InitOptions } from 'netlify-identity-widget';
 import { useEffect } from 'react';
 
 export interface IdentityWidgetProps {
-  config?: identity.InitOptions;
+  config?: InitOptions;
   onLoad?: (Identity: typeof identity) => void;
 }
 
