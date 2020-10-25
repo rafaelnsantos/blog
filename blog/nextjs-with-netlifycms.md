@@ -19,18 +19,12 @@ published: true
 
 ```bash
 yarn add netlify-cms-app netlify-identity-widget 
-```
-
-for running admin in dev mode
-
-```bash
 yarn add -D netlify-cms-proxy-server concurrently
 ```
-## Collections
 
-create a collections.ts file
+### admin/collections.ts
 
-```ts
+```typescript
 import { CmsCollection } from 'netlify-cms-core';
 
 export const collections: CmsCollection[] = [
@@ -54,12 +48,11 @@ export const collections: CmsCollection[] = [
 ]
 ```
 
-## Create admin/config.ts
+### admin/config.ts
 
 in this file we'll have the Netlify CMS and Identity widgets configs.
 
-```ts
-/* eslint-disable @typescript-eslint/camelcase */
+```typescript
 import { CmsConfig } from 'netlify-cms-core';
 import { InitOptions } from 'netlify-identity-widget';
 import { collections } from './collections';
@@ -84,15 +77,15 @@ export const cmsConfig: CmsConfigFixed = {
 export const identityConfig: InitOptions = {
   APIUrl:
     process.env.NODE_ENV === 'production'
-      ? `${process.env.NEXT_PUBLIC_IDENTITY_URL}/.netlify/identity`
+      ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
       : undefined,
   logo: false,
 };
 ```
 
-## Create admin/NetlifyCMS.tsx
+### admin/NetlifyCMS.tsx
 
-```tsx
+```typescript
 import React, { useEffect } from 'react';
 import CMS from 'netlify-cms-app';
 import { CmsConfigFixed } from './config';
@@ -114,17 +107,18 @@ export const NetlifyCMS = (props: NetlifyCMSProps) => {
 };
 ```
 
-## Create admin/IdentityWidget.tsx
-```tsx
-import identity from 'netlify-identity-widget';
+### admin/IdentityWidget.tsx
+
+```typescript
+import identity, { InitOptions } from 'netlify-identity-widget';
 import { useEffect } from 'react';
 
-export interface IdentityProps {
-  config?: identity.InitOptions;
+export interface IdentityWidgetProps {
+  config?: InitOptions;
   onLoad?: (Identity: typeof identity) => void;
 }
 
-export const IdentityWidget = (props: IdentityProps) => {
+export const IdentityWidget = (props: IdentityWidgetProps) => {
   useEffect(() => {
     (window as any).netlifyIdentity = identity;
 
@@ -137,22 +131,18 @@ export const IdentityWidget = (props: IdentityProps) => {
 };
 ```
 
-## create admin/AdminTemplate.tsx
+### admin/AdminTemplate.tsx
 
-```
+```typescript
 import { NetlifyCMS, NetlifyCMSProps } from './NetlifyCMS';
-import { IdentityProps, IdentityWidget } from './IdentityWidget';
-
-import { useState } from 'react';
+import { IdentityWidgetProps, IdentityWidget } from './IdentityWidget';
 
 interface AdminTemplateProps {
   cms: NetlifyCMSProps;
-  identity: IdentityProps;
+  identity: IdentityWidgetProps;
 }
 
-export function AdminTemplate(props: AdminTemplateProps) {
-  const [logged, setLogged] = useState(process.env.NODE_ENV === 'development');
-
+export default function AdminTemplate(props: AdminTemplateProps) {
   return (
     <>
       <IdentityWidget {...props.identity} />
@@ -162,38 +152,38 @@ export function AdminTemplate(props: AdminTemplateProps) {
 }
 ```
 
-## create pages/admin.tsx
+### pages/admin.tsx
 
-```
+```typescript
 import dynamic from 'next/dynamic';
 import { cmsConfig, identityConfig } from '~/components/admin/config';
 
-const AdminTemplate = dynamic(
-  async () => (await import('~/components/admin/AdminTemplate')).AdminTemplate,
-  {
-    ssr: false,
-  }
-);
+const AdminTemplate = dynamic(() => import('~/components/admin/AdminTemplate'), {
+  ssr: false,
+});
 
 export default function AdminPage() {
   return (
     <AdminTemplate
       cms={{
         config: cmsConfig,
-        onLoad: (cms) => {
+        onLoad: (cms) => { // optional
           // register previews, styles and widgets here
         },
       }}
       identity={{
         config: identityConfig,
+        onLoad: (identity) => { // optional
+          //
+        },
       }}
     />
   );
 }
 ```
 
-## add script in package.json
+### add script in package.json
 
-````json
+```json
 "dev:admin": "concurrently \"next dev\" \"netlify-cms-proxy-server\""
 ```
