@@ -26,13 +26,10 @@ const LoadingAdmin = () => (
   </Loading>
 );
 
-const AdminTemplate = dynamic(
-  async () => (await import('~/components/admin/AdminTemplate')).AdminTemplate,
-  {
-    ssr: false,
-    loading: LoadingAdmin,
-  }
-);
+const AdminTemplate = dynamic(() => import('~/components/admin/AdminTemplate'), {
+  ssr: false,
+  loading: LoadingAdmin,
+});
 
 export default function AdminPage() {
   return (

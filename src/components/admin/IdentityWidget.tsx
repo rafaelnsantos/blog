@@ -1,10 +1,10 @@
-import identity from 'netlify-identity-widget';
+import identity, { InitOptions } from 'netlify-identity-widget';
 import { useEffect } from 'react';
 
 export type OnLoad<T> = (item: T) => void | (() => void | undefined);
 
 export interface IdentityProps {
-  config: identity.InitOptions;
+  config: InitOptions;
   onLoad?: OnLoad<typeof identity>;
 }
 

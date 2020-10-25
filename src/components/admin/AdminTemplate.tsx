@@ -6,7 +6,7 @@ interface AdminTemplateProps {
   identity: IdentityProps;
 }
 
-export function AdminTemplate(props: AdminTemplateProps) {
+export default function AdminTemplate(props: AdminTemplateProps) {
   return (
     <>
       <IdentityWidget
