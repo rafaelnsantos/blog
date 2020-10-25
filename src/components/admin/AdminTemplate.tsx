@@ -1,8 +1,6 @@
 import { NetlifyCMS, NetlifyCMSProps } from './NetlifyCMS';
 import { IdentityProps, IdentityWidget } from './IdentityWidget';
 
-import { useState } from 'react';
-
 interface AdminTemplateProps {
   cms: NetlifyCMSProps;
   identity: IdentityProps;
