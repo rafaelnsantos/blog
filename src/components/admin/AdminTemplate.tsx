@@ -15,10 +15,19 @@ export function AdminTemplate(props: AdminTemplateProps) {
     <>
       <IdentityWidget
         config={props.identityConfig}
-        onInit={(identity, user) => !user && identity.open('login')}
-        onLogin={(identity, user) => (user ? identity.close() : identity.open('login'))}
-        onClose={(identity, user) => !user && identity.open('login')}
-        onLogout={(identity) => identity.open('login')}
+        onLoad={(identity) => {
+          identity.on('init', (user) => !user && identity.open('login'));
+          identity.on('login', (user) => (user ? identity.close() : identity.open('login')));
+          identity.on('logout', () => identity.open('login'));
+          identity.on('close', () => identity.open('login'));
+
+          return () => {
+            identity.off('init');
+            identity.off('login');
+            identity.off('logout');
+            identity.off('close');
+          };
+        }}
       />
       <NetlifyCMS
         config={props.cmsConfig}
