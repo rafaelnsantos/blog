@@ -4,6 +4,7 @@ import { IdentityProps, IdentityWidget } from './IdentityWidget';
 import { PostPreview } from './previews/PostPreview';
 import { ColorPreview } from './previews/ColorPreview';
 import { ColorWidget } from './widgets/ColorWidget';
+import { useEffect, useState } from 'react';
 
 interface AdminTemplateProps {
   cmsConfig: NetlifyCMSProps['config'];
@@ -11,15 +12,32 @@ interface AdminTemplateProps {
 }
 
 export function AdminTemplate(props: AdminTemplateProps) {
+  const [logged, setLogged] = useState(false);
+
   return (
     <>
       <IdentityWidget
         config={props.identityConfig}
         onLoad={(identity) => {
-          identity.on('init', (user) => !user && identity.open('login'));
-          identity.on('login', (user) => (user ? identity.close() : identity.open('login')));
-          identity.on('logout', () => identity.open('login'));
-          identity.on('close', () => identity.open('login'));
+          identity.on('init', (user) => {
+            if (user) {
+              setLogged(true);
+            } else {
+              identity.open('login');
+            }
+          });
+
+          identity.on('login', () => {
+            setLogged(true);
+            identity.close();
+          });
+
+          identity.on('logout', () => {
+            setLogged(false);
+            identity.open('login');
+          });
+
+          identity.on('close', () => !logged && identity.open('login'));
 
           return () => {
             identity.off('init');
