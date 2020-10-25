@@ -111,12 +111,12 @@ export const NetlifyCMS = (props: NetlifyCMSProps) => {
 import identity from 'netlify-identity-widget';
 import { useEffect } from 'react';
 
-export interface IdentityProps {
+export interface IdentityWidgetProps {
   config?: identity.InitOptions;
   onLoad?: (Identity: typeof identity) => void;
 }
 
-export const IdentityWidget = (props: IdentityProps) => {
+export const IdentityWidget = (props: IdentityWidgetProps) => {
   useEffect(() => {
     (window as any).netlifyIdentity = identity;
 
@@ -133,16 +133,14 @@ export const IdentityWidget = (props: IdentityProps) => {
 
 ```tsx
 import { NetlifyCMS, NetlifyCMSProps } from './NetlifyCMS';
-import { IdentityProps, IdentityWidget } from './IdentityWidget';
-
-import { useState } from 'react';
+import { IdentityWidgetProps, IdentityWidget } from './IdentityWidget';
 
 interface AdminTemplateProps {
   cms: NetlifyCMSProps;
-  identity: IdentityProps;
+  identity: IdentityWidgetProps;
 }
 
-export function AdminTemplate(props: AdminTemplateProps) {
+export default function AdminTemplate(props: AdminTemplateProps) {
   return (
     <>
       <IdentityWidget {...props.identity} />
@@ -158,24 +156,27 @@ export function AdminTemplate(props: AdminTemplateProps) {
 import dynamic from 'next/dynamic';
 import { cmsConfig, identityConfig } from '~/components/admin/config';
 
-const AdminTemplate = dynamic(
-  async () => (await import('~/components/admin/AdminTemplate')).AdminTemplate,
-  {
-    ssr: false,
-  }
-);
+
+// AdminTemplate needs dynamic importing because Netlify CMS and Identity Widget
+// need to run on client
+const AdminTemplate = dynamic(() => import('~/components/admin/AdminTemplate'), {
+  ssr: false,
+});
 
 export default function AdminPage() {
   return (
     <AdminTemplate
       cms={{
         config: cmsConfig,
-        onLoad: (cms) => {
+        onLoad: (cms) => { // optional
           // register previews, styles and widgets here
         },
       }}
       identity={{
         config: identityConfig,
+        onLoad: (identity) => { // optional
+          //
+        },
       }}
     />
   );
@@ -184,6 +185,6 @@ export default function AdminPage() {
 
 ### add script in package.json
 
-````json
+```json
 "dev:admin": "concurrently \"next dev\" \"netlify-cms-proxy-server\""
 ```
