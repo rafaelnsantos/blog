@@ -4,7 +4,7 @@ import { cmsConfig, identityConfig } from '~/components/admin/config';
 import styled from 'styled-components';
 import { RingLoader } from 'react-spinners';
 
-const Loading = styled.div<{ index: number }>`
+const Loading = styled.div`
   display: grid;
   place-items: center;
   position: absolute;
@@ -17,7 +17,7 @@ const Loading = styled.div<{ index: number }>`
 `;
 
 const LoadingAdmin = () => (
-  <Loading index={9999}>
+  <Loading>
     <RingLoader size="35vh" color="var(--text-primary)" />
   </Loading>
 );

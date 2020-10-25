@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { CmsConfigFixed } from './config';
 import CMS from 'netlify-cms-app';
+import { OnLoad } from './IdentityWidget';
 
 export interface NetlifyCMSProps {
   config: CmsConfigFixed;
-  onLoad?: (cms: typeof CMS) => void;
+  onLoad?: OnLoad<typeof CMS>;
 }
 
 export const NetlifyCMS = (props: NetlifyCMSProps) => {
@@ -12,7 +13,8 @@ export const NetlifyCMS = (props: NetlifyCMSProps) => {
     CMS.init({
       config: props.config,
     });
-    if (props.onLoad) props.onLoad(CMS);
+
+    if (props.onLoad) return props.onLoad(CMS);
   }, []);
   return <div />;
 };
