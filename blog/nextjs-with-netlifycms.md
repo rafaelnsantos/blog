@@ -21,9 +21,10 @@ published: true
 yarn add netlify-cms-app netlify-identity-widget 
 yarn add -D netlify-cms-proxy-server concurrently
 ```
+
 ### admin/collections.ts
 
-```ts
+```typescript
 import { CmsCollection } from 'netlify-cms-core';
 
 export const collections: CmsCollection[] = [
@@ -51,7 +52,7 @@ export const collections: CmsCollection[] = [
 
 in this file we'll have the Netlify CMS and Identity widgets configs.
 
-```ts
+```typescript
 import { CmsConfig } from 'netlify-cms-core';
 import { InitOptions } from 'netlify-identity-widget';
 import { collections } from './collections';
@@ -84,7 +85,7 @@ export const identityConfig: InitOptions = {
 
 ### admin/NetlifyCMS.tsx
 
-```tsx
+```typescript
 import React, { useEffect } from 'react';
 import CMS from 'netlify-cms-app';
 import { CmsConfigFixed } from './config';
@@ -107,7 +108,8 @@ export const NetlifyCMS = (props: NetlifyCMSProps) => {
 ```
 
 ### admin/IdentityWidget.tsx
-```tsx
+
+```typescript
 import identity from 'netlify-identity-widget';
 import { useEffect } from 'react';
 
@@ -131,7 +133,7 @@ export const IdentityWidget = (props: IdentityWidgetProps) => {
 
 ### admin/AdminTemplate.tsx
 
-```tsx
+```typescript
 import { NetlifyCMS, NetlifyCMSProps } from './NetlifyCMS';
 import { IdentityWidgetProps, IdentityWidget } from './IdentityWidget';
 
@@ -152,13 +154,10 @@ export default function AdminTemplate(props: AdminTemplateProps) {
 
 ### pages/admin.tsx
 
-```tsx
+```typescript
 import dynamic from 'next/dynamic';
 import { cmsConfig, identityConfig } from '~/components/admin/config';
 
-
-// AdminTemplate needs dynamic importing because Netlify CMS and Identity Widget
-// need to run on client
 const AdminTemplate = dynamic(() => import('~/components/admin/AdminTemplate'), {
   ssr: false,
 });
