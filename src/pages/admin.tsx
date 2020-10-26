@@ -51,23 +51,6 @@ export default function AdminPage() {
         }}
         identity={{
           config: identityConfig,
-          onLoad: (identity) => {
-            identity.on('init', (user) => {
-              if (!user) {
-                identity.open('login');
-              }
-            });
-
-            identity.on('logout', () => {
-              identity.open('login');
-            });
-
-            identity.on('close', () => {
-              if (!identity.currentUser()) {
-                identity.open('login');
-              }
-            });
-          },
         }}
       />
     </>
