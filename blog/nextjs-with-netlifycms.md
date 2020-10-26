@@ -1,6 +1,6 @@
 ---
 title: NextJS with NetlifyCMS
-date: 2020-10-21T18:16:16.239Z
+date: 2020-10-26T22:38:30.796Z
 metaTitle: NextJS with NetlifyCMS
 metaDescription: NextJS with NetlifyCMS
 metaImage: uploads/meta.jpg
@@ -18,14 +18,14 @@ published: true
 ## Install dependencies
 
 ```bash
-yarn add netlify-cms-app netlify-identity-widget 
-yarn add -D netlify-cms-proxy-server concurrently
+yarn add @monx/react-netlifycms
+yarn add -D @types/netlify-identity-widget 
 ```
 
 ### admin/collections.ts
 
 ```typescript
-import { CmsCollection } from 'netlify-cms-core';
+import { CmsCollection } from '@monx/react-netlifycms';
 
 export const collections: CmsCollection[] = [
   {
@@ -48,133 +48,45 @@ export const collections: CmsCollection[] = [
 ]
 ```
 
-### admin/config.ts
-
-in this file we'll have the Netlify CMS and Identity widgets configs.
-
-```typescript
-import { CmsConfig } from 'netlify-cms-core';
-import { InitOptions } from 'netlify-identity-widget';
-import { collections } from './collections';
-
-export interface CmsConfigFixed extends CmsConfig {
-  local_backend?: boolean;
-  load_config_file?: boolean;
-}
-
-export const cmsConfig: CmsConfigFixed = {
-  backend: {
-    name: 'git-gateway',
-    branch: 'master',
-  },
-  media_folder: 'public/uploads',
-  public_folder: 'uploads',
-  collections: collections,
-  local_backend: process.env.NODE_ENV !== 'production',
-  load_config_file: false,
-};
-
-export const identityConfig: InitOptions = {
-  APIUrl:
-    process.env.NODE_ENV === 'production'
-      ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
-      : undefined,
-  logo: false,
-};
-```
-
-### admin/NetlifyCMS.tsx
-
-```typescript
-import React, { useEffect } from 'react';
-import CMS from 'netlify-cms-app';
-import { CmsConfigFixed } from './config';
-
-export interface NetlifyCMSProps {
-  config: CmsConfigFixed;
-  onLoad?: (cms: typeof CMS) => void;
-}
-
-export const NetlifyCMS = (props: NetlifyCMSProps) => {
-  useEffect(() => {
-    CMS.init({
-      config: props.config,
-    });
-
-    if (props.onLoad) props.onLoad(CMS);
-  }, []);
-  return <div />;
-};
-```
-
-### admin/IdentityWidget.tsx
-
-```typescript
-import identity, { InitOptions } from 'netlify-identity-widget';
-import { useEffect } from 'react';
-
-export interface IdentityWidgetProps {
-  config?: InitOptions;
-  onLoad?: (Identity: typeof identity) => void;
-}
-
-export const IdentityWidget = (props: IdentityWidgetProps) => {
-  useEffect(() => {
-    (window as any).netlifyIdentity = identity;
-
-    if (props.onLoad) props.onLoad(identity);
-
-    identity.init(props.config);
-  }, []);
-
-  return <div />;
-};
-```
-
-### admin/AdminTemplate.tsx
-
-```typescript
-import { NetlifyCMS, NetlifyCMSProps } from './NetlifyCMS';
-import { IdentityWidgetProps, IdentityWidget } from './IdentityWidget';
-
-interface AdminTemplateProps {
-  cms: NetlifyCMSProps;
-  identity: IdentityWidgetProps;
-}
-
-export default function AdminTemplate(props: AdminTemplateProps) {
-  return (
-    <>
-      <IdentityWidget {...props.identity} />
-      <NetlifyCMS {...props.cms} />
-    </>
-  );
-}
-```
-
 ### pages/admin.tsx
 
 ```typescript
 import dynamic from 'next/dynamic';
-import { cmsConfig, identityConfig } from '~/components/admin/config';
+import { collections } from '~/admin/collections';
 
-const AdminTemplate = dynamic(() => import('~/components/admin/AdminTemplate'), {
+const NetlifyCMS = dynamic(() => import('@monx/react-netlifycms'), {
   ssr: false,
 });
 
 export default function AdminPage() {
   return (
-    <AdminTemplate
+    <NetlifyCMS 
       cms={{
-        config: cmsConfig,
-        onLoad: (cms) => { // optional
+        config: {
+          backend: {
+            name: 'git-gateway',
+            branch: 'master',
+          },
+          media_folder: 'public/uploads',
+          public_folder: 'uploads',
+          collections,
+          local_backend: process.env.NODE_ENV !== 'production',
+          load_config_file: false,
+        },
+        onLoad: (cms) => {
+          // optional
           // register previews, styles and widgets here
         },
       }}
       identity={{
-        config: identityConfig,
-        onLoad: (identity) => { // optional
-          //
+        config: {
+          APIUrl:
+            process.env.NODE_ENV === 'production'
+              ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
+              : undefined,
+        },
+        onLoad: (identity) => {
+          // optional
         },
       }}
     />
@@ -182,8 +94,23 @@ export default function AdminPage() {
 }
 ```
 
+## Dev development
+
+```bash
+yarn add -D concurrently netlify-cms-proxy-server
+```
+
+
 ### add script in package.json
 
 ```json
 "dev:admin": "concurrently \"next dev\" \"netlify-cms-proxy-server\""
 ```
+
+run
+
+```bash
+yarn dev:admin
+```
+
+access localhost:3000/admin without login
