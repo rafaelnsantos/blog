@@ -32,8 +32,7 @@ const StyledLink = styled.a`
 `;
 
 const StyledDescription = styled.div`
- max-width: 500px;
-
+  max-width: 500px;
 `;
 
 export function PostPreview({ post, preview }: PostPreviewProps) {
@@ -46,10 +45,10 @@ export function PostPreview({ post, preview }: PostPreviewProps) {
         </>
       ) : (
         <>
-          <Link href={`/blog/post/${post.slug}`}>
+          <Link href={`/blog/post/${post.slug}`} passHref>
             <StyledLink className="text-2xl">{post.title}</StyledLink>
           </Link>
-          <Link href={`/blog/post/${post.slug}`}>
+          <Link href={`/blog/post/${post.slug}`} passHref>
             <StyledLink className="text-2xl">
               <Image src={post.meta.image} width="300" className="self-center" />
             </StyledLink>
