@@ -1,5 +1,3 @@
-import Head from 'next/head';
-
 import { PostPreview } from '~/components/admin/previews/PostPreview';
 import { ColorPreview } from '~/components/admin/previews/ColorPreview';
 import { ColorWidget } from '~/components/admin/widgets/ColorWidget';
@@ -16,18 +14,6 @@ interface AdminTemplateProps {
 export default function AdminTemplate(props: AdminTemplateProps) {
   return (
     <>
-      <Head>
-        <meta name="robots" content="noindex, nofollow" />
-      </Head>
-      <IdentityWidget
-        config={props.config.identity}
-        onLoad={(identity) => {
-          console.log(identity);
-          identity.on('init', (user) => !user && identity.open('login'));
-
-          identity.on('logout', () => identity.open('login'));
-        }}
-      />
       <NetlifyCMS
         config={props.config.cms}
         onLoad={(cms) => {
@@ -37,6 +23,15 @@ export default function AdminTemplate(props: AdminTemplateProps) {
           cms.registerPreviewTemplate('blog', PostPreview);
           cms.registerPreviewTemplate('colors', ColorPreview);
           cms.registerWidget('color', ColorWidget);
+        }}
+      />
+      <IdentityWidget
+        config={props.config.identity}
+        onLoad={(identity) => {
+          console.log(identity);
+          identity.on('init', (user) => !user && identity.open('login'));
+
+          identity.on('logout', () => identity.open('login'));
         }}
       />
     </>
