@@ -13,7 +13,7 @@
     "export:css": "tailwindcss build src/theme/global.scss -o public/style/preview/global.css && sass src/components/markdown/markdown.module.scss  public/style/preview/markdown.css"
   },
   "dependencies": {
-    "@monx/react-netlifycms": "^1.0.5",
+    "@monx/react-netlifycms": "^1.0.6",
     "@types/yup": "^0.29.8",
     "autoprefixer": "^9.8.0",
     "date-fns": "^2.13.0",
@@ -46,6 +46,7 @@
     "@cucumber/cucumber": "^7.0.0-rc.0",
     "@cypress/browserify-preprocessor": "^3.0.1",
     "@types/cypress-cucumber-preprocessor": "^3.0.0",
+    "@types/netlify-identity-widget": "^1.9.0",
     "@types/node": "^14.0.1",
     "@types/react": "^16.9.35",
     "@types/react-color": "^3.0.4",
