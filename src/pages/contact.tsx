@@ -15,7 +15,7 @@ export default function ContactPage() {
             username: `${values.name} - ${values.email} - ${values.phone}`,
           })
         }
-        onSuccess={(res: Response) => alert('success' + res.json())}
+        onSuccess={(res: Response) => alert('success')}
         onError={(err) => alert('oh no ' + err.message)}
       />
     </Page>

@@ -47,7 +47,10 @@ export function TextInput({ id, label, className, ...props }: TextInputProps) {
         id={id}
         value={field.value}
         onChange={field.onChange}
-        onBlur={() => setFocus(false)}
+        onBlur={(e) => {
+          setFocus(false);
+          field.onBlur(e);
+        }}
         onFocus={() => setFocus(true)}
       />
       <StyledError visible={meta.touched && !!meta.error}>{' ' + meta.error}</StyledError>
