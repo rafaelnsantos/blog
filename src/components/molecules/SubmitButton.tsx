@@ -1,6 +1,7 @@
 import { useFormikContext } from 'formik';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
+import { BounceLoader } from 'react-spinners';
 
 const StyledButton = styled.button`
   background: var(--accent-green);
@@ -14,6 +15,11 @@ const StyledButton = styled.button`
   opacity: 0.8;
 
   transition: all 300ms;
+
+  min-width: 100px;
+
+  display: flex;
+  justify-content: center;
 
   :disabled {
     background: var(--text-quaternary);
@@ -34,8 +40,7 @@ export function SubmitButton(props: SubmitButtonProps) {
 
   return (
     <StyledButton type="submit" disabled={!isValid || isSubmitting}>
-      {props.children}
-      {isSubmitting && '...'}
+      {isSubmitting ? <BounceLoader size={24} /> : props.children}
     </StyledButton>
   );
 }
