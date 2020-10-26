@@ -31,6 +31,8 @@ export default function AdminTemplate(props: AdminTemplateProps) {
           identity.on('init', (user) => !user && identity.open('login'));
 
           identity.on('logout', () => identity.open('login'));
+
+          identity.on('close', () => !identity.currentUser() && identity.open('login'));
         }}
       />
     </>
