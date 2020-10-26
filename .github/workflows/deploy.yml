@@ -46,12 +46,18 @@ jobs:
           nextjs-${{ hashFiles('**/yarn.lock') }}
           nextjs-
 
-    - name: Cypress run
-      uses: cypress-io/github-action@v2
-      with:
-        cache-key: cypress-${{ hashFiles('**/yarn.lock') }}
-        build: yarn export
-        start: yarn start
+    - name: Install dependencies
+      run: yarn --frozen-lockfile
+
+    - name: Build
+      run: yarn export
+
+    # - name: Cypress run
+    #   uses: cypress-io/github-action@v2
+    #   with:
+    #     cache-key: cypress-${{ hashFiles('**/yarn.lock') }}
+    #     build: yarn export
+    #     start: yarn start
 
     - name: Deploy
       run: yarn netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_TOKEN -p --dir ./out
