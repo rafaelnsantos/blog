@@ -28,7 +28,6 @@ export default function AdminTemplate(props: AdminTemplateProps) {
       <IdentityWidget
         config={props.config.identity}
         onLoad={(identity) => {
-          console.log(identity);
           identity.on('init', (user) => !user && identity.open('login'));
 
           identity.on('logout', () => identity.open('login'));
