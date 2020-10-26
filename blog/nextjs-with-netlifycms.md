@@ -34,15 +34,12 @@ export const collections: CmsCollection[] = [
     folder: 'blog',
     create: true,
     fields: [
+      { label: 'Published', name: 'published', widget: 'boolean' },
       { label: 'Title', name: 'title', widget: 'string' },
       { label: 'Publish Date', name: 'date', widget: 'datetime' },
-      { label: 'Meta Title', name: 'metaTitle', widget: 'string' },
-      { label: 'Meta Description', name: 'metaDescription', widget: 'string' },
-      { label: 'Meta Image', name: 'metaImage', widget: 'image' },
       { label: 'Body', name: 'body', widget: 'markdown' },
       { label: 'Tags', name: 'tags', widget: 'list' },
       { label: 'Authors', name: 'authors', widget: 'list' },
-      { label: 'Published', name: 'published', widget: 'boolean' },
     ],
   },
 ]
