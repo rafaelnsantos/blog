@@ -1,14 +1,8 @@
 /* eslint-disable @typescript-eslint/camelcase */
-import { CmsConfig } from 'netlify-cms-core';
-import { InitOptions } from 'netlify-identity-widget';
 import { collections } from './collections';
+import { IdentityConfig, CmsConfig } from '@monx/react-netlifycms';
 
-export interface CmsConfigFixed extends CmsConfig {
-  local_backend?: boolean;
-  load_config_file?: boolean;
-}
-
-export const cmsConfig: CmsConfigFixed = {
+export const cmsConfig: CmsConfig = {
   backend: {
     name: 'git-gateway',
     branch: 'master',
@@ -20,7 +14,7 @@ export const cmsConfig: CmsConfigFixed = {
   load_config_file: false,
 };
 
-export const identityConfig: InitOptions = {
+export const identityConfig: IdentityConfig = {
   APIUrl:
     process.env.NODE_ENV === 'production'
       ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`

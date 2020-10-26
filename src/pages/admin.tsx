@@ -26,7 +26,7 @@ const LoadingAdmin = () => (
   </Loading>
 );
 
-const AdminTemplate = dynamic(() => import('~/components/admin/AdminTemplate'), {
+const NetlifyCMS = dynamic(() => import('@monx/react-netlifycms'), {
   ssr: false,
   loading: LoadingAdmin,
 });
@@ -37,7 +37,7 @@ export default function AdminPage() {
       <Head>
         <meta name="robots" content="noindex, nofollow" />
       </Head>
-      <AdminTemplate
+      <NetlifyCMS
         cms={{
           config: cmsConfig,
           onLoad: (cms) => {
@@ -51,6 +51,29 @@ export default function AdminPage() {
         }}
         identity={{
           config: identityConfig,
+          onLoad: (identity) => {
+            identity.on('init', (user) => {
+              if (!user) {
+                identity.open('login');
+              }
+            });
+
+            identity.on('logout', () => {
+              identity.open('login');
+            });
+
+            identity.on('close', () => {
+              if (!identity.currentUser()) {
+                identity.open('login');
+              }
+            });
+
+            return () => {
+              identity.off('init');
+              identity.off('logout');
+              identity.off('close');
+            };
+          },
         }}
       />
     </>

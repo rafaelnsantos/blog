@@ -1,4 +1,4 @@
-import { CmsCollection } from 'netlify-cms-core';
+import { CmsCollection } from '@monx/react-netlifycms';
 import COLORS from 'content/colors.json';
 
 export const collections: CmsCollection[] = [
