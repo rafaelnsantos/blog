@@ -67,12 +67,6 @@ export default function AdminPage() {
                 identity.open('login');
               }
             });
-
-            return () => {
-              identity.off('init');
-              identity.off('logout');
-              identity.off('close');
-            };
           },
         }}
       />
