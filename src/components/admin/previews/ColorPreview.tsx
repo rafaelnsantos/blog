@@ -8,6 +8,7 @@ import { LandingPageTemplate } from '~/components/templates/LandingPage';
 import { AboutPageTemplate } from '~/components/templates/AboutPage';
 import { PostTemplate } from '~/components/templates/Post';
 import { BlogTemplate } from '~/components/templates/Blog';
+import { ContactTemplate } from '~/components/templates/Contact';
 
 const post: PostType = {
   title: 'asd',
@@ -33,10 +34,29 @@ const postPreview: PostPreview = {
   title: post.title,
 };
 
+const templates = {
+  contact: <ContactTemplate onSubmit={async (values) => console.log(values)} />,
+  blog: (
+    <BlogTemplate
+      preview
+      posts={[postPreview, postPreview, postPreview, postPreview, postPreview]}
+      tags={[
+        {
+          count: 1,
+          value: 'asd',
+        },
+      ]}
+    />
+  ),
+  about: <AboutPageTemplate />,
+  home: <LandingPageTemplate />,
+  post: <PostTemplate post={post} />,
+};
+
 export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
   const get = useCallback((keys: string[]) => entry.getIn(['data', ...keys]), [entry]);
 
-  const [selectedTemplate, setSelectedTemplate] = useState(<LandingPageTemplate />);
+  const [selectedTemplate, setSelectedTemplate] = useState(templates.home);
 
   const colors = useMemo(
     () =>
@@ -53,27 +73,11 @@ export function ColorPreview({ entry }: PreviewTemplateComponentProps) {
   return (
     <Preview colors={colors}>
       <div className="flex flex-row justify-evenly">
-        <button onClick={() => setSelectedTemplate(<LandingPageTemplate />)}>Landing</button>
-        <button onClick={() => setSelectedTemplate(<PostTemplate post={post} />)}>Post</button>
-        <button onClick={() => setSelectedTemplate(<AboutPageTemplate />)}>About</button>
-        <button
-          onClick={() =>
-            setSelectedTemplate(
-              <BlogTemplate
-                preview
-                posts={[postPreview, postPreview, postPreview, postPreview, postPreview]}
-                tags={[
-                  {
-                    count: 1,
-                    value: 'asd',
-                  },
-                ]}
-              />
-            )
-          }
-        >
-          Blog
-        </button>
+        {Object.entries(templates).map((template) => (
+          <button key={template[0]} onClick={() => setSelectedTemplate(template[1])}>
+            {template[0]}
+          </button>
+        ))}
       </div>
 
       <HeaderNavPreview
