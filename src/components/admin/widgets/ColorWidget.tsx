@@ -1,9 +1,8 @@
-// https://github.com/ekoeryanto/netlify-cms-widgets/tree/master/widgets/color
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ChromePicker, ColorResult } from 'react-color';
 import styled from 'styled-components';
+import { CmsField } from '@monx/react-netlifycms';
 import { Widget } from './Widget';
-import { CmsField } from 'netlify-cms-core';
 
 const Button = styled.button`
   min-width: 120px;
@@ -52,15 +51,16 @@ export const ColorWidget = Widget<string, ColorField>(
 
     const [displayColorPicker, setDisplayColorPicker] = useState(false);
 
-    const handleChangeComplete = (color: ColorResult) => {
+    const handleChangeComplete = useCallback((color: ColorResult) => {
       let colorHex: string;
+
       if (params.alpha && color.rgb.a) {
         colorHex = color.hex + Math.round(color.rgb.a * 255).toString(16);
       } else {
         colorHex = color.hex;
       }
       onChange(colorHex.toUpperCase());
-    };
+    }, []);
 
     const handleClick = () => setDisplayColorPicker(!displayColorPicker);
 
@@ -76,7 +76,7 @@ export const ColorWidget = Widget<string, ColorField>(
           <PopOver>
             <Cover tabIndex={0} onClick={handleClose} onKeyPress={handleClose} />
             <ChromePicker
-              onChangeComplete={handleChangeComplete}
+              onChange={handleChangeComplete}
               color={value || DEFAULT_COLOR}
               disableAlpha={!params.alpha}
             />

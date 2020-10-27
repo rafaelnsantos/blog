@@ -72,8 +72,8 @@ const settings: CmsCollection = {
         label: color,
         widget: 'object',
         fields: [
-          { name: 'light', label: 'light', widget: 'color' },
-          { name: 'dark', label: 'dark', widget: 'color' },
+          { name: 'light', label: 'light', widget: 'color', alpha: true },
+          { name: 'dark', label: 'dark', widget: 'color', alpha: true },
         ],
       })),
     },
