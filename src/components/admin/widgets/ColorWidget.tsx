@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { ChromePicker, ColorResult } from 'react-color';
 import styled from 'styled-components';
 import { CmsField } from 'netlify-cms-core';
-import { Widget } from './Widget';
+import Widget from '@monx/react-netlifycms/dist/Widget';
 
 const Button = styled.button`
   min-width: 120px;
