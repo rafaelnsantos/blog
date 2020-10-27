@@ -67,14 +67,16 @@ const settings: CmsCollection = {
       label: 'Colors',
       name: 'colors',
 
-      fields: Object.keys(COLORS).map((color) => ({
+      fields: Object.entries(COLORS).map(([color, variants]) => ({
         name: color,
         label: color,
         widget: 'object',
-        fields: [
-          { name: 'light', label: 'light', widget: 'color', alpha: true },
-          { name: 'dark', label: 'dark', widget: 'color', alpha: true },
-        ],
+        fields: Object.keys(variants).map((variant) => ({
+          name: variant,
+          label: variant,
+          widget: 'color',
+          alpha: true,
+        })),
       })),
     },
     {
