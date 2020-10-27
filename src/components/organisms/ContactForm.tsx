@@ -32,7 +32,7 @@ export function ContactForm(props: ContactFormProps) {
       <TextInput id="email" label="Email" />
       <TextInput id="phone" label="Phone" />
       <TextInput id="message" label="Message" />
-      <SubmitButton>Enviar</SubmitButton>
+      <SubmitButton>Send</SubmitButton>
     </Form>
   );
 }
