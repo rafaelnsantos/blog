@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { ChromePicker, ColorResult } from 'react-color';
 import styled from 'styled-components';
-import { CmsField } from '@monx/react-netlifycms';
+import { CmsField } from 'netlify-cms-core';
 import { Widget } from './Widget';
 
 const Button = styled.button`
