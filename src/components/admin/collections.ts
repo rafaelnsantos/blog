@@ -75,7 +75,6 @@ const settings: CmsCollection = {
           name: variant,
           label: variant,
           widget: 'color',
-          alpha: true,
         })),
       })),
     },

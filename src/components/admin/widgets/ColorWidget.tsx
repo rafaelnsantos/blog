@@ -72,7 +72,7 @@ export const ColorWidget = Widget<string, ColorField>(
           <ColorDiv style={{ background: value, borderColor: 'black', borderWidth: 1 }} />
           <Hex>{value}</Hex>
         </Button>
-        {displayColorPicker ? (
+        {displayColorPicker && (
           <PopOver>
             <Cover tabIndex={0} onClick={handleClose} onKeyPress={handleClose} />
             <ChromePicker
@@ -81,7 +81,7 @@ export const ColorWidget = Widget<string, ColorField>(
               disableAlpha={!params.alpha}
             />
           </PopOver>
-        ) : null}
+        )}
       </div>
     );
   },

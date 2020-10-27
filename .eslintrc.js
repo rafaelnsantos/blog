@@ -9,6 +9,7 @@ module.exports = {
     'plugin:cypress/recommended',
   ],
   rules: {
+    '@typescript-eslint/explicit-function-return-type': 'off',
     'react/prop-types': 'warn',
     'react/jsx-filename-extension': [
       1,
