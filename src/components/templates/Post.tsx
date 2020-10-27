@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import { CodeBlock } from '~/components/markdown/CodeBlock';
 import { formatTimestamp } from '~/utils/timeUtils';
 import styles from '~/components/markdown/markdown.module.scss';
@@ -8,8 +7,7 @@ import { useState } from 'react';
 import { Anchors } from '../molecules/Anchors';
 import { Text } from '../atoms/Text';
 import { Image } from '../atoms/Image';
-
-const Markdown = dynamic(() => import('react-markdown'));
+import Markdown from 'react-markdown';
 
 export function PostTemplate({ post, anchors }: BlogPostProps) {
   const [activeAnchor, setActiveAnchor] = useState('');
