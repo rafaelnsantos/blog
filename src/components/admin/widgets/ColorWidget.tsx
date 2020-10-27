@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { ChromePicker, ColorResult } from 'react-color';
 import styled from 'styled-components';
-import { CmsField } from 'netlify-cms-core';
 import Widget from '@monx/react-netlifycms/dist/Widget';
 
 const Button = styled.button`
@@ -40,12 +39,12 @@ const Cover = styled.div`
   left: 0px;
 `;
 
-interface ColorField extends CmsField {
+interface ColorWidgetParams {
   default?: string;
   alpha?: boolean;
 }
 
-export const ColorWidget = Widget<string, ColorField>(
+export const ColorWidget = Widget<string, ColorWidgetParams>(
   ({ onChange, params, value }) => {
     const DEFAULT_COLOR = params.default || '#ffffff';
 

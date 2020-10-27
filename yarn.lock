@@ -2065,10 +2065,10 @@
   resolved "https://registry.yarnpkg.com/@kwsites/promise-deferred/-/promise-deferred-1.1.1.tgz#8ace5259254426ccef57f3175bc64ed7095ed919"
   integrity sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==
 
-"@monx/react-netlifycms@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@monx/react-netlifycms/-/react-netlifycms-1.1.2.tgz#2fc85415729f1fe2d6941cba93cbf26815837449"
-  integrity sha512-7Gdr0KNVMZXRw7oAHpzQVbXMPggZa/ptfn9VTLxApPSBQt2fg3WuRE1opch8DJsNnU6qRSHepsBVaNhaBA8Iog==
+"@monx/react-netlifycms@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@monx/react-netlifycms/-/react-netlifycms-1.1.3.tgz#d87399d9405eb70a274890d549c83e3269ebf1c5"
+  integrity sha512-E8YrEz413turdt6z7CO5S7VabzM1FLa/yAGBxpEhgIohVlsyE3cakyCV/815P/UyVZQ+iQQUvwOaxUihDMAEgA==
   dependencies:
     netlify-cms-app "^2.12.27"
     netlify-identity-widget "^1.9.1"
