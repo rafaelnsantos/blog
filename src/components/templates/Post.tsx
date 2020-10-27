@@ -20,7 +20,7 @@ export function PostTemplate({ post, anchors }: BlogPostProps) {
             <Text variant="h1" lineHeight={3}>
               {post.title}
             </Text>
-            <Image src={post.meta.image} alt={post.meta.title} />
+            <Image src={post.meta.image} unsized alt={post.title} />
             <Text align="center">{formatTimestamp(post.timestamp)}</Text>
             <Text size={0.85} align="center">
               {post.readingTime} min read

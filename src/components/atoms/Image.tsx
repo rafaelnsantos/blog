@@ -1,5 +1,6 @@
-import { DetailedHTMLProps, ImgHTMLAttributes } from 'react';
+import { ComponentProps } from 'react';
+import Img from 'next/image';
 
-type ImageProps = DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
+type ImageProps = ComponentProps<typeof Img>;
 
-export const Image = ({ src, ...props }: ImageProps) => <img {...props} src={`/${src}`} />;
+export const Image = ({ src, ...props }: ImageProps) => <Img {...props} src={`/${src}`} />;
