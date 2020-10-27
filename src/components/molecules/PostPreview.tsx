@@ -43,10 +43,8 @@ export function PostPreview({ post, preview }: PostPreviewProps) {
           <StyledLink className="text-2xl">{post.title}</StyledLink>
           <Image
             src={post.meta.image}
-            width="300"
-            height="200"
             alt={post.title}
-            className="self-center"
+            className="self-center max-w-full lg:max-w-sm"
           />
         </>
       ) : (
@@ -58,10 +56,8 @@ export function PostPreview({ post, preview }: PostPreviewProps) {
             <StyledLink className="text-2xl">
               <Image
                 src={post.meta.image}
-                width="300"
-                height="200"
                 alt={post.title}
-                className="self-center"
+                className="self-center max-w-full lg:max-w-sm"
               />
             </StyledLink>
           </Link>
