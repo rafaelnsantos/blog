@@ -7,7 +7,7 @@ export function GenericProvider<Params, T>(
   const genericContext = createContext<T>(initial);
 
   const Provider: React.FC<Params> = (props) => {
-    const value = useMemo(() => initializer(props), []);
+    const value = initializer(props);
     return <genericContext.Provider value={value}>{props.children}</genericContext.Provider>;
   };
 
