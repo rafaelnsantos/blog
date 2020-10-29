@@ -45,9 +45,11 @@ published: true
 <p>&nbsp;</p>
 <h3>Setup cypress</h3>
 <div>&nbsp;</div>
-<div>run&nbsp;cypress&nbsp;once&nbsp;to&nbsp;generate&nbsp;the&nbsp;default&nbsp;files.</div>
+<div>run cypress once to generate default files.</div>
 <div>&nbsp;</div>
-<div>yarn dev:test</div>
+<div>
+<pre class="language-markup"><code>yarn dev:test</code></pre>
+</div>
 <div>&nbsp;</div>
 <h4>create&nbsp;cypress.json</h4>
 <div>
@@ -57,7 +59,18 @@ published: true
 <p>&nbsp;</p>
 </div>
 <h4>Setup tsconfig</h4>
-<div>add<em> "cypress"</em>&nbsp; <strong>exclude </strong>in <strong>tsconfig.json</strong></div>
+<pre class="language-markup"><code>{
+  "compilerOptions": {
+    ...
+  },
+  "exclude": [
+    ...,
+    "cypress"
+  ]
+}
+</code></pre>
+<div>add<em> "cypress"</em>&nbsp; to <strong>exclude </strong>in <strong>tsconfig.json</strong></div>
+<div>&nbsp;</div>
 <div>&nbsp;</div>
 <h4>setup cucumber plugins</h4>
 <div>on <strong>cypress/plugins/index.js</strong>&nbsp;add&nbsp;</div>
@@ -107,7 +120,7 @@ Then(/^he must visit the blog$/, () =&gt; {
   cy.title().should('equal', 'Blog | Monx.dev');
 });</code></pre>
 <p>&nbsp;</p>
-<h2>Run tests with Git Action</h2>
+<h2>Run tests with GitHub Actions</h2>
 <p><strong>.github/workflows/cypress.yml</strong></p>
 <pre class="language-markup"><code>name: Cypress Test
 
