@@ -16,7 +16,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 export function reportWebVitals({ id, name, label, value }: NextWebVitalsMetric) {
   const gtag: typeof ReactGA = (window as any).gtag;
 
-  if (!gtag) return;
+  if (process.env.NODE_ENV !== 'production' || !gtag) return;
 
   gtag.event({
     category: label === 'web-vital' ? 'Web Vitals' : 'Next.js custom metric',
