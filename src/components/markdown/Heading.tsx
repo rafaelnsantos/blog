@@ -1,4 +1,5 @@
-import React, { useMemo } from 'react';
+import React, { ReactNode } from 'react';
+import { CSSProperties } from 'styled-components';
 
 function flatten(text: any, child: any): any {
   return typeof child === 'string'
@@ -6,20 +7,15 @@ function flatten(text: any, child: any): any {
     : React.Children.toArray(child.props.children).reduce(flatten, text);
 }
 
-function HeadingRenderer(props: any) {
-  return React.createElement('h' + props.level, { name: props.text }, props.children);
+interface HeadingProps {
+  children: ReactNode;
+  level: number;
+  style?: CSSProperties;
 }
 
-export function Heading(props: any) {
-  const [children, text] = useMemo(() => {
-    const children = React.Children.toArray(props.children);
-    const text = children.reduce(flatten, '');
-    return [children, text];
-  }, []);
+export function Heading({ level, children, ...props }: HeadingProps) {
+  const Children = React.Children.toArray(children);
+  const text = Children.reduce(flatten, '');
 
-  return (
-    <HeadingRenderer level={props.level} text={text}>
-      {children}
-    </HeadingRenderer>
-  );
+  return React.createElement('h' + level, { name: text, ...props }, Children);
 }

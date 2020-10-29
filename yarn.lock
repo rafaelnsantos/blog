@@ -2759,6 +2759,11 @@
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
+"@types/css-to-style@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/css-to-style/-/css-to-style-1.2.0.tgz#42fdb8ec8aff4ed3a006e6870eb98f18106de16e"
+  integrity sha512-dAp6ZjAA76WrPuqMuKuacMARvh8K6HYipvvmiS/5aJKxH54fkX/3xoiq08DZYdHpM9RXYnyj7zanROfWSJHYuA==
+
 "@types/cypress-cucumber-preprocessor@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@types/cypress-cucumber-preprocessor/-/cypress-cucumber-preprocessor-3.0.0.tgz#a86c9207170d8f098b5d4f86e707cda8ea7506f8"
@@ -5814,6 +5819,11 @@ css-to-react-native@^3.0.0:
     camelize "^1.0.0"
     css-color-keywords "^1.0.0"
     postcss-value-parser "^4.0.2"
+
+css-to-style@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/css-to-style/-/css-to-style-1.3.3.tgz#6f43ae2d5863f28a940b332546be5a11a53725e2"
+  integrity sha512-aOurfB8qF0YVwCO4RFj3wMIYg4GhfB41gf/EqvrjlO6zYDy2lswu6HzfgeHRszMa/w7UHLi9yyDqgsELeMDjng==
 
 css-unit-converter@^1.1.1:
   version "1.1.2"

@@ -1,5 +1,5 @@
-import parse from 'html-react-parser';
-
+import parse, { domToReact } from 'html-react-parser';
+import toStyle from 'css-to-style';
 interface HtmlRenderProps {
   source: string;
   renderers: {
@@ -7,19 +7,48 @@ interface HtmlRenderProps {
   };
 }
 
+export interface HtmlRenderNode {
+  type: string;
+  children: any[];
+  name: string;
+  attribs: any;
+}
+
 export function HtmlRender(props: HtmlRenderProps) {
   return (
-    <div>
+    <>
       {parse(props.source, {
-        replace: (node) => {
+        replace: (node: HtmlRenderNode) => {
           if (node.type === 'tag') {
-            if (Object.keys(props.renderers).includes(node.name)) {
+            const tags = Object.keys(props.renderers);
+
+            if (tags.includes(node.name)) {
               const Component = props.renderers[node.name];
-              return <Component {...node.attribs}>{node.children[0].data}</Component>;
+
+              const style = toStyle(node.attribs.style || '');
+
+              if (node.children.length === 0) return <Component {...node.attribs} style={style} />;
+              return (
+                <Component {...node.attribs} style={style}>
+                  {domToReact(node.children)}
+                </Component>
+              );
+            }
+
+            if (tags.includes('heading') && node.name.startsWith('h') && node.name.length === 2) {
+              const Component = props.renderers.heading;
+              const style = toStyle(node.attribs.style || '');
+              node.attribs.level = parseInt(node.name[1]);
+
+              return (
+                <Component {...node.attribs} style={style}>
+                  {domToReact(node.children)}
+                </Component>
+              );
             }
           }
         },
       })}
-    </div>
+    </>
   );
 }
