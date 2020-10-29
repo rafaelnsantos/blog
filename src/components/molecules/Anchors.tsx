@@ -24,15 +24,12 @@ export function Anchors({ anchors }: AnchorsProps) {
   const [active, setActive] = useState<number | null>();
 
   useEffect(() => {
-    const bodyRect = document.body.getBoundingClientRect();
     anchors.forEach((anchor) => {
       const element = document.getElementById(anchor.slug);
 
       if (!element) return;
 
-      const elementRect = element.getBoundingClientRect();
-
-      anchor.position = elementRect.top - bodyRect.top;
+      anchor.position = element.offsetTop;
     });
   }, [anchors]);
 
