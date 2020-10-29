@@ -2746,6 +2746,14 @@
   resolved "https://registry.yarnpkg.com/@teppeis/multimaps/-/multimaps-1.1.0.tgz#4f9788e00f244a0bbe896305d9267147143508a7"
   integrity sha512-YgANgfYU7LqgaLkGPWSTiwu2qcuhj0IOvj+kRwDFjAVbiEXT7ZQLPaFfmrAAN/Fa+tvwy1aYFd0RdT7lMO1Msw==
 
+"@tinymce/tinymce-react@^3.8.1":
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/@tinymce/tinymce-react/-/tinymce-react-3.8.1.tgz#7549bf8c06487b0b21b5b8c86c66c376dbbf5270"
+  integrity sha512-mLoA7CJoi4e0NqgNmCLLmK/gAvh9Tjd9WHWHtUJ6msBciLfc3c4Ma3UKlAvlRqNR8Q07ywTeRWvUjTn3zbqxIQ==
+  dependencies:
+    prop-types "^15.6.2"
+    tinymce "^5.5.0"
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -2762,6 +2770,18 @@
   integrity sha512-W24e3Ycz1UZPgr1ZEDHlK4XnvOr+CpJH3qNsFeqXwwlW/9END9gxn3oJSsp7gYdiQxrXUHwUUd3xuzVz37MrZQ==
   dependencies:
     "@types/node" "*"
+
+"@types/domhandler@*", "@types/domhandler@2.4.1":
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/@types/domhandler/-/domhandler-2.4.1.tgz#7b3b347f7762180fbcb1ece1ce3dd0ebbb8c64cf"
+  integrity sha512-cfBw6q6tT5sa1gSPFSRKzF/xxYrrmeiut7E0TxNBObiLSBTuFEHibcfEe3waQPEDbqBsq+ql/TOniw65EyDFMA==
+
+"@types/domutils@*":
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/@types/domutils/-/domutils-1.7.3.tgz#890de5a79d86896e9e6a7445a43c9512e62d6f04"
+  integrity sha512-EucnS75OnnEdypNt+UpARisSF8eJBq4no+aVOis3Bs5kyABDXm1hEDv6jJxcMJPjR+a2YCrEANaW+BMT2QVG2Q==
+  dependencies:
+    domhandler "^2.4.0"
 
 "@types/download@^6.2.4":
   version "6.2.4"
@@ -2809,6 +2829,15 @@
   dependencies:
     "@types/react" "*"
     hoist-non-react-statics "^3.3.0"
+
+"@types/htmlparser2@3.10.1":
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/@types/htmlparser2/-/htmlparser2-3.10.1.tgz#1e65ba81401d53f425c1e2ba5a3d05c90ab742c7"
+  integrity sha512-fCxmHS4ryCUCfV9+CJZY1UjkbR+6Al/EQdX5Jh03qBj9gdlPG5q+7uNoDgE/ZNXb3XNWSAQgqKIWnbRCbOyyWA==
+  dependencies:
+    "@types/domhandler" "*"
+    "@types/domutils" "*"
+    "@types/node" "*"
 
 "@types/http-proxy@^1.17.4":
   version "1.17.4"
@@ -6495,19 +6524,19 @@ domelementtype@^2.0.1:
   resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-2.0.1.tgz#1f8bdfe91f5a78063274e803b4bdcedf6e94f94d"
   integrity sha512-5HOHUDsYZWV8FGWN0Njbr/Rn7f/eWSQi1v7+HsUVwXgn8nWWlL64zKDkS0n8ZmQ3mlWOMuXOnR+7Nx/5tMO5AQ==
 
+domhandler@2.4.2, domhandler@^2.3.0, domhandler@^2.4.0:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-2.4.2.tgz#8805097e933d65e85546f726d60f5eb88b44f803"
+  integrity sha512-JiK04h0Ht5u/80fdLMCEmV4zkNh2BcoMFBmZ/91WtYZ8qVXSKjiw7fXMgFPnHcSZgOo3XdinHvmnDUeMf5R4wA==
+  dependencies:
+    domelementtype "1"
+
 domhandler@3.0.0, domhandler@^3.0, domhandler@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-3.0.0.tgz#51cd13efca31da95bbb0c5bee3a48300e333b3e9"
   integrity sha512-eKLdI5v9m67kbXQbJSNn1zjh0SDzvzWVWtX+qEI3eMjZw8daH9k8rlj1FZY9memPwjiskQFbe7vHVVJIAqoEhw==
   dependencies:
     domelementtype "^2.0.1"
-
-domhandler@^2.3.0:
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/domhandler/-/domhandler-2.4.2.tgz#8805097e933d65e85546f726d60f5eb88b44f803"
-  integrity sha512-JiK04h0Ht5u/80fdLMCEmV4zkNh2BcoMFBmZ/91WtYZ8qVXSKjiw7fXMgFPnHcSZgOo3XdinHvmnDUeMf5R4wA==
-  dependencies:
-    domelementtype "1"
 
 domutils@2.1.0, domutils@^2.0.0:
   version "2.1.0"
@@ -8646,6 +8675,25 @@ hosted-git-info@^2.1.4:
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.8.8.tgz#7539bd4bc1e0e0a895815a2e0262420b12858488"
   integrity sha512-f/wzC2QaWBs7t9IYqB4T3sR1xviIViXJRJTWBlx2Gf3g0Xi5vI7Yy4koXQ1c9OYDGHN9sBy1DQ2AB8fqZBWhUg==
 
+html-dom-parser@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/html-dom-parser/-/html-dom-parser-0.3.0.tgz#19864ca42836ec8750b439600633f145ab5409b9"
+  integrity sha512-WDEYpO5gHGKuJbf0rwndGq7yUHJ4xboNj9l9mRGw5RsKFc3jfRozCsGAMu69zXxt4Ol8UkbqubKxu8ys0BLKtA==
+  dependencies:
+    "@types/domhandler" "2.4.1"
+    domhandler "2.4.2"
+    htmlparser2 "3.10.1"
+
+html-react-parser@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/html-react-parser/-/html-react-parser-0.14.0.tgz#56038a23eeba5a40acc3eba7c2ae347cdc7fda5b"
+  integrity sha512-YpmqYg+36EAK65NgpBVyoV4sjKlmT9w71aS4+lrSjMMLrxhFOSVpm+HRwvAiu4CuiVboqjm4z3ymIdLnOZas7Q==
+  dependencies:
+    "@types/htmlparser2" "3.10.1"
+    html-dom-parser "0.3.0"
+    react-property "1.0.1"
+    style-to-object "0.3.0"
+
 html-tags@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/html-tags/-/html-tags-3.1.0.tgz#7b5e6f7e665e9fb41f30007ed9e0d41e97fb2140"
@@ -8671,17 +8719,7 @@ htmlescape@^1.1.0:
   resolved "https://registry.yarnpkg.com/htmlescape/-/htmlescape-1.1.1.tgz#3a03edc2214bca3b66424a3e7959349509cb0351"
   integrity sha1-OgPtwiFLyjtmQko+eVk0lQnLA1E=
 
-htmlparser2@4.1.0, htmlparser2@^4.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-4.1.0.tgz#9a4ef161f2e4625ebf7dfbe6c0a2f52d18a59e78"
-  integrity sha512-4zDq1a1zhE4gQso/c5LP1OtrhYTncXNSpvJYtWJBtXAETPlMfi3IFNjGuQbYLuVY4ZR0QMqRVvo4Pdy9KLyP8Q==
-  dependencies:
-    domelementtype "^2.0.1"
-    domhandler "^3.0.0"
-    domutils "^2.0.0"
-    entities "^2.0.0"
-
-htmlparser2@^3.10.0:
+htmlparser2@3.10.1, htmlparser2@^3.10.0:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-3.10.1.tgz#bd679dc3f59897b6a34bb10749c855bb53a9392f"
   integrity sha512-IgieNijUMbkDovyoKObU1DUhm1iwNYE/fuifEoEHfd1oZKZDaONBSkal7Y01shxsM49R4XaMdGez3WnF9UfiCQ==
@@ -8692,6 +8730,16 @@ htmlparser2@^3.10.0:
     entities "^1.1.1"
     inherits "^2.0.1"
     readable-stream "^3.1.1"
+
+htmlparser2@4.1.0, htmlparser2@^4.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-4.1.0.tgz#9a4ef161f2e4625ebf7dfbe6c0a2f52d18a59e78"
+  integrity sha512-4zDq1a1zhE4gQso/c5LP1OtrhYTncXNSpvJYtWJBtXAETPlMfi3IFNjGuQbYLuVY4ZR0QMqRVvo4Pdy9KLyP8Q==
+  dependencies:
+    domelementtype "^2.0.1"
+    domhandler "^3.0.0"
+    domutils "^2.0.0"
+    entities "^2.0.0"
 
 http-cache-semantics@3.8.1:
   version "3.8.1"
@@ -8936,6 +8984,11 @@ inline-source-map@~0.6.0:
   integrity sha1-+Tk0ccGKedFyT4Y/o4tYY3Ct4qU=
   dependencies:
     source-map "~0.5.3"
+
+inline-style-parser@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/inline-style-parser/-/inline-style-parser-0.1.1.tgz#ec8a3b429274e9c0a1f1c4ffa9453a7fef72cea1"
+  integrity sha512-7NXolsK4CAS5+xvdj5OMMbI962hU/wvwoxk+LWR9Ek9bVtyuuYScDN6eS0rUm6TxApFpw7CX1o4uJzcd4AyD3Q==
 
 inquirer-autocomplete-prompt@^1.0.1:
   version "1.2.0"
@@ -13440,6 +13493,11 @@ react-polyglot@^0.7.0:
     hoist-non-react-statics "^3.3.0"
     prop-types "^15.5.8"
 
+react-property@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-property/-/react-property-1.0.1.tgz#4ae4211557d0a0ae050a71aa8ad288c074bea4e6"
+  integrity sha512-1tKOwxFn3dXVomH6pM9IkLkq2Y8oh+fh/lYW3MJ/B03URswUTqttgckOlbxY2XHF3vPG6uanSc4dVsLW/wk3wQ==
+
 react-redux@^4.0.0:
   version "4.4.10"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-4.4.10.tgz#ad57bd1db00c2d0aa7db992b360ce63dd0b80ec5"
@@ -15457,6 +15515,13 @@ style-search@^0.1.0:
   resolved "https://registry.yarnpkg.com/style-search/-/style-search-0.1.0.tgz#7958c793e47e32e07d2b5cafe5c0bf8e12e77902"
   integrity sha1-eVjHk+R+MuB9K1yv5cC/jhLneQI=
 
+style-to-object@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/style-to-object/-/style-to-object-0.3.0.tgz#b1b790d205991cc783801967214979ee19a76e46"
+  integrity sha512-CzFnRRXhzWIdItT3OmF8SQfWyahHhjq3HwcMNCNLn+N7klOOqPjMeG/4JSu77D7ypZdGvSzvkrbyeTMizz2VrA==
+  dependencies:
+    inline-style-parser "0.1.1"
+
 styled-components@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-5.1.0.tgz#2e3985b54f461027e1c91af3229e1c2530872a4e"
@@ -15916,6 +15981,11 @@ tinycolor2@^1.4.1:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.2.tgz#3f6a4d1071ad07676d7fa472e1fac40a719d8803"
   integrity sha512-vJhccZPs965sV/L2sU4oRQVAos0pQXwsvTLkWYdqJ+a8Q5kPFzJTuOFwy7UniPli44NKQGAglksjvOcpo95aZA==
+
+tinymce@^5.5.0:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-5.5.1.tgz#4f24ca6e7b698a3c7418a39ef0f3d613f4a703a4"
+  integrity sha512-z03C8/0TBby68Kp7YUTSCZ0QJINsFCv9U+Cv3TNHg+T1spZ4V6vOIgD0zeTd/xKqkru0P7IOHoeAnOjfpTLq7g==
 
 title-case@^2.1.1:
   version "2.1.1"

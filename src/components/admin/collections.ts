@@ -12,7 +12,7 @@ const blog: CmsCollection = {
     { label: 'Meta Title', name: 'metaTitle', widget: 'string' },
     { label: 'Meta Description', name: 'metaDescription', widget: 'string' },
     { label: 'Meta Image', name: 'metaImage', widget: 'image' },
-    { label: 'Body', name: 'body', widget: 'markdown' },
+    { label: 'Body', name: 'body', widget: 'editor' },
     { label: 'Tags', name: 'tags', widget: 'list' },
     { label: 'Authors', name: 'authors', widget: 'list' },
     { label: 'Published', name: 'published', widget: 'boolean' },

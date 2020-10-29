@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 
 interface CodeBlockProps {
-  value: string;
+  children: string;
   language?: string;
 }
 
@@ -13,7 +13,7 @@ const SyntaxHighlighter = dynamic<CodeBlockProps>(async () => {
 
   const Highlighter = (props: CodeBlockProps) => (
     <PrismAsyncLight style={atomDark} showLineNumbers language={props.language || 'jsx'}>
-      {props.value}
+      {props.children}
     </PrismAsyncLight>
   );
 
@@ -21,5 +21,5 @@ const SyntaxHighlighter = dynamic<CodeBlockProps>(async () => {
 });
 
 export function CodeBlock(props: CodeBlockProps) {
-  return <SyntaxHighlighter language={props.language || 'jsx'} value={props.value} />;
+  return <SyntaxHighlighter language={props.language || 'jsx'}>{props.children}</SyntaxHighlighter>;
 }

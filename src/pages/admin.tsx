@@ -7,6 +7,7 @@ import { RingLoader } from 'react-spinners';
 import { PostPreview } from '~/components/admin/previews/PostPreview';
 import { ColorPreview } from '~/components/admin/previews/ColorPreview';
 import { ColorWidget } from '~/components/admin/widgets/ColorWidget';
+import { TinyMCEWidget } from '~/components/admin/widgets/TinyMCEWidget';
 
 const Loading = styled.div`
   display: grid;
@@ -47,6 +48,7 @@ export default function AdminPage() {
             cms.registerPreviewTemplate('blog', PostPreview);
             cms.registerPreviewTemplate('colors', ColorPreview);
             cms.registerWidget('color', ColorWidget);
+            cms.registerWidget('editor', TinyMCEWidget);
           },
         }}
         identity={{
