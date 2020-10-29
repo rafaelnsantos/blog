@@ -40,8 +40,13 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async (context) => 
   const anchors: Anchor[] = [];
 
   lines.forEach((line) => {
-    if (line.startsWith('## ')) {
-      const title = line.replace(/#/g, '').replace('\r', '').trim();
+    if (line.startsWith('<h2')) {
+      console.log(line);
+      const title = line
+        .replace(/<h2>/g, '')
+        .replace(/<\/h2>/g, '')
+        .replace('\r', '')
+        .trim();
       const slug = title.toLowerCase().replace(/\W/g, '-');
       anchors.push({ title, slug });
     }
