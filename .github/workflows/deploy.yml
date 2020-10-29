@@ -10,14 +10,12 @@ on:
   repository_dispatch:
 
 env:
-  NETLIFY_TOKEN: ${{secrets.NETLIFY_TOKEN}}
-  NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
   NEXT_PUBLIC_URL: ${{secrets.NEXT_PUBLIC_URL}}
   GOOGLE_ANALYTICS_KEY: ${{secrets.GOOGLE_ANALYTICS_KEY}}
   NEXT_PUBLIC_TINY_API_KEY: ${{secrets.NEXT_PUBLIC_TINY_API_KEY}}
   
 jobs:
-  build:
+  start:
     runs-on: ubuntu-latest
 
     steps:
@@ -37,6 +35,9 @@ jobs:
           node_modules-${{ hashFiles('**/yarn.lock') }}
           node_modules-
 
+  setup:
+    needs: start
+    steps:
     - name: Cache NextJS
       uses: actions/cache@v2
       with:
@@ -49,15 +50,22 @@ jobs:
     - name: Install dependencies
       run: yarn --frozen-lockfile
 
-    - name: Build
-      run: yarn export
+  build-and-test:
+    needs: setup
+    steps:
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+        cache-key: cypress-${{ hashFiles('**/yarn.lock') }}
+        build: yarn export
+        start: yarn start
 
-    # - name: Cypress run
-    #   uses: cypress-io/github-action@v2
-    #   with:
-    #     cache-key: cypress-${{ hashFiles('**/yarn.lock') }}
-    #     build: yarn export
-    #     start: yarn start
-
-    - name: Deploy
-      run: yarn netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_TOKEN -p --dir ./out
+  deploy:
+    needs: build-and-test
+    steps:
+      - uses: jsmrcaga/action-netlify-deploy@v1.1.0
+        with:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+          NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
+          NETLIFY_DEPLOY_TO_PROD: true
+          build_directory: out
