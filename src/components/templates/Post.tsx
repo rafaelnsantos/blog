@@ -47,6 +47,7 @@ export function PostTemplate({ post, anchors }: BlogPostProps) {
             source={post.content}
             renderers={{
               code: CodeBlock,
+              heading: Heading,
             }}
           />
         </div>

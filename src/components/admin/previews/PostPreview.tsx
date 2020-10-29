@@ -25,8 +25,6 @@ export function PostPreview({ entry }: PreviewTemplateComponentProps) {
     authors: get(['authors']) || ['rafa'],
   };
 
-  console.log(post);
-
   return (
     <Preview>
       <PostTemplate post={post} />
