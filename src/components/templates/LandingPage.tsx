@@ -12,12 +12,8 @@ const Container = styled.div`
 `;
 
 export function LandingPageTemplate() {
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState<string | null>(null);
   useThemeMode((darkMode) => setImage(darkMode.value ? 'MonxOpen.png' : 'MonxClosed.png'));
 
-  return (
-    <Container>
-      <Image width="200" src={image} />
-    </Container>
-  );
+  return <Container>{image && <Image width="200" src={image} />}</Container>;
 }

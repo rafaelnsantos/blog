@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { CSSProperties } from 'styled-components';
+import { slugfy } from '~/utils/slugfy';
 
 function flatten(text: any, child: any): any {
   return typeof child === 'string'
@@ -17,5 +18,5 @@ export function Heading({ level, children, ...props }: HeadingProps) {
   const Children = React.Children.toArray(children);
   const text = Children.reduce(flatten, '');
 
-  return React.createElement('h' + level, { name: text, ...props }, Children);
+  return React.createElement('h' + level, { name: text, ...props, id: slugfy(text) }, Children);
 }

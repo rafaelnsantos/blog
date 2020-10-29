@@ -2,7 +2,6 @@ import { CodeBlock } from '~/components/markdown/CodeBlock';
 import { formatTimestamp } from '~/utils/timeUtils';
 import styles from '~/components/markdown/markdown.module.scss';
 import { BlogPostProps } from '~/pages/blog/post/[slug]';
-import { useState } from 'react';
 import { Anchors } from '../molecules/Anchors';
 import { Text } from '../atoms/Text';
 import { Image } from '../atoms/Image';
@@ -11,10 +10,9 @@ import { Heading } from '~/components/markdown/Heading';
 import { HtmlRender } from '../blog/HtmlRender';
 
 export function PostTemplate({ post, anchors }: BlogPostProps) {
-  const [activeAnchor, setActiveAnchor] = useState('');
   return (
     <div className="flex flex-row-reverse justify-center">
-      {anchors && <Anchors anchors={anchors} active={activeAnchor} onClick={setActiveAnchor} />}
+      {anchors && <Anchors anchors={anchors} />}
       <div className="w-full md:max-w-3xl">
         <div className={`${styles.markdown} markdown`}>
           <div className="text-center">

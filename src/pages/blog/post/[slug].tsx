@@ -2,10 +2,12 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { getPostBySlug, getPosts, Post as PostType } from '~/utils/blogUtils';
 import { Page } from '~/components/Page';
 import { PostTemplate } from '~/components/templates/Post';
+import { slugfy } from '~/utils/slugfy';
 
 export interface Anchor {
   title: string;
   slug: string;
+  position: number;
 }
 
 export interface BlogPostProps {
@@ -41,14 +43,13 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async (context) => 
 
   lines.forEach((line) => {
     if (line.startsWith('<h2')) {
-      console.log(line);
       const title = line
         .replace(/<h2>/g, '')
         .replace(/<\/h2>/g, '')
         .replace('\r', '')
         .trim();
-      const slug = title.toLowerCase().replace(/\W/g, '-');
-      anchors.push({ title, slug });
+      const slug = slugfy(title);
+      anchors.push({ title, slug, position: 0 });
     }
   });
 
