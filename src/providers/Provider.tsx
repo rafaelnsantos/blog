@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo } from 'react';
+import React, { createContext, useContext } from 'react';
 
 export function GenericProvider<Params, T>(
   initializer: (params: Params) => T,

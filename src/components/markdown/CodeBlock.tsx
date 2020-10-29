@@ -1,25 +1,15 @@
-import dynamic from 'next/dynamic';
+import { PrismAsyncLight } from 'react-syntax-highlighter';
+import { atomDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 interface CodeBlockProps {
   children: string;
-  language?: string;
 }
 
-const SyntaxHighlighter = dynamic<CodeBlockProps>(async () => {
-  const PrismAsyncLight = await import('react-syntax-highlighter').then((a) => a.PrismAsyncLight);
-  const atomDark = await import('react-syntax-highlighter/dist/cjs/styles/prism').then(
-    (a) => a.atomDark
-  );
-
-  const Highlighter = (props: CodeBlockProps) => (
-    <PrismAsyncLight style={atomDark} showLineNumbers language={props.language || 'jsx'}>
+export function CodeBlock(props: CodeBlockProps) {
+  // todo: detect language from props.children
+  return (
+    <PrismAsyncLight style={atomDark} language={'javascript'} showLineNumbers>
       {props.children}
     </PrismAsyncLight>
   );
-
-  return Highlighter;
-});
-
-export function CodeBlock(props: CodeBlockProps) {
-  return <SyntaxHighlighter language={props.language || 'jsx'}>{props.children}</SyntaxHighlighter>;
 }
