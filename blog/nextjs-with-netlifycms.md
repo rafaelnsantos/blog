@@ -15,17 +15,12 @@ authors:
   - andrebonizi
 published: true
 ---
-## Install dependencies
-
-```bash
-yarn add @monx/react-netlifycms
-yarn add -D @types/netlify-identity-widget 
-```
-
-### admin/collections.ts
-
-```typescript
-import { CmsCollection } from '@monx/react-netlifycms';
+<h2>Install dependencies</h2>
+<pre class="language-javascript"><code>yarn add @monx/react-netlifycms
+yarn add -D @types/netlify-identity-widget </code></pre>
+<p>&nbsp;</p>
+<h2>admin/collections.ts</h2>
+<pre class="language-javascript"><code>import { CmsCollection } from '@monx/react-netlifycms';
 
 export const collections: CmsCollection[] = [
   {
@@ -42,22 +37,19 @@ export const collections: CmsCollection[] = [
       { label: 'Authors', name: 'authors', widget: 'list' },
     ],
   },
-]
-```
-
-### pages/admin.tsx
-
-```typescript
-import dynamic from 'next/dynamic';
+]</code></pre>
+<p>&nbsp;</p>
+<h2>pages/admin.tsx</h2>
+<pre class="language-javascript"><code>import dynamic from 'next/dynamic';
 import { collections } from '~/admin/collections';
 
-const NetlifyCMS = dynamic(() => import('@monx/react-netlifycms'), {
+const NetlifyCMS = dynamic(() =&gt; import('@monx/react-netlifycms'), {
   ssr: false,
 });
 
 export default function AdminPage() {
   return (
-    <NetlifyCMS 
+    &lt;NetlifyCMS 
       cms={{
         config: {
           backend: {
@@ -70,7 +62,7 @@ export default function AdminPage() {
           local_backend: process.env.NODE_ENV !== 'production',
           load_config_file: false,
         },
-        onLoad: (cms) => {
+        onLoad: (cms) =&gt; {
           // optional
           // register previews, styles and widgets here
         },
@@ -82,32 +74,10 @@ export default function AdminPage() {
               ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
               : undefined,
         },
-        onLoad: (identity) => {
+        onLoad: (identity) =&gt; {
           // optional
         },
       }}
-    />
+    /&gt;
   );
-}
-```
-
-## Dev development
-
-```bash
-yarn add -D concurrently netlify-cms-proxy-server
-```
-
-
-### add script in package.json
-
-```json
-"dev:admin": "concurrently \"next dev\" \"netlify-cms-proxy-server\""
-```
-
-run
-
-```bash
-yarn dev:admin
-```
-
-access localhost:3000/admin without login
+}</code></pre>
