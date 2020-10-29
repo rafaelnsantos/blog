@@ -15,9 +15,5 @@ export const cmsConfig: CmsConfig = {
 };
 
 export const identityConfig: IdentityConfig = {
-  APIUrl:
-    process.env.NODE_ENV === 'production'
-      ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
-      : undefined,
   logo: false,
 };
