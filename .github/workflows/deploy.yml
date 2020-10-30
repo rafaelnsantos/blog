@@ -13,6 +13,8 @@ env:
   NEXT_PUBLIC_URL: ${{secrets.NEXT_PUBLIC_URL}}
   GOOGLE_ANALYTICS_KEY: ${{secrets.GOOGLE_ANALYTICS_KEY}}
   NEXT_PUBLIC_TINY_API_KEY: ${{secrets.NEXT_PUBLIC_TINY_API_KEY}}
+  NETLIFY_TOKEN: ${{secrets.NETLIFY_TOKEN}}
+  NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
   
 jobs:
   start:
@@ -54,10 +56,5 @@ jobs:
         build: yarn export
         start: yarn start
 
-    - name: Deploy to netlify
-      uses: jsmrcaga/action-netlify-deploy@v1.1.0
-      with:
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
-        NETLIFY_SITE_ID: ${{secrets.NETLIFY_SITE_ID}}
-        NETLIFY_DEPLOY_TO_PROD: true
-        build_directory: out
+    - name: Deploy
+      run: yarn netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_TOKEN -p --dir ./out
