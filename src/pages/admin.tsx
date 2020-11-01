@@ -59,6 +59,8 @@ export default function AdminPage() {
             identity.on('logout', () => identity.open('login'));
 
             identity.on('close', () => !identity.currentUser() && identity.open('login'));
+            const admin = document.getElementById('nc-root');
+            if (admin) admin.style.height = '100vh';
           },
         }}
       />
