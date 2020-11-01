@@ -8,6 +8,7 @@ import { Image } from '../atoms/Image';
 
 import { Heading } from '~/components/markdown/Heading';
 import { HtmlRender } from '../blog/HtmlRender';
+import { Author } from '../molecules/Author';
 
 export function PostTemplate({ post, anchors }: BlogPostProps) {
   return (
@@ -26,18 +27,7 @@ export function PostTemplate({ post, anchors }: BlogPostProps) {
             </Text>
             <div className="flex flex-row justify-center">
               {post.authors.map((author) => (
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  key={author}
-                  href={`https://github.com/${author}`}
-                >
-                  <img
-                    alt={`${author}'s github`}
-                    style={{ borderRadius: 20, margin: 10 }}
-                    src={`https://github.com/${author}.png?size=40`}
-                  />
-                </a>
+                <Author author={author} key={author} />
               ))}
             </div>
           </div>
