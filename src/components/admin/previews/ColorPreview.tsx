@@ -26,20 +26,12 @@ const post: PostType = {
   authors: ['rafaelnsantos'],
 };
 
-const postPreview: PostPreview = {
-  meta: post.meta,
-  slug: post.slug,
-  tags: post.tags,
-  date: post.date,
-  title: post.title,
-};
-
 const templates = {
   contact: <ContactTemplate onSubmit={async (values) => console.log(values)} />,
   blog: (
     <BlogTemplate
       preview
-      posts={[postPreview, postPreview, postPreview, postPreview, postPreview]}
+      posts={[post, post, post, post, post]}
       tags={[
         {
           count: 1,
