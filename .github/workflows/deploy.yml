@@ -50,11 +50,7 @@ jobs:
       run: yarn --frozen-lockfile
 
     - name: Cypress run
-      uses: cypress-io/github-action@v2
-      with:
-        cache-key: cypress-${{ hashFiles('**/yarn.lock') }}
-        build: yarn export
-        start: yarn start
+      run: yarn ci
 
     - name: Deploy
       run: yarn netlify deploy -s $NETLIFY_SITE_ID --auth $NETLIFY_TOKEN -p --dir ./out

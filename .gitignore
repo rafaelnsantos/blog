@@ -31,3 +31,5 @@ yarn-error.log*
 .env.production.local
 
 public/style/preview
+
+cypress/videos
