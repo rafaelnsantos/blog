@@ -9,8 +9,8 @@ export const PostPreview = Preview<Post>(({ values }) => {
     <PreviewPage>
       <PostTemplate
         post={{
-          authors: Object.values(values.authors || []),
-          tags: Object.values(values.tags || []),
+          authors: values.authors || [],
+          tags: values.tags || [],
           readingTime: getReadingTime(values.body || ''),
           body: values.body || '',
           date: values.date || new Date().getTime(),
