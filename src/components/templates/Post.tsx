@@ -20,7 +20,7 @@ export function PostTemplate({ post, anchors }: BlogPostProps) {
               {post.title}
             </Text>
             <Image src={post.meta.image} alt={post.title} />
-            <Text align="center">{formatTimestamp(post.timestamp)}</Text>
+            <Text align="center">{formatTimestamp(post.date)}</Text>
             <Text size={0.85} align="center">
               {post.readingTime} min read
             </Text>
@@ -42,7 +42,7 @@ export function PostTemplate({ post, anchors }: BlogPostProps) {
             </div>
           </div>
           <HtmlRender
-            source={post.content}
+            source={post.body}
             renderers={{
               code: CodeBlock,
               heading: Heading,

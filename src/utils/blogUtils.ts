@@ -6,31 +6,21 @@ import { analytics } from '~/services/analytics';
 
 export interface Post {
   title: string;
-  timestamp: number;
+  date: number;
   meta: {
     title: string;
     description: string;
     image: string;
   };
   slug: string;
-  content: string;
+  body: string;
   readingTime: number;
   tags: string[];
   published: boolean;
   authors: string[];
 }
 
-export interface PostPreview {
-  title: string;
-  timestamp: number;
-  slug: string;
-  meta: {
-    title: string;
-    description: string;
-    image: string;
-  };
-  tags: string[];
-}
+export type PostPreview = Omit<Post, 'body' | 'readingTime' | 'published' | 'authors'>;
 
 export const getPostBySlug = async (slug: string): Promise<Post> => {
   const mdFile = await import(`../../blog/${slug}.md`);
@@ -38,15 +28,15 @@ export const getPostBySlug = async (slug: string): Promise<Post> => {
   const post = matter(mdFile.default);
 
   return {
-    content: post.content,
+    body: post.content,
     slug: slug,
     title: post.data.title,
-    timestamp: new Date(post.data.date).getTime(),
+    date: new Date(post.data.date).getTime(),
     tags: post.data.tags.map((tag: string) => tag.toLowerCase()),
     meta: {
-      title: post.data.metaTitle,
-      description: post.data.metaDescription,
-      image: post.data.metaImage,
+      title: post.data.meta.title,
+      description: post.data.meta.description,
+      image: post.data.meta.image,
     },
     readingTime: getReadingTime(post.content),
     published: post.data.published,
@@ -80,7 +70,7 @@ const getAllPosts = async (): Promise<Post[]> => {
     })
   );
 
-  return posts.sort((a, b) => b.timestamp - a.timestamp).filter((post) => post.published);
+  return posts.sort((a, b) => b.date - a.date).filter((post) => post.published);
 };
 
 export const getPosts = async (options?: GetPostsConfig): Promise<Post[]> => {
@@ -101,7 +91,7 @@ export const getPostsPreview = async (options?: GetPostsConfig): Promise<PostPre
     meta: post.meta,
     slug: post.slug,
     tags: post.tags,
-    timestamp: post.timestamp,
+    date: post.date,
     title: post.title,
   }));
 };
@@ -118,22 +108,27 @@ export interface CloudTag {
 }
 
 async function withAnalytics(tags: CloudTag[]) {
-  const { data } = await analytics({
-    'start-date': '7daysAgo',
-    'end-date': 'today',
-    metrics: 'ga:uniqueEvents',
-    dimensions: 'ga:eventAction',
-  });
+  try {
+    const { data } = await analytics({
+      'start-date': '7daysAgo',
+      'end-date': 'today',
+      metrics: 'ga:uniqueEvents',
+      dimensions: 'ga:eventAction',
+    });
 
-  return data.rows
-    ? data.rows.reduce((prev, row) => {
-        const tag = prev.find((t) => t.value === row[0].toLowerCase());
+    return data.rows
+      ? data.rows.reduce((prev, row) => {
+          const tag = prev.find((t) => t.value === row[0].toLowerCase());
 
-        if (tag) tag.count += parseInt(row[1]);
+          if (tag) tag.count += parseInt(row[1]);
 
-        return prev;
-      }, tags)
-    : tags;
+          return prev;
+        }, tags)
+      : tags;
+  } catch (err) {
+    console.log(err);
+    return tags;
+  }
 }
 
 export const getTags = async (posts: PostPreview[], analytics = false): Promise<CloudTag[]> => {

@@ -1,9 +1,10 @@
 ---
 title: NextJS with NetlifyCMS
 date: 2020-10-26T22:38:30.796Z
-metaTitle: NextJS with NetlifyCMS
-metaDescription: NextJS with NetlifyCMS
-metaImage: uploads/meta.jpg
+meta:
+  title: NextJS with NetlifyCMS
+  description: NextJS with NetlifyCMS
+  image: uploads/meta.jpg
 tags:
   - react
   - nextjs
@@ -65,17 +66,6 @@ export default function AdminPage() {
         onLoad: (cms) =&gt; {
           // optional
           // register previews, styles and widgets here
-        },
-      }}
-      identity={{
-        config: {
-          APIUrl:
-            process.env.NODE_ENV === 'production'
-              ? `${process.env.NEXT_PUBLIC_URL}/.netlify/identity`
-              : undefined,
-        },
-        onLoad: (identity) =&gt; {
-          // optional
         },
       }}
     /&gt;

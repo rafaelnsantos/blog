@@ -1,9 +1,10 @@
 ---
 title: NextJS Project Folder Structure
 date: 2020-10-22T16:06:05.840Z
-metaTitle: NextJS Project Folder Structure
-metaDescription: NextJS Project Folder Structure
-metaImage: uploads/meta.jpg
+meta:
+  title: NextJS Project Folder Structure
+  description: NextJS Project Folder Structure
+  image: uploads/meta.jpg
 tags:
   - nextjs
   - react

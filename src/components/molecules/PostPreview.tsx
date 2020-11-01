@@ -65,7 +65,7 @@ export function PostPreview({ post, preview }: PostPreviewProps) {
       )}
       <div className="opacity-75 justify-end">
         <Text align="right" size={0.7}>
-          {formatTimestamp(post.timestamp)}
+          {formatTimestamp(post.date)}
         </Text>
       </div>
       <div className="flex flex-row flex-wrap self-center">

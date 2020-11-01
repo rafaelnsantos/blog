@@ -7,7 +7,7 @@ interface PreviewProps {
   colors?: typeof COLORS;
 }
 
-export function Preview({ children, colors = COLORS }: PreviewProps) {
+export function PreviewPage({ children, colors = COLORS }: PreviewProps) {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   const toggleTheme = () => setTheme(theme === 'light' ? 'dark' : 'light');

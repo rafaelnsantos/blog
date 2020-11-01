@@ -1,9 +1,10 @@
 ---
 title: Setup cucumber and cypress on NextJS
 date: 2020-10-23T05:12:55.252Z
-metaTitle: Setup cucumber and cypress on NextJS
-metaDescription: Setup cucumber and cypress on NextJS
-metaImage: uploads/meta.jpg
+meta:
+  title: Setup cucumber and cypress on NextJS
+  description: Setup cucumber and cypress on NextJS
+  image: uploads/meta.jpg
 tags:
   - setup
   - cucumber

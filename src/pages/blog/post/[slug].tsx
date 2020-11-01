@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps<BlogPostProps> = async (context) => 
 
   const post = await getPostBySlug(slug);
 
-  const lines = post.content.split('\n');
+  const lines = post.body.split('\n');
 
   const anchors: Anchor[] = [];
 

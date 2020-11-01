@@ -9,9 +9,16 @@ const blog: CmsCollection = {
   fields: [
     { label: 'Title', name: 'title', widget: 'string' },
     { label: 'Publish Date', name: 'date', widget: 'datetime' },
-    { label: 'Meta Title', name: 'metaTitle', widget: 'string' },
-    { label: 'Meta Description', name: 'metaDescription', widget: 'string' },
-    { label: 'Meta Image', name: 'metaImage', widget: 'image' },
+    {
+      label: 'meta',
+      name: 'meta',
+      widget: 'object',
+      fields: [
+        { label: 'Meta Title', name: 'title', widget: 'string' },
+        { label: 'Meta Description', name: 'description', widget: 'string' },
+        { label: 'Meta Image', name: 'image', widget: 'image' },
+      ],
+    },
     { label: 'Body', name: 'body', widget: 'editor' },
     { label: 'Tags', name: 'tags', widget: 'list' },
     { label: 'Authors', name: 'authors', widget: 'list' },
