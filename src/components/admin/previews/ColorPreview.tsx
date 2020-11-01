@@ -1,4 +1,4 @@
-import { Post as PostType, PostPreview } from '~/utils/blogUtils';
+import { Post as PostType } from '~/utils/blogUtils';
 import { PreviewPage } from './PreviewPage';
 import COLORS from 'content/colors.json';
 import { useState } from 'react';
