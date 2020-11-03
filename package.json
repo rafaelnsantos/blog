@@ -13,7 +13,7 @@
     "cypress": "cypress",
     "export:css": "tailwindcss build src/theme/global.scss -o public/style/preview/global.css && sass src/components/markdown/markdown.module.scss  public/style/preview/markdown.css",
     "ci": "start-server-and-test start 3000 \"cypress run\"",
-    "sitemap": "node sitemap_generator.js"
+    "sitemap": "node sitemap.js"
   },
   "dependencies": {
     "@monx/react-netlifycms": "^1.3.1",
