@@ -4,11 +4,15 @@ import ReactGA from 'react-ga';
 
 import { gaTrackingID } from 'content/analytics.json';
 import { GoogleAnalyticsProvider } from '~/providers/GoogleAnalytics';
+import { ThemeProvider } from 'styled-components';
+import { tokens } from 'tokens';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <GoogleAnalyticsProvider trackingId={gaTrackingID}>
-      <Component {...pageProps} />
+      <ThemeProvider theme={tokens}>
+        <Component {...pageProps} />
+      </ThemeProvider>
     </GoogleAnalyticsProvider>
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import useDarkMode, { DarkMode } from 'use-dark-mode';
 
-export function useThemeMode(callbackx: ((theme: DarkMode) => void) | undefined): DarkMode {
+export function useThemeMode(callbackx: ((theme: DarkMode) => void) | null): DarkMode {
   const darkMode = useDarkMode(undefined, { storageKey: 'dark' });
 
   useEffect(() => {

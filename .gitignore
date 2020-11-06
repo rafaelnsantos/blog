@@ -33,3 +33,5 @@ yarn-error.log*
 public/style/preview
 
 cypress/videos
+
+.figmagic

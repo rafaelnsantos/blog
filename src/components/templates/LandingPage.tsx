@@ -5,7 +5,6 @@ import { Image } from '../atoms/Image';
 
 const Container = styled.div`
   display: grid;
-
   place-items: center;
 
   height: 90vh;

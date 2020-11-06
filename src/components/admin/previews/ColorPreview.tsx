@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import { Post as PostType } from '~/utils/blogUtils';
 import { PreviewPage } from './PreviewPage';
 import COLORS from 'content/colors.json';
-import { useState } from 'react';
 import { HeaderNavPreview } from '~/components/header/HeaderNav';
 import { LandingPageTemplate } from '~/components/templates/LandingPage';
 import { AboutPageTemplate } from '~/components/templates/AboutPage';

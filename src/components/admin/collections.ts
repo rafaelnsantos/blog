@@ -1,4 +1,4 @@
-import { CmsCollection } from '@monx/react-netlifycms';
+import { CmsCollection, CmsField } from '@monx/react-netlifycms';
 import COLORS from 'content/colors.json';
 
 const blog: CmsCollection = {
@@ -19,7 +19,18 @@ const blog: CmsCollection = {
         { label: 'Meta Image', name: 'image', widget: 'image' },
       ],
     },
-    { label: 'Body', name: 'body', widget: 'editor' },
+    {
+      label: 'Body',
+      name: 'body',
+      widget: 'editor',
+      apiKey: process.env.NEXT_PUBLIC_TINY_API_KEY,
+      height: 600,
+      menubar: true,
+      plugins:
+        'advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste code help wordcount codesample',
+      toolbar:
+        'undo redo | formatselect | bold italic backcolor | codesample | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help',
+    } as CmsField,
     { label: 'Tags', name: 'tags', widget: 'list' },
     { label: 'Authors', name: 'authors', widget: 'list' },
     { label: 'Published', name: 'published', widget: 'boolean' },

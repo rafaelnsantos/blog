@@ -7,18 +7,11 @@ interface HtmlRenderProps {
   };
 }
 
-export interface HtmlRenderNode {
-  type: string;
-  children: any[];
-  name: string;
-  attribs: any;
-}
-
 export function HtmlRender(props: HtmlRenderProps) {
   return (
     <>
       {parse(props.source, {
-        replace: (node: HtmlRenderNode) => {
+        replace: (node: any) => {
           if (node.type === 'tag') {
             const tags = Object.keys(props.renderers);
 

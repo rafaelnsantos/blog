@@ -1,13 +1,12 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { cmsConfig, identityConfig } from '~/components/admin/config';
 import styled from 'styled-components';
 import { RingLoader } from 'react-spinners';
+import { ColorWidget, TinyMCEWidget } from '@monx/netlifycms-widgets';
 
+import { cmsConfig, identityConfig } from '~/components/admin/config';
 import { PostPreview } from '~/components/admin/previews/PostPreview';
 import { ColorPreview } from '~/components/admin/previews/ColorPreview';
-import { ColorWidget } from '~/components/admin/widgets/ColorWidget';
-import { TinyMCEWidget } from '~/components/admin/widgets/TinyMCEWidget';
 
 const Loading = styled.div`
   display: grid;

@@ -1,0 +1,78 @@
+{
+  "accent-green": {
+    "light": "#34C759",
+    "dark": "#32D74B"
+  },
+  "border-primary": {
+    "light": "rgba(65,67,78,0.16)",
+    "dark": "rgba(255,255,255,0.12)"
+  },
+  "text-primary": {
+    "light": "#050505",
+    "dark": "#fbfbfc"
+  },
+  "shadow-bg-inset": {
+    "light": "#00000040",
+    "dark": "#060505FF"
+  },
+  "bg-secondary": {
+    "light": "#ffffff",
+    "dark": "#151617"
+  },
+  "accent-red": {
+    "light": "#FF3B30",
+    "dark": "#FF453A"
+  },
+  "accent-orange": {
+    "light": "#FF9500",
+    "dark": "#FF9F0A"
+  },
+  "text-tertiary": {
+    "light": "#525560",
+    "dark": "#a9abb6"
+  },
+  "text-placeholder": {
+    "light": "rgba(82,85,96,0.5)",
+    "dark": "rgba(145,148,161,0.5)"
+  },
+  "text-on-primary": {
+    "light": "#fbfbfc",
+    "dark": "#050505"
+  },
+  "text-secondary": {
+    "light": "#2f3037",
+    "dark": "#DEDFE5"
+  },
+  "bg-inset": {
+    "light": "#DEDFE5",
+    "dark": "#2f3037"
+  },
+  "accent-yellow": {
+    "light": "#FFCC00",
+    "dark": "#FFD60A"
+  },
+  "accent-pink": {
+    "light": "#FF2D55",
+    "dark": "#FF375F"
+  },
+  "bg-primary": {
+    "light": "#fcfcfc",
+    "dark": "rgb(14,20,27)"
+  },
+  "text-link": {
+    "light": "#007AFF",
+    "dark": "#FF9500"
+  },
+  "accent-blue": {
+    "light": "#007AFF",
+    "dark": "#0A84FF"
+  },
+  "text-quaternary": {
+    "light": "#686B78",
+    "dark": "#9094A6"
+  },
+  "accent-purple": {
+    "light": "#AF52DE",
+    "dark": "#BF5AF2"
+  }
+}
