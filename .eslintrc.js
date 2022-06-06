@@ -4,4 +4,7 @@ module.exports = {
   env: {
     'cypress/globals': true,
   },
+  rules: {
+    'react/prop-types': 'off',
+  },
 };
