@@ -48,7 +48,7 @@ export function Anchors({ anchors }: AnchorsProps) {
   });
 
   return anchors.length > 1 ? (
-    <div className="hidden lg:block sticky top-0 overflow-auto h-full pl-20">
+    <div className="hidden lg:block sticky top-0 overflow-auto h-full pl-20 pt-8">
       <ul>
         {anchors.map((anchor, index) => (
           <Link

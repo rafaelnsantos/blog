@@ -31,13 +31,15 @@ export function PostTemplate({ post, anchors }: BlogPostProps) {
               ))}
             </div>
           </div>
-          <HtmlRender
-            source={post.body}
-            renderers={{
-              code: CodeBlock,
-              heading: Heading,
-            }}
-          />
+          <div className="px-4 md:px-0">
+            <HtmlRender
+              source={post.body}
+              renderers={{
+                code: CodeBlock,
+                heading: Heading,
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
