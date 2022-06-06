@@ -1,9 +1,8 @@
 import { useField } from 'formik';
-import { DetailedHTMLProps, InputHTMLAttributes, useState } from 'react';
+import { InputHTMLAttributes, useState } from 'react';
 import styled from 'styled-components';
 
-interface TextInputProps
-  extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
   label: string;
 }
