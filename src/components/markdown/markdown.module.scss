@@ -25,6 +25,7 @@
     @include marginBlock(1em);
     display: block !important;
     text-align: justify;
+    line-height: 1.8rem;
   }
   img {
     @apply rounded-lg;
