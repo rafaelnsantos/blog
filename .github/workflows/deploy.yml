@@ -31,11 +31,10 @@ jobs:
     - name: Cache node_modules
       uses: actions/cache@v2
       with:
-        path: node_modules
-        key: node_modules-${{ hashFiles('**/yarn.lock') }}
+        path: ~/.cache
+        key: cache-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          node_modules-${{ hashFiles('**/yarn.lock') }}
-          node_modules-
+          cache-${{ hashFiles('**/yarn.lock') }}
 
     - name: Cache NextJS
       uses: actions/cache@v2
