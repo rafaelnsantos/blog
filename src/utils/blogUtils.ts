@@ -110,7 +110,7 @@ export interface CloudTag {
 async function withAnalytics(tags: CloudTag[]) {
   try {
     const { data } = await analytics({
-      'start-date': '7daysAgo',
+      'start-date': '2020-10-01',
       'end-date': 'today',
       metrics: 'ga:uniqueEvents',
       dimensions: 'ga:eventAction',
