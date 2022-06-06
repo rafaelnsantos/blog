@@ -40,7 +40,6 @@ const StyledForm = styled.form`
 export function Form<T>({ children, onSubmit, onSuccess, onError, ...props }: FormPropsA<T>) {
   const formik = useFormik<T>({
     ...props,
-    isInitialValid: false,
     onSubmit: async (values, bag) => {
       try {
         const res = await onSubmit(values);
