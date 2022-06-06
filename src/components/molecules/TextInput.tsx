@@ -1,5 +1,5 @@
 import { useField } from 'formik';
-import { InputHTMLAttributes, useState } from 'react';
+import { InputHTMLAttributes } from 'react';
 import styled from 'styled-components';
 
 interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -7,7 +7,7 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
-const StyledInput = styled.div<{ focus: boolean; empty: boolean }>`
+const StyledInput = styled.div`
   display: flex;
   flex-direction: column;
   padding: 5px 20px 10px;
@@ -18,12 +18,21 @@ const StyledInput = styled.div<{ focus: boolean; empty: boolean }>`
     font-size: 1.5rem;
     padding: 5px;
   }
+
+  input:placeholder-shown + label {
+    transform: translateY(30px) translateX(20px);
+    font-size: 1.5em;
+  }
+
+  input:focus + label {
+    transform: translateY(0px) translateX(0px);
+    font-size: 1em;
+  }
+
   label {
     height: 1.5rem;
     color: var(--text-quaternary);
-    transform: translateY(${(props) => (props.focus || !props.empty ? 0 : 30)}px)
-      translateX(${(props) => (props.focus || !props.empty ? 0 : 20)}px);
-    font-size: ${(props) => (props.focus || !props.empty ? 1 : 1.5)}rem;
+
     transition: all 200ms;
   }
 `;
@@ -36,22 +45,22 @@ const StyledError = styled.div<{ visible: boolean }>`
 
 export function TextInput({ id, label, className, ...props }: TextInputProps) {
   const [field, meta] = useField(id);
-  const [focus, setFocus] = useState(false);
   return (
-    <StyledInput className={className} focus={focus} empty={!field.value}>
-      <label htmlFor={id}>{label}</label>
-      <input
-        {...props}
-        name={field.name}
-        id={id}
-        value={field.value}
-        onChange={field.onChange}
-        onBlur={(e) => {
-          setFocus(false);
-          field.onBlur(e);
-        }}
-        onFocus={() => setFocus(true)}
-      />
+    <StyledInput className={className}>
+      <div className="flex flex-col-reverse">
+        <input
+          {...props}
+          name={field.name}
+          id={id}
+          value={field.value}
+          onChange={field.onChange}
+          onBlur={(e) => {
+            field.onBlur(e);
+          }}
+          placeholder=" "
+        />
+        <label htmlFor={id}>{label}</label>
+      </div>
       <StyledError visible={meta.touched && !!meta.error}>{' ' + meta.error}</StyledError>
     </StyledInput>
   );
