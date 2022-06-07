@@ -3,6 +3,8 @@ import { getPostsCount, getPostsPreview, PostPreview } from '~/utils/blogUtils';
 import { Page } from '~/components/Page';
 import pagination from 'content/pagination.json';
 import { BlogPageTemplate } from '~/components/templates/BlogPage';
+import { ReactElement } from 'react';
+import { Seo } from '~/components/organisms/SEO';
 
 export interface BlogPageProps {
   posts: PostPreview[];
@@ -15,11 +17,16 @@ const PAGE_SIZE = pagination.size;
 
 export default function BlogPage({ posts, pages, page }: BlogPageProps) {
   return (
-    <Page title={`Blog page ${page}`} description="Blog">
+    <>
+      <Seo title={`Blog page ${page}`} description="Blog" />
       <BlogPageTemplate page={page} pages={pages} posts={posts} />
-    </Page>
+    </>
   );
 }
+
+BlogPage.getLayout = function getLayout(page: ReactElement) {
+  return <Page>{page}</Page>;
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const postsCount = await getPostsCount();

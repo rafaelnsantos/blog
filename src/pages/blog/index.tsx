@@ -2,6 +2,8 @@ import { GetStaticProps } from 'next';
 import { getTags, CloudTag, PostPreview, getPostsPreview } from '~/utils/blogUtils';
 import { Page } from '~/components/Page';
 import { BlogTemplate } from '~/components/templates/Blog';
+import { ReactElement } from 'react';
+import { Seo } from '~/components/organisms/SEO';
 export interface BlogProps {
   posts: PostPreview[];
   tags: CloudTag[];
@@ -10,12 +12,17 @@ export interface BlogProps {
 }
 
 export default function BlogPage({ posts, tags }: BlogProps) {
+  return <BlogTemplate posts={posts} tags={tags} />;
+}
+
+BlogPage.getLayout = function getLayout(page: ReactElement) {
   return (
-    <Page title="Blog" description="Blog">
-      <BlogTemplate posts={posts} tags={tags} />
+    <Page>
+      <Seo title="Blog" description="Blog" />
+      {page}
     </Page>
   );
-}
+};
 
 export const getStaticProps: GetStaticProps<BlogProps> = async () => {
   const posts = await getPostsPreview();

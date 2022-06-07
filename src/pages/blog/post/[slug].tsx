@@ -3,6 +3,8 @@ import { getPostBySlug, getPosts, Post as PostType } from '~/utils/blogUtils';
 import { Page } from '~/components/Page';
 import { PostTemplate } from '~/components/templates/Post';
 import { slugfy } from '~/utils/slugfy';
+import { ReactElement } from 'react';
+import { Seo } from '~/components/organisms/SEO';
 
 export interface Anchor {
   title: string;
@@ -17,11 +19,16 @@ export interface BlogPostProps {
 
 export default function BlogPost({ post, anchors }: BlogPostProps) {
   return (
-    <Page title={post.meta.title} description={post.meta.description} image={post.meta.image}>
+    <>
+      <Seo title={post.meta.title} description={post.meta.description} image={post.meta.image} />
       <PostTemplate post={post} anchors={anchors} />
-    </Page>
+    </>
   );
 }
+
+BlogPost.getLayout = function getLayout(page: ReactElement) {
+  return <Page>{page}</Page>;
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getPosts();

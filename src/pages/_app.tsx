@@ -6,13 +6,23 @@ import { gaTrackingID } from 'content/analytics.json';
 import { GoogleAnalyticsProvider } from '~/providers/GoogleAnalytics';
 import { ThemeProvider } from 'styled-components';
 import { tokens } from 'tokens';
+import { NextPage } from 'next';
+import { ReactElement, ReactNode } from 'react';
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   return (
     <GoogleAnalyticsProvider trackingId={gaTrackingID}>
-      <ThemeProvider theme={tokens}>
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <ThemeProvider theme={tokens}>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
     </GoogleAnalyticsProvider>
   );
 };
