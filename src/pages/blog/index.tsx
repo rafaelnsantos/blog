@@ -3,7 +3,7 @@ import { getTags, CloudTag, PostPreview, getPostsPreview } from '~/utils/blogUti
 import { Page } from '~/components/Page';
 import { BlogTemplate } from '~/components/templates/Blog';
 import { ReactElement } from 'react';
-import { Seo } from '~/components/organisms/SEO';
+import { Seo } from '~/components/organisms/Seo';
 export interface BlogProps {
   posts: PostPreview[];
   tags: CloudTag[];

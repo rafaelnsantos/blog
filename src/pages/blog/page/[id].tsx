@@ -4,7 +4,7 @@ import { Page } from '~/components/Page';
 import pagination from 'content/pagination.json';
 import { BlogPageTemplate } from '~/components/templates/BlogPage';
 import { ReactElement } from 'react';
-import { Seo } from '~/components/organisms/SEO';
+import { Seo } from '~/components/organisms/Seo';
 
 export interface BlogPageProps {
   posts: PostPreview[];

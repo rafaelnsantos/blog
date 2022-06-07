@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { Seo } from '~/components/organisms/SEO';
+import { Seo } from '~/components/organisms/Seo';
 import { Page } from '~/components/Page';
 import { LandingPageTemplate } from '~/components/templates/LandingPage';
 

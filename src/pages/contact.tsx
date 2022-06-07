@@ -3,7 +3,7 @@ import { ContactTemplate } from '~/components/templates/Contact';
 import { useDiscord } from '~/hooks/useDiscord';
 import contact from 'content/contact.json';
 import { ReactElement } from 'react';
-import { Seo } from '~/components/organisms/SEO';
+import { Seo } from '~/components/organisms/Seo';
 
 export default function ContactPage() {
   const sendMessage = useDiscord(contact.discord);
