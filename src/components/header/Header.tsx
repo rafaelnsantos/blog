@@ -9,7 +9,7 @@ interface HeaderProps {
 
 export function Header({ links, title }: HeaderProps) {
   return (
-    <header className="h-16 flex flex-row justify-between md:max-w-screen-xl items-center container mt-0 mb-0 mr-auto ml-auto px-4">
+    <header className="h-16 flex flex-row justify-between lg:max-w-screen-xl items-center container mt-0 mb-0 mr-auto ml-auto px-4">
       <HeaderLogo text={title} />
       <div className="flex flex-row items-center">
         <HeaderNav links={links} />
