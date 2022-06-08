@@ -1,9 +1,6 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import { MagicScriptTag } from '~/theme/InlineCssVariables';
-import COLORS from 'content/colors.json';
-
 import fs from 'fs';
 import path from 'path';
 
@@ -65,7 +62,6 @@ export default class MyDocument extends Document {
         </Head>
 
         <body>
-          <MagicScriptTag colors={COLORS} />
           <Main />
           <NextScript />
         </body>

@@ -8,6 +8,8 @@ import { ThemeProvider } from 'styled-components';
 import { tokens } from 'tokens';
 import { NextPage } from 'next';
 import { ReactElement, ReactNode } from 'react';
+import { ThemeProvider as NextTheme } from 'next-themes';
+import { GlobalStyle } from '~/theme/GlobalStyle';
 
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -22,7 +24,10 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return (
     <GoogleAnalyticsProvider trackingId={analytics.gaTrackingID}>
-      <ThemeProvider theme={tokens}>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
+      <ThemeProvider theme={tokens}>
+        <GlobalStyle />
+        <NextTheme>{getLayout(<Component {...pageProps} />)}</NextTheme>
+      </ThemeProvider>
     </GoogleAnalyticsProvider>
   );
 };

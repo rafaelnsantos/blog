@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useThemeMode } from '~/hooks/useThemeMode';
+import { useTheme } from 'next-themes';
 import { Image } from '../atoms/Image';
 
 const Container = styled.div`
@@ -12,7 +12,11 @@ const Container = styled.div`
 
 export function LandingPageTemplate() {
   const [image, setImage] = useState<string | null>(null);
-  useThemeMode((darkMode) => setImage(darkMode.value ? 'MonxOpen.png' : 'MonxClosed.png'));
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    setImage(theme === 'dark' ? 'MonxOpen.png' : 'MonxClosed.png');
+  }, [theme]);
 
   return <Container>{image && <Image width="200" src={image} />}</Container>;
 }

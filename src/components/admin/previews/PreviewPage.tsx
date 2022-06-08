@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { FallbackStyles } from '~/theme/InlineCssVariables';
+import { PreviewStyles } from '~/theme/PreviewStyles';
 import COLORS from 'content/colors.json';
 
 interface PreviewProps {
@@ -14,7 +14,7 @@ export function PreviewPage({ children, colors = COLORS }: PreviewProps) {
 
   return (
     <>
-      <FallbackStyles colors={colors} theme={theme} />
+      <PreviewStyles colors={colors} theme={theme} />
       <button onClick={toggleTheme}>theme</button>
       {children}
     </>

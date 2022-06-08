@@ -1,23 +1,28 @@
-import { useState } from 'react';
-import COLORS from 'content/colors.json';
+import { useEffect, useState } from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
-import { setHTMLColors } from '~/utils/setHtmlColors';
-import { useThemeMode } from '~/hooks/useThemeMode';
+import { useTheme } from 'next-themes';
 
 export function ToggleThemeButton() {
   const [icon, setIcon] = useState<JSX.Element | null>(null);
+  const { setTheme, theme } = useTheme();
 
-  const { toggle } = useThemeMode((darkMode) => {
-    setHTMLColors(COLORS, { darkMode: darkMode.value });
-
+  useEffect(() => {
     setIcon(
-      darkMode.value ? (
+      theme === 'dark' ? (
         <FaSun size={50} color="var(--accent-yellow)" />
       ) : (
         <FaMoon size={50} color="var(--accent-blue)" />
       )
     );
-  });
+  }, [theme]);
 
-  return <button onClick={toggle}>{icon}</button>;
+  const toggle = () => {
+    setTheme(theme === 'light' ? 'dark' : 'light');
+  };
+
+  return (
+    <button style={{ width: 50 }} onClick={toggle}>
+      {icon}
+    </button>
+  );
 }
