@@ -12,7 +12,7 @@
     "netlify": "netlify",
     "cypress": "cypress",
     "figmagic": "figmagic",
-    "export:css": "tailwindcss build src/theme/global.scss -o public/style/preview/global.css && sass src/components/markdown/markdown.module.scss  public/style/preview/markdown.css",
+    "export:css": "tailwindcss build -i src/theme/global.scss -o public/style/preview/global.css && sass src/components/markdown/markdown.module.scss  public/style/preview/markdown.css",
     "ci": "start-server-and-test start 3000 \"cypress run\"",
     "sitemap": "node scripts/sitemap",
     "figmantra": "node figmantra"
@@ -45,7 +45,7 @@
     "sass": "^1.27.0",
     "styled-components": "^5.1.0",
     "styled-system": "^5.1.5",
-    "tailwindcss": "^1.4.6",
+    "tailwindcss": "^3.0.24",
     "terser": "^4.6.13",
     "use-dark-mode": "^2.3.1",
     "yup": "^0.29.3"
