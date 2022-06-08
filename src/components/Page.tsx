@@ -4,7 +4,7 @@ import SEO from 'content/seo.json';
 import { useGoogleAnalytics } from '~/providers/GoogleAnalytics';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-import { links } from 'content/navigation.json';
+import navigation from 'content/navigation.json';
 
 interface PageProps {
   children: React.ReactNode;
@@ -25,7 +25,7 @@ export function Page({ children }: PageProps) {
 
   return (
     <PageContainer>
-      <Header title={SEO.title} links={links} />
+      <Header title={SEO.title} links={navigation.links} />
       {children}
     </PageContainer>
   );

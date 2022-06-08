@@ -1,4 +1,4 @@
-import { wordsPerMinute as WORDS_PER_MINUTE } from 'content/pagination.json';
+import pagination from 'content/pagination.json';
 
 export function getReadingTime(post: string): number {
   // Matches words
@@ -10,6 +10,6 @@ export function getReadingTime(post: string): number {
 
   const wordCount = regex.length;
 
-  const readingTime = Math.ceil(wordCount / WORDS_PER_MINUTE);
+  const readingTime = Math.ceil(wordCount / pagination.wordsPerMinute);
   return readingTime;
 }

@@ -2,7 +2,7 @@ import { AppProps, NextWebVitalsMetric } from 'next/app';
 import '~/theme/global.scss';
 import ReactGA from 'react-ga';
 
-import { gaTrackingID } from 'content/analytics.json';
+import analytics from 'content/analytics.json';
 import { GoogleAnalyticsProvider } from '~/providers/GoogleAnalytics';
 import { ThemeProvider } from 'styled-components';
 import { tokens } from 'tokens';
@@ -21,7 +21,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <GoogleAnalyticsProvider trackingId={gaTrackingID}>
+    <GoogleAnalyticsProvider trackingId={analytics.gaTrackingID}>
       <ThemeProvider theme={tokens}>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
     </GoogleAnalyticsProvider>
   );

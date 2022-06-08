@@ -7,6 +7,8 @@ const configBlogLoader = (config, { dev }) => {
   return config;
 };
 
+/** @type {import('next').NextConfig} */
 module.exports = {
   webpack: configBlogLoader,
+  swcMinify: true,
 };

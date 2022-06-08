@@ -46,7 +46,7 @@ export function Form<T>({ children, onSubmit, onSuccess, onError, ...props }: Fo
         if (onSuccess) onSuccess(res);
         bag.resetForm();
       } catch (err) {
-        if (onError) onError(err);
+        if (onError) onError(err as Error);
       } finally {
         bag.setSubmitting(false);
       }
